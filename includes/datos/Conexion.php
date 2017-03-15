@@ -7,7 +7,7 @@
 
         private $host  = "localhost";
         private $user  = "root";
-        private $pass  = "root";
+        private $pass  = "";
         private $db    = "asesoriaspar";
 
         // Constructor

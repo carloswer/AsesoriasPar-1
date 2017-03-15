@@ -1,4 +1,4 @@
-<?php namespace Negocio\Objetos;
+<?php //namespace Negocio\Objetos;
 
 
     class Materia{

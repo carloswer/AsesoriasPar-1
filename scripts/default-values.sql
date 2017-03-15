@@ -1,11 +1,3 @@
-INSERT INTO materia(nombre,semestre) VALUES
-('Progra',1),
-('Progra 2',2),
-('SO',2),
-('APDS',3),
-('Diseño',4);
-
-
 INSERT INTO carrera(nombre) VALUES 
 ('ISW'),
 ('Electronica'),
@@ -13,7 +5,15 @@ INSERT INTO carrera(nombre) VALUES
 ('Diseño grafico');
 
 
-INSERT INTO horario(nombre,aprobado) VALUES
+INSERT INTO materia(nombre,semestre, carrera) VALUES
+('Progra',1, 1),
+('Progra 2',2, 1),
+('SO',2, 1),
+('APDS',3, 1),
+('Diseño',4, 1);
+
+
+INSERT INTO horario(nombre,hora,aprobado) VALUES
 ('lunes',1),
 ('Martes',1),
 ('Miercoles',1),
@@ -28,10 +28,11 @@ INSERT INTO rol(nombreRol) VALUES
 
 
 INSERT INTO usuario(Nombre,Apellido,IDitson,Contrasenia,Telefono,Correo,Facebook,avatar,Estado,ReqValidarHorario,FechaRegistro,Rol) VALUES 
--- (nombre,apellido,IDitson,contrasenia,telefono,Correo,Facebook,avatar,Estado,ReqValidarHorario,FechaRegistro,rol)
 ('root','root1','1','contraseniaroot','235123','root1.root@hotmail.com','facebookroot','',1,0,'2017-01-01',1),
 ('Carlos','Zuniga','2134421','asdff','541234','zuniga1@hotmail.com','zuniga1','',1,0,'2017-01-22',1),
 ('Carlos','Noriega','126079','vasfd','2345352','carlos1@hotmail.com','carlosnoriega','',1,0,'2017-01-26',1);
+-- (nombre,apellido,IDitson,contrasenia,telefono,Correo,Facebook,avatar,Estado,ReqValidarHorario,FechaRegistro,rol)
+
 
 INSERT INTO asesoria(fecha,hora,validacion,descripcion) VALUES
 ('2017-01-29','03:43:43',1,'nada'),

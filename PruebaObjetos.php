@@ -2,7 +2,7 @@
     include "includes/negocio/objetos/Carrera.php";
     include "includes/negocio/objetos/Materia.php";
     include "includes/negocio/objetos/Usuario.php";
-    include "includes/negocio/objetos/Asesorias.php";
+    include "includes/negocio/objetos/Asesoria.php";
     include "includes/negocio/objetos/Horario.php";
 
     $carrera = new Negocio\Objetos\Carrera(001, "ISW");

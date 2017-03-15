@@ -45,7 +45,8 @@ CREATE TABLE usuario(
 CREATE TABLE horario(
 	IDdia INT AUTO_INCREMENT PRIMARY KEY,
 	Nombre varchar(10) NOT NULL,
-	aprobado bit NOT NULL,
+	Hora TIME not null,
+	Aprobado bit NOT NULL,
 	
 	-- Foranea	
 	Usuario INT, FOREIGN KEY (Usuario) REFERENCES usuario(IDusuario) ON UPDATE CASCADE
