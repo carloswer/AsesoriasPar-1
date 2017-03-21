@@ -2,7 +2,7 @@
 
     class Horario{
         public $asesor;
-        public $listDiasDisponibles;
+        public $listDias;
         public $listaMaterias;
         public $aprobado;
         public $requiereValidar;
@@ -15,10 +15,10 @@
          * @param $aprobado
          * @param $requiereValidar
          */
-        public function __construct($asesor, $listDiasDisponibles, $listaMaterias, $aprobado, $requiereValidar)
+        public function __construct($asesor, Array $listDiasDisponibles, Array $listaMaterias, $aprobado, $requiereValidar)
         {
             $this->asesor = $asesor;
-            $this->listDiasDisponibles = $listDiasDisponibles;
+            $this->listDias = $listDiasDisponibles;
             $this->listaMaterias = $listaMaterias;
             $this->aprobado = $aprobado;
             $this->requiereValidar = $requiereValidar;
@@ -43,17 +43,17 @@
         /**
          * @return mixed
          */
-        public function getListDiasDisponibles()
+        public function getListDias()
         {
-            return $this->listDiasDisponibles;
+            return $this->listDias;
         }
 
         /**
-         * @param mixed $listDiasDisponibles
+         * @param mixed $listDias
          */
-        public function setListDiasDisponibles($listDiasDisponibles)
+        public function setListDias($listDias)
         {
-            $this->listDiasDisponibles = $listDiasDisponibles;
+            $this->listDias = $listDias;
         }
 
         /**
@@ -105,7 +105,7 @@
         }
 
         function toString(){
-            return $this->asesor.", ".$this->listDiasDisponibles.", ".$this->listaMaterias.", ".$this->aprobado.", ".$this->requiereValidar;
+            return $this->asesor.", ".$this->listDias.", ".$this->listaMaterias.", ".$this->aprobado.", ".$this->requiereValidar;
         }
 
     }

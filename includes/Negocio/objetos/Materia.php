@@ -1,4 +1,4 @@
-<?php //namespace Negocio\Objetos;
+<?php namespace Negocio\Objetos;
 
 
     class Materia{
@@ -15,7 +15,7 @@
          * @param $semestre
          * @param $carrera
          */
-        public function __construct($idMateria, $nombre, $semestre, $carrera)
+        public function __construct($idMateria, $nombre, $semestre, Carrera $carrera)
         {
             $this->idMateria = $idMateria;
             $this->nombre = $nombre;
@@ -72,22 +72,25 @@
         }
 
         /**
-         * @return mixed
+         * @return Carrera
          */
-        public function getCarrera()
+        public function getCarrera(): Carrera
         {
             return $this->carrera;
         }
 
         /**
-         * @param mixed $carrera
+         * @param Carrera $carrera
          */
-        public function setCarrera($carrera)
+        public function setCarrera(Carrera $carrera)
         {
             $this->carrera = $carrera;
         }
 
-
+        function __toString()
+        {
+            return  $this->getIdMateria().", ".$this->getNombre().", ".$this->getSemestre().", ".$this->getCarrera()->__toString();
+        }
 
 
     }

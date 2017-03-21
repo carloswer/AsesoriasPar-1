@@ -1,91 +1,86 @@
 <?php namespace Negocio\Objetos;
 
+    class Estudiante{
 
-    class Usuario{
-
-        public $usuarioId;
-        public $tipoUsuario;
+        public $idEstudiante;
+        public $itsonID;
         public $nombre;
         public $apellido;
-        public $idItson;
         public $correo;
         public $password;
         public $telefono;
         public $facebook;
-        public $carrera;
         public $avatar;
-        public $listaCitas;
-        public $horario;
+        public $reqValidar;
+        public $fechaRegistro;
         public $estado;
-        public $fchaRegistro;
+        public $carrera;
 
         /**
-         * Usuario constructor.
-         * @param $usuarioId
-         * @param $tipoUsuario
+         * Estudiante constructor.
+         * @param $idEstudiante
+         * @param $itsonID
          * @param $nombre
          * @param $apellido
-         * @param $idItson
          * @param $correo
          * @param $password
          * @param $telefono
          * @param $facebook
-         * @param $carrera
          * @param $avatar
-         * @param $listaCitas
-         * @param $horario
+         * @param $reqValidar
+         * @param $fechaRegistro
          * @param $estado
-         * @param $fchaRegistro
+         * @param $carrera
          */
-        public function __construct($usuarioId, $tipoUsuario, $nombre, $apellido, $idItson, $correo, $password, $telefono, $facebook, $carrera, $avatar, $listaCitas, $horario, $estado, $fchaRegistro)
+        public function __construct($idEstudiante, $itsonID, $nombre, $apellido, $correo, $password,
+                                    $telefono, $facebook, $avatar, $reqValidar, $fechaRegistro,
+                                    $estado, Carrera $carrera)
         {
-            $this->usuarioId = $usuarioId;
-            $this->tipoUsuario = $tipoUsuario;
+            $this->idEstudiante = $idEstudiante;
+            $this->itsonID = $itsonID;
             $this->nombre = $nombre;
             $this->apellido = $apellido;
-            $this->idItson = $idItson;
             $this->correo = $correo;
             $this->password = $password;
             $this->telefono = $telefono;
             $this->facebook = $facebook;
-            $this->carrera = $carrera;
             $this->avatar = $avatar;
-            $this->listaCitas = $listaCitas;
-            $this->horario = $horario;
+            $this->reqValidar = $reqValidar;
+            $this->fechaRegistro = $fechaRegistro;
             $this->estado = $estado;
-            $this->fchaRegistro = $fchaRegistro;
+            $this->carrera = $carrera;
         }
 
         /**
          * @return mixed
          */
-        public function getUsuarioId()
+        public function getIdEstudiante()
         {
-            return $this->usuarioId;
+            return $this->idEstudiante;
         }
 
         /**
-         * @param mixed $usuarioId
+         * @param mixed $idEstudiante
          */
-        public function setUsuarioId($usuarioId)
+        public function setIdEstudiante($idEstudiante)
         {
-            $this->usuarioId = $usuarioId;
+            $this->idEstudiante = $idEstudiante;
         }
 
         /**
          * @return mixed
          */
-        public function getTipoUsuario()
+        public function getItsonID()
         {
-            return $this->tipoUsuario;
+            return $this->itsonID;
         }
 
         /**
-         * @param mixed $tipoUsuario
+         * @param mixed $itsonID
          */
-        public function setTipoUsuario($tipoUsuario)
+        public function setItsonID($itsonID)
         {
-            $this->tipoUsuario = $tipoUsuario;
+            $this->itsonID = $itsonID;
         }
 
         /**
@@ -118,22 +113,6 @@
         public function setApellido($apellido)
         {
             $this->apellido = $apellido;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getIdItson()
-        {
-            return $this->idItson;
-        }
-
-        /**
-         * @param mixed $idItson
-         */
-        public function setIdItson($idItson)
-        {
-            $this->idItson = $idItson;
         }
 
         /**
@@ -203,22 +182,6 @@
         /**
          * @return mixed
          */
-        public function getCarrera()
-        {
-            return $this->carrera;
-        }
-
-        /**
-         * @param mixed $carrera
-         */
-        public function setCarrera($carrera)
-        {
-            $this->carrera = $carrera;
-        }
-
-        /**
-         * @return mixed
-         */
         public function getAvatar()
         {
             return $this->avatar;
@@ -235,33 +198,33 @@
         /**
          * @return mixed
          */
-        public function getListaCitas()
+        public function getReqValidar()
         {
-            return $this->listaCitas;
+            return $this->reqValidar;
         }
 
         /**
-         * @param mixed $listaCitas
+         * @param mixed $reqValidar
          */
-        public function setListaCitas($listaCitas)
+        public function setReqValidar($reqValidar)
         {
-            $this->listaCitas = $listaCitas;
+            $this->reqValidar = $reqValidar;
         }
 
         /**
          * @return mixed
          */
-        public function getHorario()
+        public function getFechaRegistro()
         {
-            return $this->horario;
+            return $this->fechaRegistro;
         }
 
         /**
-         * @param mixed $horario
+         * @param mixed $fechaRegistro
          */
-        public function setHorario($horario)
+        public function setFechaRegistro($fechaRegistro)
         {
-            $this->horario = $horario;
+            $this->fechaRegistro = $fechaRegistro;
         }
 
         /**
@@ -281,25 +244,26 @@
         }
 
         /**
-         * @return mixed
+         * @return Carrera
          */
-        public function getFchaRegistro()
+        public function getCarrera(): Carrera
         {
-            return $this->fchaRegistro;
+            return $this->carrera;
         }
 
         /**
-         * @param mixed $fchaRegistro
+         * @param Carrera $carrera
          */
-        public function setFchaRegistro($fchaRegistro)
+        public function setCarrera(Carrera $carrera)
         {
-            $this->fchaRegistro = $fchaRegistro;
+            $this->carrera = $carrera;
         }
 
-        function toString(){
-            return $this->usuarioId.", ".$this->tipoUsuario.", ".$this->nombre.", ".$this->apellido.", 
-            ".$this->idItson.", ".$this->correo.", ".$this->password.", ".$this->telefono.", ".$this->facebook."
-            , ".$this->carrera.", ".$this->avatar.", ".$this->listaCitas.", ".$this->horario.", ".$this->estado.", ".$this->fchaRegistro;
+        function __toString()
+        {
+            return  $this->getIdEstudiante().", ".$this->getItsonID().", ".$this->getNombre().", ".$this->getApellido().", ".
+                $this->getCorreo().", ".$this->getPassword().", ".$this->getTelefono().", ".$this->getFacebook().", ".
+                $this->getAvatar().", ".$this->getReqValidar().", ".$this->getEstado().", ".$this->getCarrera()->__toString();
         }
 
 

@@ -4,15 +4,18 @@
 
         private $idCarrera;
         private $nombre;
+        private $abreviacion;
 
         /**
          * Carrera constructor.
          * @param $IDcarrera
          * @param $Nombre
          */
-        public function __construct($IDcarrera, $Nombre){
-            $this->idCarrera = $IDcarrera;
+
+        public function __construct($idCarrera, $Nombre, $abreviacion){
+            $this->idCarrera = $idCarrera;
             $this->nombre = $Nombre;
+            $this->abreviacion = $abreviacion;
         }
 
         /**
@@ -49,7 +52,7 @@
 
         function __toString()
         {
-            return $this->idCarrera.", ".$this->nombre;
+            return $this->idCarrera.", ".$this->nombre.", ".$this->abreviacion;
         }
 
 
