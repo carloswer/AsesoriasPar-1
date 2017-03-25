@@ -16,8 +16,7 @@ CREATE TABLE administrador(
 CREATE TABLE carrera (
 	IDcarrera 	INT AUTO_INCREMENT PRIMARY KEY,
 	Carrera 		VARCHAR(100) NOT NULL,
-	Abreviacion	VARCHAR(10),
-	Registrada	TIMESTAMP
+	Abreviacion	VARCHAR(10)
 );
 
 
@@ -53,7 +52,7 @@ CREATE TABLE estudiante(
 	Password	 			varchar(50) NOT NULL,
 	Telefono 			varchar(30),
 	Facebook 			varchar(30),
-	Avatar 				varchar(30),
+	Avatar 				varchar(30) unique,
 	ReqValidar			TINYINT NOT NULL DEFAULT 0, -- 0 = NO, 1 = SI
 	
 	FechaRegistro 		TIMESTAMP,
@@ -63,7 +62,7 @@ CREATE TABLE estudiante(
 	-- llaves foraneas
 -- Rol int NOT NULL,
 -- 	FOREIGN KEY (Rol) REFERENCES rol(IDrol) ON UPDATE CASCADE,
-	Carrera int not null, 
+	Carrera int not null,
 	FOREIGN KEY (Carrera) REFERENCES carrera(IDcarrera) ON UPDATE CASCADE
 );
 
@@ -96,7 +95,7 @@ CREATE TABLE asesor_materia(
 
 CREATE TABLE asesoria(
 	IDasesoria 	INT AUTO_INCREMENT PRIMARY KEY,
-	-- Cuando se colicita
+	-- Cuando se solicita
 	Fecha 			DATE NOT NULL,
 	Descripcion 	text,
 	

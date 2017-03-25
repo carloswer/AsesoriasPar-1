@@ -17,8 +17,8 @@
 
         }
 
-        public function getMateriasAsesor(Estudiantes $asesor){
-
+        public function getMateriasAsesor(Estudiante $asesor){
+            
         }
 
 

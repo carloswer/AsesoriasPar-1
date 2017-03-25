@@ -17,34 +17,30 @@
     //------------------
     //  VARIABLES Y CONSTANTES
     //------------------
-    $tituloPagina = "AsesoriasPar | Default";
+    $tituloPagina = "Default";
 
 
     //----------------  Directorios
     define("DS", DIRECTORY_SEPARATOR);
     define('ROOT_PATH', __DIR__ );
     define("INC_PATH", ROOT_PATH . DS . "includes");
-
-//    define('TEMP_PATH', ROOT_PATH . "/includes/Template");
-    //Negocio
-//    define('OBJ_PATH',  ROOT_PATH . "/includes/Negocio/objetos");
-//    define('CTRL_PATH', ROOT_PATH . "/includes/Negocio/controles");
-    //Datos
-//    define('DATOS_PATH', ROOT_PATH . "/includes/Datos");
+    define("TEMP_PATH", INC_PATH . DS . "template");
 
 
-    //variable for href and src
+    //------------variable para HREF and SRC de HTML
     // DEFINE('ROOT', "");
-//    DEFINE('ROOT', 			"/asesoriaspar");
-//    DEFINE('IMG_PATH', 		ROOT . "/src/img");
-//    DEFINE('JS_PATH', 		ROOT . "/src/js");
-//    DEFINE('CSS_PATH', 		ROOT . "/src/stylesheet");
+    DEFINE('ROOT', 			"/www/asesoriaspar");
+    DEFINE('ASSETS',          ROOT . "/assets");
+    DEFINE('IMG_PATH', 		ASSETS . "/img");
+    DEFINE('JS_PATH', 		ASSETS . "/js");
+    DEFINE('CSS_PATH', 		ASSETS . "/css");
 
 
     //------------------
     //  INCLUDES Y REQUIRES
     //------------------
     include_once INC_PATH . DS . "autoload.php";
+    // include_once INC_PATH . "/funciones/funciones.php";
 
 
 ?>

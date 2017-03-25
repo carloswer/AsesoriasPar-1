@@ -5,7 +5,7 @@
 
 INSERT INTO carrera(carrera, abreviacion) VALUES 
 ('Ingenieria en Software', 'ISW'),
-('Ingenieria en Mecatronica', '');
+('Ingenieria en Mecatronica', 'IMT');
 
 -- INSERT INTO rol(nombre) VALUES
 -- ('Administrador'),
@@ -24,14 +24,14 @@ INSERT INTO dia(dia) VALUES
 
 
 INSERT INTO materia(materia,semestre,carrera) VALUES
-('Progra',	1,	1),
-('Progra 2',2, 1),
-('SO',		2, 1),
-('APDS',		3, 1),
-('Diseño',	4, 1),
-('Quimica',	1, 2),
+('Progra',		1,	1),
+('Progra 2',	2, 1),
+('SO',			2, 1),
+('APDS',			3, 1),
+('Diseño',		4, 1),
+('Quimica',		1, 2),
 ('Materiales',	2, 2),
-('Fluidos',	3, 2);
+('Fluidos',		3, 2);
 
 -- SELECT * FROM carrera;
 
@@ -65,6 +65,10 @@ INSERT INTO horario(Hora, Dia, Asesor) VALUES
 ('13:00:00', 5,1),
 ('15:00:00', 5,1);
 
+SELECT h.IDhorario, d.Dia, h.Hora, e.Nombre FROM horario h
+INNER JOIN Dia d ON h.Dia = d.IDdia
+INNER JOIN estudiante e ON h.Asesor = e.IDestudiante;
+
 
 -- SELECT * FROM estudiante;
 -- SELECT * FROM dia;
@@ -89,6 +93,11 @@ INSERT INTO asesoria(Fecha,Descripcion,Alumno,Horario,Asesor_Materia) VALUES
 ('2017-02-05','Es sobre los arreglos', , ,),
 
 
+
+
+
+
+
 -- Obtener Asesores, Sus horarios y materias registradas
 SELECT am.IDasesor_materia, e.IDestudiante, e.Nombre, e.Apellido, m.Materia as 'Materia' FROM asesor_materia am
 INNER JOIN estudiante e ON am.Asesor = e.IDestudiante
@@ -105,8 +114,12 @@ ORDER BY e.IDestudiante ASC;
 SELECT * FROM materia m
 INNER JOIN carrera c ON  m.Carrera = c.IDcarrera;
 
+
 SELECT * FROM materia m INNER JOIN carrera c ON m.Carrera = c.IDcarrera
 WHERE c.IDcarrera = 1;
 
 
 SELECT * FROM estudiante e INNER JOIN carrera c ON e.Carrera = c.IDcarrera
+
+SELECT * FROM materia m INNER JOIN carrera c ON m.Carrera = c.IDcarrera 
+WHERE m.IDmateria = 1;

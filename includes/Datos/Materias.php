@@ -29,6 +29,25 @@
             return $this->resultados;
         }
 
+
+
+        public function getMateriaID(int $id){
+            $this->con = Conexion::getInstance()->getConnection();
+
+            $query = "SELECT * FROM materia m INNER JOIN carrera c ON m.Carrera = c.IDcarrera 
+                    WHERE m.IDmateria = ".$materia->getIdMateria();
+
+            $result = $this->con->query($query);
+
+            $row = mysqli_fetch_assoc($result);
+            return  $this->crearObjMateria($row);
+
+            $this->con->close();
+            return $this->resultados;
+        }
+
+
+
         /**
          * Método que regresa sólo las materias de una carrera
          * @param Carrera $carrera objeto Carrera del cual se buscara en la base de Datos

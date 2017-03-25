@@ -1,5 +1,7 @@
 <?php
     require_once "../config.php";
+    $tituloPagina = "Inicio";
+
     //Cierra la sesion en caso de haber una
     session_destroy();
 
@@ -9,16 +11,7 @@
 ?>
 
 
-<!doctype html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Seleccione usuario</title>
-</head>
-<body>
+<?php include TEMP_PATH . DS . "header.php"; ?>
 
 
     <h1>Seleccione usuario para crear un horario</h1>
@@ -28,7 +21,7 @@
 
             <li>
                 <a href="seleccionarMateria.php?userID=<?= $estudiante->getIDestudiante(); ?> ">
-                    <?= $estudiante->getNombre()." ". $estudiante->getApellido(); ?>
+                    <?= $estudiante->getIdestudiante()." - ".$estudiante->getNombre()." ".$estudiante->getApellido(); ?>
                 </a>
             </li>
 
@@ -36,9 +29,4 @@
     </ul>
 
 
-
-
-</body>
-</html>
-
-
+<?php include TEMP_PATH . DS . "footer.php"; ?>

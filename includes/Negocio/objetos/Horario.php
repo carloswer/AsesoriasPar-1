@@ -3,6 +3,7 @@
     class Horario{
         public $asesor;
         public $listDias;
+//        new hora_dia( new Dia(), "08:00" )
         public $listaMaterias;
         public $aprobado;
         public $requiereValidar;
