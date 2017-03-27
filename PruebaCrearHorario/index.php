@@ -8,6 +8,7 @@
     use Negocio\Controles\ControlEstudiantes;
     $ctrlEstudiantes = new ControlEstudiantes();
     $listaEstudiantes = $ctrlEstudiantes->obtenerEstudiante();
+    $numEstudiantes = count($listaEstudiantes);
 ?>
 
 
@@ -15,7 +16,7 @@
 
 
     <h1>Seleccione usuario para crear un horario</h1>
-    <h3>Usuario registrados: <?= count($listaEstudiantes); ?> </h3>
+    <h3>Usuario registrados: <?= $numEstudiantes; ?> </h3>
     <ul>
         <?php foreach ($listaEstudiantes as $estudiante ): ?>
 
@@ -27,6 +28,5 @@
 
         <?php endforeach; ?>
     </ul>
-
 
 <?php include TEMP_PATH . DS . "footer.php"; ?>

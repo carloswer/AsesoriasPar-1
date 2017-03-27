@@ -2,20 +2,17 @@
 -- DATOS DEFAULT
 -- ----------------------------
 
+INSERT INTO rol(rol_nombre) VALUES
+('Administrador'),
+('Estudiante');
 
-INSERT INTO carrera(carrera, abreviacion) VALUES 
+
+INSERT INTO carrera(carrera_nombre, abreviacion) VALUES 
 ('Ingenieria en Software', 'ISW'),
 ('Ingenieria en Mecatronica', 'IMT');
 
--- INSERT INTO rol(nombre) VALUES
--- ('Administrador'),
--- ('Estudiante');
 
--- INSERT INTO rol(nombre) VALUES
--- ('Asesor'),
--- ('Alumno');
-
-INSERT INTO dia(dia) VALUES
+INSERT INTO dia(dia_nombre) VALUES
 ('Lunes'),
 ('Martes'),
 ('Miercoles'),
@@ -23,7 +20,7 @@ INSERT INTO dia(dia) VALUES
 ('Viernes');
 
 
-INSERT INTO materia(materia,semestre,carrera) VALUES
+INSERT INTO materia(materia_nombre,semestre,carrera) VALUES
 ('Progra',		1,	1),
 ('Progra 2',	2, 1),
 ('SO',			2, 1),
@@ -33,17 +30,19 @@ INSERT INTO materia(materia,semestre,carrera) VALUES
 ('Materiales',	2, 2),
 ('Fluidos',		3, 2);
 
--- SELECT * FROM carrera;
+
+INSERT INTO usuario(username, password, correo, rol) VALUES
+('root',		md5('root'),				'carlosrozuma@gmail.com', 		1),
+('charly',	md5('freedom'),			'c_01_12@gmail.com', 			2),
+('noriega',	md5('randoming'),			'cnoriegacazarez@gmail.com', 	2),
+('lao',		md5('bobesponja2040'),	'enrikegl96@gmail.com', 		2);
 
 
-INSERT INTO administrador(username, contrasenia, correo) VALUES
-('root','root1','carlosrozuma@gmail.com');
 
-
-INSERT INTO estudiante(itsonID,Nombre,Apellido,password,Telefono,Correo,Facebook,Carrera) VALUES 
-('00000162156','Carlos','Zuñiga',md5('freedom'),'6441211988','c_01_12@gmail.com','charlyronin', 1),
-('00000126079','Carlos','Noriega',md5('randoming'),'6442306790','cnoriegacazarez@gmail.com','carloswer', 1),
-('00000133494','Jose Enrique','Garcia Lao',md5('bobesponja2040'),'6441432736','enrikegl96@gmail.com','', 1);
+INSERT INTO estudiante(IDestudiante, itsonID,Nombre,Apellido,Telefono,Facebook,Avatar,Carrera) VALUES 
+(2,'00000162156','Carlos','Zuñiga',	 '644', 'fb', 'av1', 1),
+(3,'00000126079','Carlos','Noriega', '644', 'fb', 'av2', 1),
+(4,'00000133494','Enrique','Garcia', '644', 'fb', 'av3', 1);
 
 
 
