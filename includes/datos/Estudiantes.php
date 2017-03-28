@@ -16,7 +16,9 @@
         public function getEstudiantes(): array{
             $this->con = Conexion::getInstance()->getConnection();
 
-            $query = "SELECT * FROM estudiante e INNER JOIN carrera c ON e.Carrera = c.IDcarrera";
+            $query = "SELECT * FROM estudiante e
+                      INNER JOIN carrera c ON e.Carrera = c.IDcarrera
+                      INNER JOIN usuario u ON e.IDestudiante = u.IDusuario;";
             $result = $this->con->query($query);
             $this->con->close();
 
@@ -58,9 +60,9 @@
         private function crearObjEstudiante($item): Estudiante{
 
             return new Estudiante($item['IDestudiante'], $item['itsonID'], $item['Nombre'], $item['Apellido'],
-                $item['Correo'], $item['password'], $item['Telefono'], $item['Facebook'], $item['Avatar'],
-                $item['ReqValidarAsesoria'], $item['FechaRegistro'], $item['Estado'],
-                new Carrera($item['IDcarrera'], $item['Carrera'], $item['Abreviacion']));
+                $item['Correo'], $item['Password'], $item['Telefono'], $item['Facebook'], $item['Avatar'],
+                $item['ReqValidar'], $item['Registro'], $item['Estado'],
+                new Carrera($item['IDcarrera'], $item['Carrera_nombre'], $item['Abreviacion']));
 
         }
 

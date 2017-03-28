@@ -13,30 +13,18 @@
     // if( !isset($_SESSION['IDestudiante'] ) )
     $_SESSION['IDestudiante'] = $_GET['userID'];
 
+    use Negocio\Controles\ControlHorario;
+    $controlHorario = new ControlHorario();
+
     //Verifica si tiene un horario creado
-    // use Datos\Horarios;
-    // $horarios = new Horarios();
-    // $horario = $horarios->getHorarioAsesor();
+
 
     // use Datos\Materias;
-    // $materias = new Materias();
-    // $listaMaterias = $materias->getMaterias();
+    // $listMaterias = $controlHorario->obtenerMaterias();
 ?>
 
 
 <?php include TEMP_PATH . DS . "header.php"; ?>
-
-     <!-- <ul> -->
-        <?php //foreach ( $listaMaterias as $materia ): ?>
-
-            <!-- <li> -->
-                <!-- <a href="javascript:void(0)"> -->
-                    <?php //$materia->getNombre(); ?>
-                <!-- </a> -->
-            <!-- </li> -->
-
-        <?php //endforeach; ?>
-    <!-- </ul> -->
 
 
     <div id="horario">

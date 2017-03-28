@@ -3,6 +3,7 @@
     $tituloPagina = "Inicio";
 
     //Cierra la sesion en caso de haber una
+    session_start();
     session_destroy();
 
     use Negocio\Controles\ControlEstudiantes;

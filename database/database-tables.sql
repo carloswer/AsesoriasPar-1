@@ -14,11 +14,11 @@ CREATE TABLE IF NOT EXISTS rol(
 
 CREATE TABLE IF NOT EXISTS usuario(
 	IDusuario	INT AUTO_INCREMENT PRIMARY KEY,
-	username		varchar(200) not null unique,
-	password 	varchar(200) not null,
-	correo 		varchar(200) not null unique,
+	Username		varchar(200) not null unique,
+	Password 	varchar(200) not null,
+	Correo 		varchar(200) not null unique,
 	Estado 		TINYINT NOT NULL DEFAULT 1, -- 0 = Inactivo, 1 = Activo
-	registro 	TIMESTAMP,
+	Registro 	TIMESTAMP,
 	
 	-- Foraneas
 	Rol int not null, FOREIGN KEY (Rol) REFERENCES rol(IDrol) ON UPDATE CASCADE
