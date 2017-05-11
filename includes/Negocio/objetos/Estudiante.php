@@ -1,18 +1,15 @@
 <?php namespace Negocio\Objetos;
 
-    class Estudiante{
+    class Estudiante extends Usuario {
 
         public $idEstudiante;
         public $itsonID;
         public $nombre;
         public $apellido;
-        public $correo;
-        public $password;
         public $telefono;
         public $facebook;
         public $avatar;
         public $reqValidar;
-        public $fechaRegistro;
         public $estado;
         public $carrera;
 
@@ -22,34 +19,28 @@
          * @param $itsonID
          * @param $nombre
          * @param $apellido
-         * @param $correo
-         * @param $password
          * @param $telefono
          * @param $facebook
          * @param $avatar
          * @param $reqValidar
-         * @param $fechaRegistro
          * @param $estado
          * @param $carrera
          */
-        public function __construct($idEstudiante, $itsonID, $nombre, $apellido, $correo, $password,
-                                    $telefono, $facebook, $avatar, $reqValidar, $fechaRegistro,
-                                    $estado, Carrera $carrera)
+        public function __construct($idEstudiante, $itsonID, $nombre, $apellido, $telefono, $facebook, $avatar, $reqValidar, $estado, $carrera)
         {
             $this->idEstudiante = $idEstudiante;
             $this->itsonID = $itsonID;
             $this->nombre = $nombre;
             $this->apellido = $apellido;
-            $this->correo = $correo;
-            $this->password = $password;
             $this->telefono = $telefono;
             $this->facebook = $facebook;
             $this->avatar = $avatar;
             $this->reqValidar = $reqValidar;
-            $this->fechaRegistro = $fechaRegistro;
             $this->estado = $estado;
             $this->carrera = $carrera;
         }
+
+
 
         /**
          * @return mixed
@@ -113,38 +104,6 @@
         public function setApellido($apellido)
         {
             $this->apellido = $apellido;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getCorreo()
-        {
-            return $this->correo;
-        }
-
-        /**
-         * @param mixed $correo
-         */
-        public function setCorreo($correo)
-        {
-            $this->correo = $correo;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getPassword()
-        {
-            return $this->password;
-        }
-
-        /**
-         * @param mixed $password
-         */
-        public function setPassword($password)
-        {
-            $this->password = $password;
         }
 
         /**
@@ -214,22 +173,6 @@
         /**
          * @return mixed
          */
-        public function getFechaRegistro()
-        {
-            return $this->fechaRegistro;
-        }
-
-        /**
-         * @param mixed $fechaRegistro
-         */
-        public function setFechaRegistro($fechaRegistro)
-        {
-            $this->fechaRegistro = $fechaRegistro;
-        }
-
-        /**
-         * @return mixed
-         */
         public function getEstado()
         {
             return $this->estado;
@@ -244,27 +187,21 @@
         }
 
         /**
-         * @return Carrera
+         * @return mixed
          */
-        public function getCarrera(): Carrera
+        public function getCarrera()
         {
             return $this->carrera;
         }
 
         /**
-         * @param Carrera $carrera
+         * @param mixed $carrera
          */
-        public function setCarrera(Carrera $carrera)
+        public function setCarrera($carrera)
         {
             $this->carrera = $carrera;
         }
 
-        function __toString()
-        {
-            return  $this->getIdEstudiante().", ".$this->getItsonID().", ".$this->getNombre().", ".$this->getApellido().", ".
-                $this->getCorreo().", ".$this->getPassword().", ".$this->getTelefono().", ".$this->getFacebook().", ".
-                $this->getAvatar().", ".$this->getReqValidar().", ".$this->getEstado().", ".$this->getCarrera()->__toString();
-        }
 
 
     }

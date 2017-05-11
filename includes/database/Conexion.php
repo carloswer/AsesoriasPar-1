@@ -5,7 +5,7 @@
     class Conexion {
 
         private $_connection;
-        private static $instance; //The single instance
+         private static $instance; //The single instance
 
         private $host  = "localhost";
         private $user  = "root";
@@ -32,7 +32,7 @@
             /* cambiar el conjunto de caracteres a utf8 */
             if ( !$this->_connection->set_charset('utf8') ) {
                 printf("Error cargando el conjunto de caracteres utf8: %s\n", $this->_connection->error);
-//                exit();
+               // exit();
             }
         }
 

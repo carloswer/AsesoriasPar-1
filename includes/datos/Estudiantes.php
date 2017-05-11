@@ -8,63 +8,93 @@
     {
 
         private $con;
-        private $resultados = array();
+        //private $resultados = array();
 
         public function __construct(){}
 
 
-        public function getEstudiantes(): array{
-            $this->con = Conexion::getInstance()->getConnection();
-
-            $query = "SELECT * FROM estudiante e
-                      INNER JOIN carrera c ON e.Carrera = c.IDcarrera
-                      INNER JOIN usuario u ON e.IDestudiante = u.IDusuario;";
-            $result = $this->con->query($query);
-            $this->con->close();
-
-            //Creando y Agregando objetos Materia a arreglo
-            while( $row = mysqli_fetch_assoc($result) ){
-                $this->resultados[] = $this->crearObjEstudiante($row);
-            }
-            return $this->resultados;
-        }
-
-
-        public function getEstudiantesCarrera(Carrera $carrera)
+        public function getEstudiantes(): array
         {
             $this->con = Conexion::getInstance()->getConnection();
 
-            $query = "SELECT * FROM estudiante e INNER JOIN carrera c ON e.Carrera = c.IDcarrera
-                      WHERE c.Carrera = '".$carrera->getNombre()."'";
+            $query = "SELECT * FROM estudiante e
+                      INNER JOIN carrera c ON e.FK_carrera = c.PK_ca_id
+                      INNER JOIN usuario u ON e.FK_usuario = u.PK_usu_id;";
             $result = $this->con->query($query);
             $this->con->close();
 
-            //Creando y Agregando objetos Materia a arreglo
+
             while( $row = mysqli_fetch_assoc($result) ){
-                $this->resultados[] = $this->crearObjEstudiante($row);
+                $this->resultados[] = $row;
             }
+
+            //Creando y Agregando objetos Materia a arreglo
+//            while( $row = mysqli_fetch_assoc($result) ){
+//                $this->resultados[] = $this->crearObjEstudiante($row);
+//            }
             return $this->resultados;
         }
 
 
-        public function getEstudianteId(Estudiante $estudiante): Estudiante{
-//            $this->con = Conexion::getInstance()->getConnection();
-//
-//            $query = "SELECT * FROM estudiante WHERE IDestudiante =".$estudiante->getIdEstudiante();
-//
-//            $result = $this->con->query($query);
-//            $this->con->close();
+        public function getEstudianteID(int $idEstudiante): array
+        {
+            $this->con = Conexion::getInstance()->getConnection();
+
+            $query = "SELECT * FROM estudiante e
+                        INNER JOIN carrera c ON e.FK_carrera = c.PK_ca_id
+                        INNER JOIN usuario u ON e.FK_usuario = u.PK_usu_id
+                        WHERE e.PK_est_id = ".$idEstudiante;
+            $result = $this->con->query($query);
+            $this->con->close();
+
+
+            while( $row = mysqli_fetch_assoc($result) ){
+                $this->resultados[] = $row;
+            }
+
+            //Creando y Agregando objetos Materia a arreglo
+//            while( $row = mysqli_fetch_assoc($result) ){
+//                $this->resultados[] = $this->crearObjEstudiante($row);
+//            }
+            return $this->resultados;
         }
 
 
-        private function crearObjEstudiante($item): Estudiante{
+//        public function getEstudiantesCarrera(Carrera $carrera): Array
+        public function getEstudiantesCarrera(int $idCarrera): Array
+        {
+            $this->con = Conexion::getInstance()->getConnection();
 
-            return new Estudiante($item['IDestudiante'], $item['itsonID'], $item['Nombre'], $item['Apellido'],
-                $item['Correo'], $item['Password'], $item['Telefono'], $item['Facebook'], $item['Avatar'],
-                $item['ReqValidar'], $item['Registro'], $item['Estado'],
-                new Carrera($item['IDcarrera'], $item['Carrera_nombre'], $item['Abreviacion']));
+            $query = "SELECT * FROM estudiante e 
+                      INNER JOIN carrera c ON e.FK_carrera = c.PK_ca_id
+                      WHERE c.PK_ca_id = ".idCarrera;
+            $result = $this->con->query($query);
+            $this->con->close();
 
+            while( $row = mysqli_fetch_assoc($result) ){
+                $this->resultados[] = $row;
+            }
+
+//            //Creando y Agregando objetos Materia a arreglo
+//            while( $row = mysqli_fetch_assoc($result) ){
+//                $this->resultados[] = $this->crearObjEstudiante($row);
+//            }
+//            return $this->resultados;
         }
+
+
+
+
+//        private function crearObjEstudiante($item): Estudiante{
+//
+//            return new Estudiante($item['PK_est_id'], $item['est_idItson'], $item['est_nombre'], $item['est_apellido'],
+//                    $item['usu_Correo'], $item['usu_password'], $item['Telefono'], $item['Facebook'], $item['Avatar'],
+//                    $item['ReqValidar'], $item['Registro'], $item['Estado'],
+//
+//                    new Carrera($item['IDcarrera'], $item['Carrera_nombre'], $item['Abreviacion'])
+//                );
+//
+//        }
 
     }
 ?>

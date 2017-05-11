@@ -19,11 +19,11 @@
     <h1>Seleccione usuario para crear un horario</h1>
     <h3>Usuario registrados: <?= $numEstudiantes; ?> </h3>
     <ul>
-        <?php foreach ($listaEstudiantes as $estudiante ): ?>
+        <?php foreach ($listaEstudiantes as $e ): ?>
 
             <li>
-                <a href="seleccionarMateria.php?userID=<?= $estudiante->getIDestudiante(); ?> ">
-                    <?= $estudiante->getIdestudiante()." - ".$estudiante->getNombre()." ".$estudiante->getApellido(); ?>
+                <a href="crearHorario.php?userID=<?= $e['PK_est_id']; ?> ">
+                    <?= $e['PK_est_id']." - ".$e['est_nombre']." ".$e['est_apellido']; ?>
                 </a>
             </li>
 

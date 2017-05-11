@@ -49,9 +49,10 @@ $(document).ready(function(){
             var hora = $(this).data("hora");
 
             //Agregando elementos al array
-            horario.push({"dia": dias[dia - 1], "hora": hora});
+            horario.push( {"dia": dias[dia - 1], "hora": hora} );
             // alert( dias[dia-1] +", "+ hora );
         });
+
 
         if (horario.length == 0)
             alert("sin horas seleccionadas");

@@ -56,5 +56,9 @@
         <button id="btn-reset-horario" class="btn">Reiniciar</button>
 
     </div>
+    
+    <div class="materias">
+        
+    </div>
 
 <?php include TEMP_PATH . DS . "footer.php"; ?>

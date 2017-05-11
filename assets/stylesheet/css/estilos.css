@@ -1,0 +1,23 @@
+.boton {
+  background: red; }
+
+html, body {
+  margin: 0;
+  padding: 0; }
+
+div.container {
+  max-width: 1200px;
+  margin: 0 auto; }
+
+header nav.menu-container {
+  background: #1E9CEC; }
+  header nav.menu-container .menu {
+    text-align: right; }
+    header nav.menu-container .menu .menu-item {
+      list-style: none; }
+      header nav.menu-container .menu .menu-item a {
+        display: inline-block;
+        text-decoration: none;
+        color: #fff;
+        padding: 12px 15px;
+        background: peru; }

@@ -8,10 +8,10 @@
     //  0 = Desactivar
     //  1 = Activar
     //------------------
-    DEFINE("DEBUG", 0);
+    DEFINE("DEBUG", 1);
 
     if( !DEBUG )
-        error_reporting(0);
+        error_reporting(1);
 
 
     //------------------
@@ -33,7 +33,7 @@
     DEFINE('ASSETS',          ROOT . "/assets");
     DEFINE('IMG_PATH', 		ASSETS . "/img");
     DEFINE('JS_PATH', 		ASSETS . "/js");
-    DEFINE('CSS_PATH', 		ASSETS . "/css");
+    DEFINE('CSS_PATH', 		ASSETS . "/stylesheet");
 
 
     //------------------
