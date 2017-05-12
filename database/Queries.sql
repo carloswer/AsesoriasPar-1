@@ -79,8 +79,32 @@ SELECT * FROM asesor_materia;
 
 
 
+-- ---------------------------------------------NUEVO QUERIES
+-- Login
+SELECT * FROM usuario u
+WHERE u.usu_correo = 'carlosrozuma@gmail.m'
+OR u.usu_username = 'charly'
+AND u.usu_password = md5('freedom');
+
+
+
+
+
+
+
+
+-- Obtener estudiantes
+SELECT * FROM estudiante e
+INNER JOIN carrera c ON e.FK_carrera = c.PK_ca_id;
 
 SELECT * FROM estudiante e
 INNER JOIN carrera c ON e.FK_carrera = c.PK_ca_id
-INNER JOIN usuario u ON e.FK_usuario = u.PK_usu_id;
+WHERE e.PK_est_id = 1;
+
+-- Obtener estudiantes por carrera
+SELECT * FROM estudiante e 
+INNER JOIN carrera c ON e.FK_carrera = c.PK_ca_id
+WHERE c.PK_ca_id = 2;
+
+
 

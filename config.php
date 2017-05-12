@@ -8,7 +8,7 @@
     //  0 = Desactivar
     //  1 = Activar
     //------------------
-    DEFINE("DEBUG", 1);
+    DEFINE("DEBUG", 0);
 
     if( !DEBUG )
         error_reporting(1);

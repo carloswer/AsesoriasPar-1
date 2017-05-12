@@ -7,15 +7,8 @@
     // $ctrlEstudiantes = new ControlEstudiantes();
     // $listaEstudiantes = $ctrlEstudiantes->obtenerEstudiante();
     // $numEstudiantes = count($listaEstudiantes);
-
-    use Datos\Generico;
-    $generico = new Generico();
-    $result = $generico->query("SELECT * FROM usuario");
+    
 ?>
-
-
-<?php include TEMP_PATH . DS . "header.php"; ?>
-
 
 
 
@@ -27,9 +20,17 @@
 </head>
 <body>
 
-    <?php foreach( $result as $e  ): ?>
-        <?= $e['PK_est_id']."<br>";  ?>
-    <?php endforeach; ?>
+    <h1>Iniciar sesion</h1>
+    <form action="login.php" method="POST">
+        <label for="user">Usuario:</label>
+        <input type="text" name="user" id="user">
+        <br>
+
+        <label for="pass">Contraseña:</label>
+        <input type="password" name="pass" id="pass">
+        <br>
+        <input type="submit" value="Iniciar sesion">
+    </form>
     
 </body>
 </html>
