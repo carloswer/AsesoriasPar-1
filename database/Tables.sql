@@ -1,6 +1,7 @@
 DROP DATABASE asesoriaspar;
 
 CREATE DATABASE IF NOT EXISTS asesoriaspar CHARACTER SET utf8 COLLATE utf8_general_ci;
+
 use asesoriaspar;
 
 
@@ -26,15 +27,30 @@ CREATE TABLE IF NOT EXISTS usuario(
 CREATE TABLE IF NOT EXISTS carrera (
 	PK_ca_id 	INT AUTO_INCREMENT PRIMARY KEY,
 	ca_nombre 	VARCHAR(100) NOT NULL,
-	ca_nomAbre	VARCHAR(10)
+	ca_nomAbre	VARCHAR(10) unique
 );
 
+
+CREATE TABLE IF NOT EXISTS hora(
+	PK_hora_id	INT AUTO_INCREMENT PRIMARY KEY,
+	hora			TIME not null unique
+);
 
 
 CREATE TABLE IF NOT EXISTS dia(
-	PK_dia_id 		INT AUTO_INCREMENT PRIMARY KEY,
-	dia_nombre 	varchar(100) NOT NULL
+	PK_dia_id 	INT AUTO_INCREMENT PRIMARY KEY,
+	dia_nombre 	varchar(100) NOT NULL unique
 );
+
+
+CREATE TABLE IF NOT EXISTS ciclo(
+	PK_ciclo_id	 INT AUTO_INCREMENT PRIMARY KEY,
+	ciclo_inicio DATE not null,
+	ciclo_fin	 DATE not null
+);
+
+
+
 
 
 
@@ -67,63 +83,81 @@ CREATE TABLE IF NOT EXISTS estudiante(
 );
 
 
+
+
 -- TABLAS DE HORARIO Y ASESORIAS
 
 
 CREATE TABLE IF NOT EXISTS horario(
-	PK_horario_id 	INT AUTO_INCREMENT PRIMARY KEY,
-	horario_fecha 	TIME not null,
+	PK_horario_id 		INT AUTO_INCREMENT PRIMARY KEY,
+	horario_registro 	TIMESTAMP not null,
 	
 	-- Foranea
-	FK_dia INT not null,
-	FOREIGN KEY (FK_dia) REFERENCES dia(PK_dia_id) ON UPDATE CASCADE,
+
 	FK_asesor INT not null,
-	FOREIGN KEY (FK_asesor) REFERENCES estudiante(PK_est_id) ON UPDATE CASCADE
+	FOREIGN KEY (FK_asesor) REFERENCES estudiante(PK_est_id) ON UPDATE CASCADE,
+	FK_ciclo INT not null,
+	FOREIGN KEY (FK_ciclo) REFERENCES ciclo(PK_ciclo_id) ON UPDATE CASCADE
+);
+
+
+
+CREATE TABLE IF NOT EXISTS dia_hora(
+	PK_dia_hora	INT AUTO_INCREMENT PRIMARY KEY,
+	
+	FK_horario int not null,
+	FOREIGN KEY (FK_horario) REFERENCES horario(PK_horario_id) ON UPDATE CASCADE,
+	
+	FK_hora int not null,
+	FOREIGN KEY (FK_hora) REFERENCES hora(PK_hora_id) ON UPDATE CASCADE,
+	FK_dia int not null,
+	FOREIGN KEY (FK_dia) REFERENCES dia(PK_dia_id) ON UPDATE CASCADE
 );
 
 
 
 
 CREATE TABLE IF NOT EXISTS asesor_materia(
-	IDasesor_materia 	INT AUTO_INCREMENT PRIMARY KEY,
-	Aprobado 			TINYINT NOT NULL DEFAULT 0, -- 0 = NO, 1 = SI
+	PK_ase_mat_id		INT AUTO_INCREMENT PRIMARY KEY,
+	ase_mat_aprobado 	TINYINT NOT NULL DEFAULT 0, -- 0 = NO, 1 = SI
 	
 	-- Foranea	
-	Asesor int not null,
-	FOREIGN KEY (Asesor) REFERENCES estudiante(PK_est_id) ON UPDATE CASCADE,
-	Materia int not null,
-	FOREIGN KEY (Materia) REFERENCES materia(PK_mat_id) ON UPDATE CASCADE
+	FK_asesor int not null,
+	FOREIGN KEY (FK_asesor) REFERENCES estudiante(PK_est_id) ON UPDATE CASCADE,
+	FK_materia int not null,
+	FOREIGN KEY (FK_materia) REFERENCES materia(PK_mat_id) ON UPDATE CASCADE
 );
+
 
 
 CREATE TABLE IF NOT EXISTS asesoria(
 	PK_asesoria_id 	INT AUTO_INCREMENT PRIMARY KEY,
 	-- Cuando se solicita
-	Fecha 			DATE NOT NULL,
-	Descripcion 	text,
+	asesoria_fecha		DATE NOT NULL,
+	asesoria_desc 		text,
 	
 	-- Automaticos para primer registro
-	FechaRegistro	TIMESTAMP not null,
-	Estado 			TINYINT NOT NULL DEFAULT 0, -- 0 = Pendiente, 1 = Cancelado, 2 = Realizado
+	asesoria_registro	TIMESTAMP not null,
+	asesoria_estado 	TINYINT NOT NULL DEFAULT 0, -- 0 = Pendiente, 1 = Cancelado, 2 = Realizado
 	
 	-- Foranea	
-	Alumno INT not null, 
-	FOREIGN KEY (Alumno) REFERENCES estudiante(PK_est_id) ON UPDATE CASCADE,
-	Horario int NOT NULL,
-	FOREIGN KEY (Horario) REFERENCES horario(PK_horario_id) ON UPDATE CASCADE,
-	Asesor_Materia INT not null, 
-	FOREIGN KEY (Asesor_Materia) REFERENCES asesor_materia(IDasesor_materia) ON UPDATE CASCADE
+	FK_alumno INT not null, 
+	FOREIGN KEY (FK_alumno) REFERENCES estudiante(PK_est_id) ON UPDATE CASCADE,
+	FK_horario int NOT NULL,
+	FOREIGN KEY (FK_horario) REFERENCES horario(PK_horario_id) ON UPDATE CASCADE,
+	FK_asesor_materia INT not null, 
+	FOREIGN KEY (FK_asesor_materia) REFERENCES asesor_materia(PK_ase_mat_id) ON UPDATE CASCADE
 );
 
 
 	-- Cuando se valida asesoria
 CREATE TABLE IF NOT EXISTS validacion(
-	IDvalidacion 	INT AUTO_INCREMENT PRIMARY KEY,
-	Comentario 		text not null,
-	Calificacion 	int not null, -- 0 a 5
+	PK_val_id 		INT AUTO_INCREMENT PRIMARY KEY,
+	val_comentario	text not null,
+	val_califacion	int not null, -- 0 a 5
 	
 	-- Foraneo
-	Asesoria int NOT NULL,
-	FOREIGN KEY (Asesoria) REFERENCES asesoria(PK_asesoria_id) ON UPDATE CASCADE
+	FK_asesoria int NOT NULL,
+	FOREIGN KEY (FK_asesoria) REFERENCES asesoria(PK_asesoria_id) ON UPDATE CASCADE
 	
 );

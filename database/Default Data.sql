@@ -19,6 +19,24 @@ INSERT INTO dia(dia_nombre) VALUES
 ('Jueves'),
 ('Viernes');
 
+INSERT INTO hora(hora) VALUES
+('08:00:00'),
+('09:00:00'),
+('10:00:00'),
+('11:00:00'),
+('12:00:00'),
+('13:00:00'),
+('14:00:00'),
+('15:00:00'),
+('16:00:00'),
+('17:00:00'),
+('18:00:00');
+
+
+INSERT INTO ciclo(ciclo_inicio, ciclo_fin) VALUES
+('2017/01/10', '2017/04/12');
+
+
 
 INSERT INTO materia(mat_nombre, mat_semestre, FK_mat_carrera) VALUES
 ('Progra',		1,	1),
@@ -47,23 +65,15 @@ INSERT INTO estudiante(est_idItson, est_nombre, est_apellido, est_telefono, est_
 
 
 -- ----------------------------
--- DATOS A PROBAR
+-- HORARIO Y MATERIAS
 -- ----------------------------
 
-INSERT INTO horario(Hora, Dia, Asesor) VALUES
-('08:00:00', 1,1),
-('09:00:00', 1,1),
-('13:00:00', 1,1),
-('15:00:00', 1,1),
-('08:00:00', 3,1),
-('09:00:00', 3,1),
-('13:00:00', 3,1),
-('15:00:00', 3,1),
-('08:00:00', 5,1),
-('09:00:00', 5,1),
-('13:00:00', 5,1),
-('15:00:00', 5,1);
+INSERT INTO horario(FK_asesor, FK_ciclo) VALUES
+(1, 1);
 
+
+INSERT INTO dia_hora(PK_horario_id, FK_asesor, FK_ciclo) VALUES
+(1, 1);
 
 
 INNER JOIN usuario u ON e.IDestudiante = u.IDusuario;

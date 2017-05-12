@@ -108,3 +108,6 @@ WHERE c.PK_ca_id = 2;
 
 
 
+SELECT PK_horario_id FROM horario h
+INNER JOIN estudiante e ON e.PK_est_id = h.FK_asesor
+WHERE e.PK_est_id = 1;

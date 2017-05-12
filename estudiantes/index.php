@@ -20,14 +20,7 @@
 <body>
 	
 	<h1>Bienvenido estudiante << <?= $username ?> >></h1>
-	<a href="logout.php">cerrar sesion</a>
-	<ul>
-		<ul>
-			<li><a href="#">Configuracion</a></li>
-			<li><a href="#">Horario</a></li>
-			<li><a href="#">Asesorias</a></li>
-		</ul>
-	</ul>
+	<?php include_once "inc_menu.php"; ?>
 
 </body>
 </html>
