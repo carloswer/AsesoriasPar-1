@@ -8,9 +8,9 @@
     //  0 = Desactivar
     //  1 = Activar
     //------------------
-    DEFINE("DEBUG", 1);
+    DEFINE("DEBUG", 0);
 
-    if( !DEBUG )
+    // if( !DEBUG )
         error_reporting(1);
 
 
@@ -26,21 +26,23 @@
     define("INC_PATH", ROOT_PATH . DS . "includes");
     define("TEMP_PATH", INC_PATH . DS . "template");
 
-
-    //------------variable para HREF and SRC de HTML
-    // DEFINE('ROOT', "");
-    DEFINE('ROOT', 			"/www/asesoriaspar/app");
-    DEFINE('ASSETS',          ROOT . "/assets");
-    DEFINE('IMG_PATH', 		ASSETS . "/img");
-    DEFINE('JS_PATH', 		ASSETS . "/js");
-    DEFINE('CSS_PATH', 		ASSETS . "/stylesheet");
-
-
+    
     //------------------
     //  INCLUDES Y REQUIRES
     //------------------
     include_once INC_PATH . DS . "autoload.php";
-    // include_once INC_PATH . "/funciones/funciones.php";
+    include_once ROOT_PATH . DS . "generico.php";
+
+
+
+    //------------variable para HREF and SRC de HTML
+    // DEFINE('ROOT', "");
+    DEFINE('ROOT',          "/www/asesoriaspar/App");
+    DEFINE('ASSETS',          ROOT . "/assets");
+    DEFINE('IMG_PATH',      ASSETS . "/img");
+    DEFINE('JS_PATH',       ASSETS . "/js");
+    DEFINE('CSS_PATH',      ASSETS . "/stylesheet");
+
 
 
 ?>

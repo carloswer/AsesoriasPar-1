@@ -10,7 +10,7 @@
 
     use Datos\Generico;
     $generico = new Generico();
-    $result = $generico->query("SELECT * FROM usuario");
+    $result = $generico->getDatos("SELECT * FROM usuario");
 ?>
 
 

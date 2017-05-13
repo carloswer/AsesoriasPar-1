@@ -1,23 +1,19 @@
 <?php 
 
-	require_once "config.php";
-
-	use Datos\Generico;
-    $generico = new Generico();
+	require_once 'config.php';
 
 
     //Verifico datos
-	if( !isset( $_POST['user'] ) || !isset( $_POST['pass'] ) ){
-		echo "Faltan datos";
-		exit();
-	}
+	if( !isset( $_POST['user'] ) || !isset( $_POST['pass'] ) )
+		header("Location: index.php");
+
 	
 	//Se obtienen los datos
 	$user = $_POST['user'];
 	$pass = $_POST['pass'];
 
 
-    $result = $generico->query("
+    $result = $generico->getDatos("
 	    	SELECT u.PK_usu_id, 
 	    			u.usu_username, 
 	    			r.PK_rol_id as rol_id, 

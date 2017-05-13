@@ -6,7 +6,18 @@
 
 		public function __construct(){}
 
-		public function query(String $query): array{
+		public function setDatos(String $query){
+            $resultados = array();
+            //Obtiene conexion
+            $con = Conexion::getInstance()->getConnection();
+            //Se ejecuta querie
+            $result = $con->query($query);
+        }
+
+
+
+
+		public function getDatos(String $query): array{
 			$resultados = array();
 			//Obtiene conexion
 			$con = Conexion::getInstance()->getConnection();

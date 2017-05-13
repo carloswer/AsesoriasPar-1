@@ -2,58 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca259af9-7426-4341-81c9-4bae2b3e9eba" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/PruebaCrearHorario/crearHorario.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/PruebaCrearHorario/index.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/administrador/index.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/custom.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/vendor/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/vendor/jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/css/_componentes.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/css/_general.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/css/estilos.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/estilos.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/sass/_colores.sass" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/sass/_componentes.sass" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/sass/_general.sass" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/sass/_menu.sass" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/sass/estilos.sass" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/vendor/normalize.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/Default Data.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/Queries.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/Tables.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/diagrams/Base de datos MER  - 2.dia" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/diagrams/Base de datos MER  - 2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/diagrams/Base de datos MER .jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/diagrams/Base de datos MER.dia" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/estudiantes/horario.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/estudiantes/inc_menu.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/estudiantes/index.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/estudiantes/logout.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/estudiantes/perfil.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/estudiantes/sesiones.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/Datos/Materias.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/Datos/Persistencia.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/Negocio/objetos/Asesoria.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/Negocio/objetos/Carrera.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/Negocio/objetos/Estudiante.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/Negocio/objetos/Horario.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/Negocio/objetos/Materia.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/autoload.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/database/Conexion.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/datos/Estudiantes.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/datos/Horarios.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/datos/generico.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/funciones/general.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/negocio/controles/ControlEstudiantes.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/negocio/controles/ControlHorario.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/negocio/controles/ControlMaterias.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/negocio/objetos/Usuario.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/template/footer.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/template/header.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/index.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/login.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/prepros-6.config" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/App/estudiantes/generico.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/App/estudiantes/horario/registrar.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/PruebaCrearHorario/index.php" afterPath="$PROJECT_DIR$/App/PruebaCrearHorario/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/assets/js/custom.js" afterPath="$PROJECT_DIR$/App/assets/js/custom.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/config.php" afterPath="$PROJECT_DIR$/App/config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/estudiantes/crear_horario.php" afterPath="$PROJECT_DIR$/App/estudiantes/crear_horario.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/estudiantes/horario.php" afterPath="$PROJECT_DIR$/App/estudiantes/horario.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/estudiantes/index.php" afterPath="$PROJECT_DIR$/App/estudiantes/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/estudiantes/sesiones.php" afterPath="$PROJECT_DIR$/App/estudiantes/sesiones.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/includes/datos/Generico.php" afterPath="$PROJECT_DIR$/App/includes/datos/Generico.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/login.php" afterPath="$PROJECT_DIR$/App/login.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Notas.txt" afterPath="$PROJECT_DIR$/Notas.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reference/Selects.sql" afterPath="$PROJECT_DIR$/reference/Selects.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reference/Tables.sql" afterPath="$PROJECT_DIR$/reference/Tables.sql" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -78,7 +41,7 @@
     <favorites_list name="asesoriaspar" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -144,6 +107,8 @@
         <option value="$PROJECT_DIR$/PruebaCrearHorario/index.php" />
         <option value="$PROJECT_DIR$/perfil.php" />
         <option value="$PROJECT_DIR$/login.php" />
+        <option value="$PROJECT_DIR$/App/includes/datos/Generico.php" />
+        <option value="$PROJECT_DIR$/App/estudiantes/registrar_horario.php" />
       </list>
     </option>
   </component>
@@ -198,8 +163,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -212,8 +175,42 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AsesoriasPar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AsesoriasPar" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="App" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AsesoriasPar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AsesoriasPar" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="App" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="estudiantes" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -343,11 +340,12 @@
       <workItem from="1494472525549" duration="5158000" />
       <workItem from="1494540685486" duration="1175000" />
       <workItem from="1494619383455" duration="228000" />
+      <workItem from="1494705268970" duration="1397000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102608000" />
+    <option name="totallyTimeSpent" value="104005000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -359,13 +357,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29648608" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29648608" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -376,7 +375,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -394,9 +392,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/PruebaObjetos.php" />
-    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Estudiante.php" />
-    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Asesoria.php" />
     <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Horario.php" />
     <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Carrera.php" />
     <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Materia.php" />
@@ -451,6 +446,35 @@
     <entry file="file://$PROJECT_DIR$/perfil.html" />
     <entry file="file://$PROJECT_DIR$/index.php" />
     <entry file="file://$PROJECT_DIR$/login.php" />
+    <entry file="file://$PROJECT_DIR$/App/estudiantes/crear_horario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-231">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/includes/datos/Generico.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/estudiantes/registrar_horario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="44" column="0" lean-forward="true" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding>
+            <marker date="1494708645702" expanded="true" signature="620:701" ph="INSERT INTO horario... " />
+            <marker date="1494708645702" expanded="true" signature="996:1071" ph="SELECT PK_ho... horario" />
+            <marker date="1494708645702" expanded="true" signature="1248:1356" ph="INSERT INTO dia_hora... " />
+            <marker date="1494708645702" expanded="true" signature="1490:1577" ph="INSERT INTO horario_materia... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>

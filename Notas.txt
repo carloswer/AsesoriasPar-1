@@ -1,5 +1,6 @@
 ------- BASE DE DATOS
 	-Evitar ciclos empalmados
+	-Falta tabla: Planes de las materias
 	-Poder unir mas de una materia mediante relaciones tipo "amistad" facebook
 	para materias similares de otros planes/carreras
 
@@ -7,6 +8,11 @@
 ------- APP
 	-Guardar selecciones como carritos de compras (cache)
 	-Quitar Singleton a Conexion
+	-3 días maximo para validar, después de, se tomará como "realizada"
+	-No poder crear un horario:
+		-Si no esta dentro del ciclo
+		-Si ya tiene un horario creado
+
 
 
 

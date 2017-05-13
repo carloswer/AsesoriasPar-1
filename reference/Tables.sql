@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS asesoria(
 	
 	-- Foranea	
 	FK_alumno INT not null, 
-	FOREIGN KEY (FK_alumno) REFERENCES estudiante(PK_est_id) ON UPDATE CASCADE,
+	FOREIGN KEY (FK_alumno) REFERENCES estudiante(PK_est_id) ON DELETE CASCADE, ON UPDATE CASCADE,
 	FK_materia INT not null, 
 	FOREIGN KEY (FK_materia) REFERENCES horario_materia(PK_horario_materia_id) ON UPDATE CASCADE
 );

@@ -2,17 +2,22 @@
 
 	require_once '../config.php';
 	require_once 'sesiones.php';
-	require_once 'generico.php';
+	//if( !isset($_SESSION['tieneHorario']) )
 
 	//Obtiene dias
-	$query = "SELECT PK_dia_id as 'id', dia_nombre as 'dia' FROM dia order by id";
-    $dias = $generico->query($query);
-    //Obtiene horas
-    $query = "SELECT PK_hora_id as 'id', hora FROM hora order by PK_hora_id";
-    $horas = $generico->query($query);
-    //Obtiene materias
-    $query = "SELECT PK_mat_id as 'id', mat_nombre as 'materia' FROM materia order by PK_mat_id";
-    $materias = $generico->query($query);
+	$query = "SELECT PK_dia_id as 'id', dia_nombre as 'dia' 
+				FROM dia order by id";
+	$dias = $generico->getDatos($query);
+
+	//Obtiene horas
+	$query = "SELECT PK_hora_id as 'id', hora 
+				FROM hora order by PK_hora_id";
+	$horas = $generico->getDatos($query);
+
+	//Obtiene materias
+	$query = "SELECT PK_mat_id as 'id', mat_nombre as 'materia' 
+				FROM materia order by PK_mat_id";
+	$materias = $generico->getDatos($query);
 
  ?>
 
@@ -68,6 +73,7 @@
     <div id="opciones">
     	<button id="btn-registrar-horario">Registrar horario</button>
     	<button id="btn-reset-horario">Reset</button>
+    	<p id="estado"></p>
     </div>
 
 	<input type="hidden" id="user" data-id="<?= $idEstudiante; ?>">

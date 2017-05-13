@@ -163,21 +163,32 @@ WHERE (DATE(NOW()) BETWEEN c.ciclo_inicio AND c.ciclo_fin)
 
 
 
-SELECT e.PK_est_id as 'ID Estudiante',
- CONCAT( e.est_nombre, ' ', e.est_apellido ) as Nombre,
- c.ciclo_inicio as 'Ciclo Inicio',
- c.ciclo_fin as 'Ciclo Fin',
- d.dia_nombre as 'Dia',
- hora.hora as 'Hora'
- FROM horario h
- INNER JOIN estudiante e ON e.PK_est_id = h.FK_asesor
- INNER JOIN dia_hora dh ON dh.FK_horario = h.PK_horario_id
- INNER JOIN dia d ON d.PK_dia_id = dh.FK_dia
- INNER JOIN hora ON hora.PK_hora_id = dh.PK_dia_hora
- INNER JOIN ciclo c ON c.PK_ciclo_id = h.FK_ciclo;
- WHERE e.PK_est_id = 1;
+SELECT 
+	CONCAT(e.est_nombre, ' ', e.est_apellido) as 'Nombre',
+	h.PK_horario_id as 'IDHorario',
+	c.ciclo_inicio as 'Inicio',
+	c.ciclo_fin as 'fin',
+	dh.PK_dia_hora as 'dia_hora ID',
+	d.dia_nombre as 'dia',
+	t.hora as 'hora'
+FROM estudiante e
+INNER JOIN horario h ON h.FK_asesor = e.PK_est_id
+INNER JOIN ciclo c ON c.PK_ciclo_id = h.FK_ciclo
+INNER JOIN dia_hora dh ON dh.FK_horario = h.PK_horario_id
+INNER JOIN hora t ON t.PK_hora_id = dh.FK_hora
+INNER JOIN dia d ON d.PK_dia_id = dh.FK_dia
+ WHERE e.PK_est_id = 2;
+ 
  
  
 SELECT * FROM horario;
+SELECT MAX(PK_horario_id) as id FROM horario;
+SELECT PK_horario_id as id FROM horario ORDER BY PK_horario_id desc LIMIT 1;
 SELECT * FROM dia_hora;
 SELECT * FROM horario_materia;
+
+
+
+DELETE FROM horario_materia;
+DELETE FROM dia_hora;
+DELETE FROM horario;

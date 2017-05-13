@@ -74,14 +74,13 @@ $(document).ready(function(){
 
 
         if( enviar ){
-        	alert("datos completos");
+        	// alert("datos completos");
         	//Se obtiene ID de usuario
         	$id = $('#user').data("id"),
         	//Se envian datos capturados
-    		registrar_horario(horario, materias, $id);
+    		registrar_horario($id, 1, horario, materias);
         }
-        else
-        	alert("datos incompletos");
+
 	});
 
 
@@ -93,46 +92,54 @@ $(document).ready(function(){
     });
 
 
+    function registrar_horario(userID, cicloID, horario, materias){
+        //JSON para enviar
+        var horarioJSON = 
+        {
+            "estudiante": userID,
+            "ciclo": cicloID,
+            "horario": horario,
+            "materias": materias
+        };
 
-    function registrar_horario(horario, materias, userID){
-    	//JSON para enviar
-    	var horarioJSON = 
-    	{
-    		"estudiante": userID,
-    		"horario": horario,
-    		"materias": materias
-    	};
+        //Transforma a String
+        var stringJSON = JSON.stringify( horarioJSON );
 
-    	//Transforma a String
-    	var stringJSON = JSON.stringify( horarioJSON );
-    	alert( stringJSON );
-
-    	//AJAX para envio asincrono
-    	$.ajax({
-                url: 'horario/registrar.php',
+        $.ajax({
+                url: 'registrar_horario.php',
                 type: 'post',
                 dataType: 'json',
-                // data: {horario_materias : stringJSON}
-                data: stringJSON
+                data: {jsonHM: stringJSON}
         })
         .done(function(){
-            //$('#estado').html("Correcto");
-            alert("FUNCIONA");
+            location.href = "horario.php";
         })
         .fail(function(){
-            //$('#estado').html("Incorrecto");
-            alert("NO FUNCIONA");
+            alert("ocurrio un error");
         })
-        .always(function(response){
-
-            // setTimeout(function(){
-            //         $('#spin').hide();
-            // }, 1000);
-
-            // console.log(response);
-            // console.log(response.statusText);
+        .always( function(response) {
+            console.log( response );
         });
     }
+
+
+
+
+    // function sendAJAX(url, type, dataType, data){
+    // 	$.ajax({
+    //             url: url,
+    //             type: type,
+    //             dataType: dataType,
+    //             data: data
+    //     })
+    //     .done(function(){
+    //     })
+    //     .fail(function(){
+    //     })
+    //     .always( function(response) {
+    //         // console.log(response);
+    //     });
+    // }
 
 
 });
