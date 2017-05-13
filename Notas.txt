@@ -1,0 +1,17 @@
+------- BASE DE DATOS
+	-Evitar ciclos empalmados
+	-Poder unir mas de una materia mediante relaciones tipo "amistad" facebook
+	para materias similares de otros planes/carreras
+
+
+------- APP
+	-Guardar selecciones como carritos de compras (cache)
+	-Quitar Singleton a Conexion
+
+
+
+-Concurrencia
+-Manejar por ciclos
+-Almacenar 2 asesorias para un Asesor en una Fecha-Hora determinada
+-Fechas en horario par determinar a que ciclo pertenece
+-Transaccion para registro en tabla "asesor_materia" y "Dias"

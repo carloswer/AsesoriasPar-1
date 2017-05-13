@@ -2,10 +2,58 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca259af9-7426-4341-81c9-4bae2b3e9eba" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/index.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PruebaCrearHorario/index.php" afterPath="$PROJECT_DIR$/PruebaCrearHorario/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/Queries.sql" afterPath="$PROJECT_DIR$/database/Queries.sql" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PruebaCrearHorario/crearHorario.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PruebaCrearHorario/index.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/administrador/index.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/custom.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/vendor/bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/vendor/jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/css/_componentes.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/css/_general.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/css/estilos.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/estilos.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/sass/_colores.sass" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/sass/_componentes.sass" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/sass/_general.sass" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/sass/_menu.sass" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/sass/estilos.sass" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/stylesheet/vendor/normalize.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/config.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database/Default Data.sql" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database/Queries.sql" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database/Tables.sql" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database/diagrams/Base de datos MER  - 2.dia" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database/diagrams/Base de datos MER  - 2.jpeg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database/diagrams/Base de datos MER .jpeg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database/diagrams/Base de datos MER.dia" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/estudiantes/horario.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/estudiantes/inc_menu.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/estudiantes/index.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/estudiantes/logout.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/estudiantes/perfil.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/estudiantes/sesiones.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/Datos/Materias.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/Datos/Persistencia.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/Negocio/objetos/Asesoria.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/Negocio/objetos/Carrera.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/Negocio/objetos/Estudiante.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/Negocio/objetos/Horario.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/Negocio/objetos/Materia.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/autoload.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/database/Conexion.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/datos/Estudiantes.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/datos/Horarios.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/datos/generico.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/funciones/general.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/negocio/controles/ControlEstudiantes.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/negocio/controles/ControlHorario.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/negocio/controles/ControlMaterias.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/negocio/objetos/Usuario.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/template/footer.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/includes/template/header.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/index.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/login.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/prepros-6.config" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,18 +78,7 @@
     <favorites_list name="asesoriaspar" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="login.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/login.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="35" column="20" lean-forward="false" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -127,7 +164,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1040" />
+    <option name="width" value="1382" />
     <option name="height" value="754" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -161,6 +198,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -173,24 +212,8 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AsesoriasPar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AsesoriasPar" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -319,11 +342,12 @@
       <workItem from="1492103794668" duration="1180000" />
       <workItem from="1494472525549" duration="5158000" />
       <workItem from="1494540685486" duration="1175000" />
+      <workItem from="1494619383455" duration="228000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102380000" />
+    <option name="totallyTimeSpent" value="102608000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -335,10 +359,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1040" height="754" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.296875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29648608" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -371,63 +395,15 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/PruebaObjetos.php" />
-    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Estudiante.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1139">
-          <caret line="67" column="34" lean-forward="true" selection-start-line="67" selection-start-column="34" selection-end-line="67" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Asesoria.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Horario.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1700">
-          <caret line="100" column="11" lean-forward="true" selection-start-line="100" selection-start-column="11" selection-end-line="100" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Carrera.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="37" lean-forward="true" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Materia.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Estudiante.php" />
+    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Asesoria.php" />
+    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Horario.php" />
+    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Carrera.php" />
+    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Materia.php" />
     <entry file="file://$PROJECT_DIR$/PruebaObjetos.php" />
-    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Estudiante.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5185">
-          <caret line="305" column="5" lean-forward="true" selection-start-line="305" selection-start-column="5" selection-end-line="305" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Asesoria.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2839">
-          <caret line="167" column="12" lean-forward="true" selection-start-line="167" selection-start-column="12" selection-end-line="167" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Horario.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="90" column="11" lean-forward="true" selection-start-line="90" selection-start-column="11" selection-end-line="90" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Estudiante.php" />
+    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Asesoria.php" />
+    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Horario.php" />
     <entry file="file://$PROJECT_DIR$/PruebaObjetos.php" />
     <entry file="file://$PROJECT_DIR$/includes/objetos/Materia.php" />
     <entry file="file://$PROJECT_DIR$/includes/objetos/Carrera.php" />
@@ -450,163 +426,31 @@
     <entry file="file://$PROJECT_DIR$/PruebaEstudiantes.php" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DRa0.879/HA-2/public/config.php" />
     <entry file="file://$PROJECT_DIR$/includes/datos/Conexion.php" />
-    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Asesoria.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="32" lean-forward="true" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Carrera.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="32" lean-forward="false" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/datos/Materias.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Asesoria.php" />
+    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Carrera.php" />
+    <entry file="file://$PROJECT_DIR$/includes/datos/Materias.php" />
     <entry file="file://$USER_HOME$/Desktop/eva.html" />
-    <entry file="file://$PROJECT_DIR$/includes/datos/Horarios.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="39" lean-forward="false" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Materia.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/datos/Horarios.php" />
+    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Materia.php" />
     <entry file="file://$PROJECT_DIR$/PruebaCrearHorario.php" />
-    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Horario.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="50" lean-forward="true" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/negocio/controles/ControlMaterias.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="54" lean-forward="true" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/custom.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="47" column="32" lean-forward="false" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Horario.php" />
+    <entry file="file://$PROJECT_DIR$/includes/negocio/controles/ControlMaterias.php" />
+    <entry file="file://$PROJECT_DIR$/assets/js/custom.js" />
     <entry file="file://$PROJECT_DIR$/PruebaCrearHorario/seleccionarMateria.php" />
-    <entry file="file://$PROJECT_DIR$/includes/negocio/controles/ControlHorario.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/autoload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/database/Conexion.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="54" column="24" lean-forward="false" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Usuario.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Estudiante.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-678">
-          <caret line="18" column="8" lean-forward="false" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/datos/Estudiantes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="12" column="39" lean-forward="true" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/datos/Persistencia.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="14" column="38" lean-forward="false" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/negocio/controles/ControlEstudiantes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="50" lean-forward="false" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PruebaCrearHorario/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/negocio/controles/ControlHorario.php" />
+    <entry file="file://$PROJECT_DIR$/includes/autoload.php" />
+    <entry file="file://$PROJECT_DIR$/config.php" />
+    <entry file="file://$PROJECT_DIR$/includes/database/Conexion.php" />
+    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Usuario.php" />
+    <entry file="file://$PROJECT_DIR$/includes/negocio/objetos/Estudiante.php" />
+    <entry file="file://$PROJECT_DIR$/includes/datos/Estudiantes.php" />
+    <entry file="file://$PROJECT_DIR$/includes/datos/Persistencia.php" />
+    <entry file="file://$PROJECT_DIR$/includes/negocio/controles/ControlEstudiantes.php" />
+    <entry file="file://$PROJECT_DIR$/PruebaCrearHorario/index.php" />
     <entry file="file://$PROJECT_DIR$/index.html" />
-    <entry file="file://$PROJECT_DIR$/perfil.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="35" column="20" lean-forward="false" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/perfil.html" />
+    <entry file="file://$PROJECT_DIR$/index.php" />
+    <entry file="file://$PROJECT_DIR$/login.php" />
   </component>
   <component name="masterDetails">
     <states>

@@ -1,0 +1,46 @@
+#horario th, td {
+	border-bottom: 1px solid #ddd;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+
+#horario th, .item-hora{
+	padding: 10px 15px;
+}
+
+#horario table th {
+	background-color: #4CAF50;
+	color: #fff;
+}
+
+
+/*------HORAS-----*/
+#horario tr td .item-hora{
+	text-decoration: none;
+	display: block;
+	background: #ECE7E7;
+	color: #000;
+}
+
+
+#horario tr td .hora-selected{
+	background: peru;
+	color: #fff;
+}
+
+
+/*------MATERIAS-----*/
+#materias .item-materia{
+	text-decoration: none;
+	display: inline-block;
+	background: #ECE7E7;
+	padding: 12px 20px;
+	color: #000;
+}
+
+
+#materias .materia-selected{
+	background: peru;
+	color: #fff;
+}
