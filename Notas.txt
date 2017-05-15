@@ -1,3 +1,13 @@
+-Pendientes de validar
+-Canceladas
+-Validada
+	-Realizadas
+	-No realizadas
+
+----------------------
+PROGRAMACIÓN
+----------------------
+
 ------- BASE DE DATOS
 	-Evitar ciclos empalmados
 	-Falta tabla: Planes de las materias
@@ -15,6 +25,14 @@
 
 
 
+----------------------
+CASOS DE PRUEBA
+----------------------
+
+
+----------------------
+OTROS
+----------------------
 
 -Concurrencia
 -Manejar por ciclos

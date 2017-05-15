@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca259af9-7426-4341-81c9-4bae2b3e9eba" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/App/estudiantes/generico.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/App/estudiantes/horario/registrar.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/PruebaCrearHorario/index.php" afterPath="$PROJECT_DIR$/App/PruebaCrearHorario/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/assets/js/custom.js" afterPath="$PROJECT_DIR$/App/assets/js/custom.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/config.php" afterPath="$PROJECT_DIR$/App/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/estudiantes/crear_horario.php" afterPath="$PROJECT_DIR$/App/estudiantes/crear_horario.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/estudiantes/horario.php" afterPath="$PROJECT_DIR$/App/estudiantes/horario.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/estudiantes/index.php" afterPath="$PROJECT_DIR$/App/estudiantes/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/estudiantes/sesiones.php" afterPath="$PROJECT_DIR$/App/estudiantes/sesiones.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/includes/datos/Generico.php" afterPath="$PROJECT_DIR$/App/includes/datos/Generico.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/login.php" afterPath="$PROJECT_DIR$/App/login.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Notas.txt" afterPath="$PROJECT_DIR$/Notas.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reference/Selects.sql" afterPath="$PROJECT_DIR$/reference/Selects.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reference/Tables.sql" afterPath="$PROJECT_DIR$/reference/Tables.sql" />
-    </list>
+    <list default="true" id="ca259af9-7426-4341-81c9-4bae2b3e9eba" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -357,7 +341,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29648608" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />

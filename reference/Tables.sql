@@ -56,9 +56,10 @@ CREATE TABLE IF NOT EXISTS materia(
 	PK_mat_id 		INT AUTO_INCREMENT PRIMARY KEY,
 	mat_nombre 		varchar(100) NOT NULL,
 	mat_Semestre 	int NOT NULL,
+-- 	mat_plan			int,
 
 	-- Foranea	
-	FK_mat_carrera INT, FOREIGN KEY (FK_mat_carrera) REFERENCES carrera(PK_ca_id) ON UPDATE CASCADE
+	FK_carrera INT, FOREIGN KEY (FK_carrera) REFERENCES carrera(PK_ca_id) ON UPDATE CASCADE
 );
 
 
@@ -129,31 +130,37 @@ CREATE TABLE IF NOT EXISTS horario_materia(
 
 
 CREATE TABLE IF NOT EXISTS asesoria(
-	PK_asesoria_id 	INT AUTO_INCREMENT PRIMARY KEY,
+	PK_asesoria_id 		INT AUTO_INCREMENT PRIMARY KEY,
 	-- Cuando se solicita
-	asesoria_fecha		DATE NOT NULL,
-	asesoria_desc 		text,
+	asesoria_fecha			DATE NOT NULL,
+	asesoria_desc			text not null,
 	
 	-- Automaticos para primer registro
 	asesoria_registro	TIMESTAMP not null,
-	asesoria_estado 	TINYINT NOT NULL DEFAULT 0, -- 0 = Pendiente, 1 = Cancelado, 2 = Realizado
+-- 	asesoria_estado 	TINYINT NOT NULL DEFAULT 0, -- 0 = Pendiente, 2 = validado
 	
 	-- Foranea	
 	FK_alumno INT not null, 
-	FOREIGN KEY (FK_alumno) REFERENCES estudiante(PK_est_id) ON DELETE CASCADE, ON UPDATE CASCADE,
-	FK_materia INT not null, 
-	FOREIGN KEY (FK_materia) REFERENCES horario_materia(PK_horario_materia_id) ON UPDATE CASCADE
+	FOREIGN KEY (FK_alumno) REFERENCES estudiante(PK_est_id) ON UPDATE CASCADE,
+	FK_dia_hora INT not null,
+	FOREIGN KEY (FK_dia_hora) REFERENCES dia_hora(PK_dia_hora) ON UPDATE CASCADE,
+	FK_materia INT not null,
+	FOREIGN KEY (FK_materia) REFERENCES materia(PK_mat_id) ON UPDATE CASCADE
+-- 	FOREIGN KEY (FK_materia) REFERENCES horario_materia(PK_horario_materia_id) ON UPDATE CASCADE
 );
 
 
-	-- Cuando se valida asesoria
-CREATE TABLE IF NOT EXISTS validacion(
+-- Cuando se valida asesoria (Realizado o No realizado)
+CREATE TABLE IF NOT EXISTS estado_asesoria(
 	PK_val_id 		INT AUTO_INCREMENT PRIMARY KEY,
+	val_tipo			TINYINT not null, -- 0 = Realizado, 1 = no realizado, 2 = cancelado
 	val_comentario	text not null,
-	val_califacion	int not null, -- 0 a 5
+	val_fecha		TIMESTAMP not null, -- fecha validacion
+
+	-- Realizado
+	val_califacion	int, -- 0 a 5
 	
 	-- Foraneo
 	FK_asesoria int NOT NULL,
 	FOREIGN KEY (FK_asesoria) REFERENCES asesoria(PK_asesoria_id) ON UPDATE CASCADE
-	
 );

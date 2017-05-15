@@ -25,6 +25,7 @@
     define('ROOT_PATH', __DIR__ );
     define("INC_PATH", ROOT_PATH . DS . "includes");
     define("TEMP_PATH", INC_PATH . DS . "template");
+    DEFINE('EST_PATH',  ROOT_PATH . DS . "estudiantes");
 
     
     //------------------
@@ -37,11 +38,12 @@
 
     //------------variable para HREF and SRC de HTML
     // DEFINE('ROOT', "");
-    DEFINE('ROOT',          "/www/asesoriaspar/App");
-    DEFINE('ASSETS',          ROOT . "/assets");
-    DEFINE('IMG_PATH',      ASSETS . "/img");
-    DEFINE('JS_PATH',       ASSETS . "/js");
-    DEFINE('CSS_PATH',      ASSETS . "/stylesheet");
+    DEFINE('ROOT',      "/www/asesoriaspar/app");
+    DEFINE('ASSETS',    ROOT . "/assets");
+    DEFINE('IMG_REF',  ASSETS . "/img");
+    DEFINE('JS_REF',   ASSETS . "/js");
+    DEFINE('CSS_REF',  ASSETS . "/stylesheet");
+    DEFINE('EST_REF',  ROOT . "/estudiantes");
 
 
 

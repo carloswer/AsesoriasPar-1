@@ -9,20 +9,22 @@
 	//Si existe, toma el usuario
 	$username = $_SESSION['username'];
 	$idUser = $_SESSION['idUser'];
-	$idEstudiante;
-	$carrera;
+
 
 	//Si no se ha obtenido ID de estudiante
     if( !isset($_SESSION['idEstudiante']) ){
 	    // Obtener id de estudiante
-		$query = "SELECT e.PK_est_id, c.ca_nombre FROM estudiante e
+		$query = "SELECT e.PK_est_id, c.PK_ca_id, c.ca_nombre FROM estudiante e
 					INNER JOIN carrera c ON e.FK_carrera = c.PK_ca_id
 					WHERE e.FK_usuario = ".$idUser;
 		$e = $generico->getDatos($query);
 
-	    $carrera = $e[0]['ca_nombre'];
-	    $idEstudiante = $e[0]['PK_est_id'];
-	    $_SESSION['idEstudiante'] = $idEstudiante;
+		//Estudiante
+	    $_SESSION['idEstudiante'] = $e[0]['PK_est_id'];
+
+	    //Carrera
+	    $_SESSION['carrera']['id'] 		= $e[0]['PK_ca_id'];
+	    $_SESSION['carrera']['nombre'] 	= $e[0]['ca_nombre'];
 
 
 
@@ -36,9 +38,6 @@
 		$_SESSION['ciclo']['inicio']= $c[0]['inicio'];
 		$_SESSION['ciclo']['fin'] 	= $c[0]['fin'];
 
-	}
-	else{
-		$idEstudiante = $_SESSION['idEstudiante'];
 	}
 
  ?>

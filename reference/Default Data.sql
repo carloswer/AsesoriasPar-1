@@ -33,13 +33,18 @@ INSERT INTO hora(hora) VALUES
 ('18:00:00');
 
 
+-- ----------------------------
+-- ADMIN ENTRIES
+-- ----------------------------
+
 -- TODO: no crear ciclos empalmados
 INSERT INTO ciclo(ciclo_inicio, ciclo_fin) VALUES
+('2016/01/10', '2016/05/19'), -- Pasado
 ('2017/01/10', '2017/05/19');
 
 
 
-INSERT INTO materia(mat_nombre, mat_semestre, FK_mat_carrera) VALUES
+INSERT INTO materia(mat_nombre, mat_semestre, FK_carrera) VALUES
 ('Progra',		1,	1),
 ('Progra 2',	2, 1),
 ('SO',			2, 1),
@@ -49,6 +54,10 @@ INSERT INTO materia(mat_nombre, mat_semestre, FK_mat_carrera) VALUES
 ('Materiales',	2, 2),
 ('Fluidos',		3, 2);
 
+
+-- ----------------------------
+-- REGISTRO
+-- ----------------------------
 
 INSERT INTO usuario(usu_username, usu_password, usu_correo, FK_rol) VALUES
 ('root',		md5('root'),				'carlosrozuma@gmail.com', 		1),
@@ -70,7 +79,7 @@ INSERT INTO estudiante(est_idItson, est_nombre, est_apellido, est_telefono, est_
 -- ----------------------------
 
 INSERT INTO horario(FK_asesor, FK_ciclo) VALUES
-(1, 1);
+(1, 2);
 
 
 INSERT INTO dia_hora(FK_horario, FK_dia, FK_hora) VALUES
@@ -93,9 +102,6 @@ INSERT INTO dia_hora(FK_horario, FK_dia, FK_hora) VALUES
 (1, 5, 8);
 
 
-
-
--- ---------DIDN'T TESTED
 INSERT INTO horario_materia(FK_horario, FK_materia) VALUES
 (1,1),
 (1,2),
@@ -103,10 +109,11 @@ INSERT INTO horario_materia(FK_horario, FK_materia) VALUES
 (1,4);
 
 
-INSERT INTO asesoria(Fecha,Descripcion,Alumno,Horario,Asesor_Materia) VALUES
+-- ---------DIDN'T TESTED
+
+INSERT INTO asesoria(asesoria_fecha, asesoria_desc, FK_alumno, FK_dia_hora, FK_materia) VALUES
 -- YYYY-MM-DD
-('2017-02-05','Es sobre los arreglos', , ,),
-('2017-02-05','Es sobre los arreglos', , ,),
-('2017-02-05','Es sobre los arreglos', , ,),
-('2017-02-05','Es sobre los arreglos', , ,),
+('2017-02-05','Es sobre los arreglos', 3, 1, 2);
+
+
 

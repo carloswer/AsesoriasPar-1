@@ -6,7 +6,7 @@ $(document).ready(function(){
 	// 	SELECCIONAR HORARIO
 	//-------------------------
 
-	$(".item-hora").on( "click", function(event) {
+	$(".hora-horario").on( "click", function(event) {
 		var target = $( event.target );
 
 		//Obtiene dia y hora del atributo data
@@ -19,7 +19,7 @@ $(document).ready(function(){
 			target.removeClass("hora-selected");
 	});
 
-	$(".item-materia").on( "click", function(event) {
+	$(".materia-horario").on( "click", function(event) {
 		var target = $( event.target );
 
 		//------Cambia el estilo del elemento
@@ -30,8 +30,9 @@ $(document).ready(function(){
 	});
 
 
+
+
 	$("#btn-registrar-horario").on( "click", function(event) {
-        //var elementos = document.getElementsByClassName("selected");
 
         //Arreglo para horario
         var horario = new Array();
@@ -76,9 +77,10 @@ $(document).ready(function(){
         if( enviar ){
         	// alert("datos completos");
         	//Se obtiene ID de usuario
-        	$id = $('#user').data("id"),
+        	var id = $('#user').data("id");
+            var ciclo = $('#ciclo').data("id");
         	//Se envian datos capturados
-    		registrar_horario($id, 1, horario, materias);
+    		registrar_horario(id, ciclo, horario, materias);
         }
 
 	});
@@ -86,13 +88,15 @@ $(document).ready(function(){
 
 
     $("#btn-reset-horario").on( "click", function(event) {
-		//A todos los elementos les quita la clase "selected"
-    	$(".selected").removeClass("selected");
+		//A todos los elementos les quita la clase "##-selected"
+        $(".hora-horario").removeClass("hora-selected");
+        $(".materia-horario").removeClass("materia-selected");
 
     });
 
 
     function registrar_horario(userID, cicloID, horario, materias){
+
         //JSON para enviar
         var horarioJSON = 
         {
@@ -104,25 +108,85 @@ $(document).ready(function(){
 
         //Transforma a String
         var stringJSON = JSON.stringify( horarioJSON );
+        var overlay = $('reg-horario');
 
         $.ajax({
                 url: 'registrar_horario.php',
                 type: 'post',
-                dataType: 'json',
+                // dataType: 'html', //Tipo de dato que regresa
                 data: {jsonHM: stringJSON}
+                // beforeSend: function(){
+                //     overlay.children('.texto').html("Registrando horario");
+                //     overlay.css('display', 'block');
+                // }
         })
         .done(function(){
-            location.href = "horario.php";
+            alert("Horario registrado");
+            // overlay.children('.texto').html("Horario registrado");
+            location.href = "index.php";
         })
         .fail(function(){
             alert("ocurrio un error");
+            // overlay.children('.texto').html("Error al registrar");
+        })
+        .always( function(response) {
+            console.log( response );
+            // overlay.css('display', 'none');
+        });
+    }
+
+
+    $(".materia-asesoria").on( "click", function(event) {
+        var target = $( event.target );
+
+        //----Cambia el estilo
+        //Obtiene elementos
+        var elementos = $('.materia-asesoria');
+        //les quita el class
+        elementos.removeClass("materia-selected");
+        //se lo agrega al target
+        target.addClass("materia-selected");
+
+        //obtiene datos ocultos
+        var id = $('#user').data("id");
+        var ciclo = $('#ciclo').data("id");
+        var materia = $(target).data("materia");
+
+        obtenerAsesoresMateria(ciclo, materia, id);
+
+    });
+
+
+
+    function obtenerAsesoresMateria(cicloID, materiaID, asesorID){
+        //JSON para enviar
+        var json = 
+        {
+            "estudiante": asesorID,
+            "ciclo": cicloID,
+            "materia": materiaID
+        };
+
+        //Transforma a String
+        var stringJSON = JSON.stringify( json );
+
+        $.ajax({
+                url: 'obtener_asesores.php',
+                type: 'post',
+                //dataType: 'json', //Tipo de dato de respuesta del servidor
+                data: {json: stringJSON}
+        })
+        .done(function( data ){
+            //alert("OK: \n"+data);
+            $('#asesores').html( data );
+        })
+        .fail(function( data ){
+            alert("Ocurrio un error");
         })
         .always( function(response) {
             console.log( response );
         });
     }
-
-
 
 
     // function sendAJAX(url, type, dataType, data){

@@ -1,7 +1,7 @@
 <?php 
 
-	require_once '../config.php';
-	require_once 'sesiones.php';
+	require_once '../../config.php';
+	require_once '../sesiones.php';
 	//if( !isset($_SESSION['tieneHorario']) )
 
 	//Obtiene dias
@@ -26,13 +26,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="../assets/stylesheet/estilos.css">
+	<link rel="stylesheet" href="../../assets/stylesheet/estilos.css">
 </head>
 <body>
 	
-	<h1>Crear horario << <?= $username; ?> >></h1>
-	<?php include_once "inc_menu.php"; ?>
-
+	<?php $titulo = "Crear horario"; include_once EST_PATH . "/inc_menu.php"; ?>
+	
+	<!-- <div id="reg-horario" class="overlay hidden">
+		<h1 class="texto"></h1>
+	</div> -->
+	
 <!-- TABLA DE HORARIO -->
 	<div id="horario">
 		<h1>Seleccione horas</h1>
@@ -49,7 +52,7 @@
 				<tr>
 					<?php foreach( $dias as $dia ): ?>
 						<td>
-							<a href="javascript:void(0)" class="item-hora" data-dia="<?= $dia['id']; ?>" data-hora="<?= $hora['id']; ?>">
+							<a href="javascript:void(0)" class="item-hora hora-horario" data-dia="<?= $dia['id']; ?>" data-hora="<?= $hora['id']; ?>">
 								<?= $hora['hora']; ?> 
 							</a>
                     	</td>
@@ -63,7 +66,7 @@
     <div id="materias">
     	<h1>Seleccione materias</h1>
     	<?php foreach( $materias as $mat ): ?>
-    		<a href="javascript:void(0)" class="item-materia" data-materia="<?= $mat['id']; ?>">
+    		<a href="javascript:void(0)" class="item-materia materia-horario" data-materia="<?= $mat['id']; ?>">
     			<?= $mat['materia']; ?>
     		</a>
     	<?php endforeach; ?>
@@ -76,8 +79,9 @@
     	<p id="estado"></p>
     </div>
 
-	<input type="hidden" id="user" data-id="<?= $idEstudiante; ?>">
-	<script src="../assets/js/vendor/jquery.js"></script>
-	<script src="../assets/js/custom.js"></script>
+
+	<!-- Scripts -->
+	<script src="../../assets/js/vendor/jquery.js"></script>
+	<script src="../../assets/js/custom.js"></script>
 </body>
 </html>

@@ -16,7 +16,7 @@
 
 
 /*------HORAS-----*/
-#horario tr td .item-hora{
+#horario tr td .item-hora, .hora-horario{
 	text-decoration: none;
 	display: block;
 	background: #ECE7E7;
@@ -31,7 +31,7 @@
 
 
 /*------MATERIAS-----*/
-#materias .item-materia{
+#materias .item-materia, .materia-horario{
 	text-decoration: none;
 	display: inline-block;
 	background: #ECE7E7;
@@ -43,4 +43,39 @@
 #materias .materia-selected{
 	background: peru;
 	color: #fff;
+}
+
+#asesores{
+	padding: 20px 0;
+}
+
+#asesores .item-asesor{
+	text-decoration: none;
+	display: inline-block;
+	background: #AFDBFD;
+	padding: 12px 20px;
+	color: #000;
+	margin-right: 5px;
+}
+
+/*OVERLAY*/
+.overlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	background-color: rgba(0,0,0,0.5); /*dim the background*/
+}
+
+#reg-horario {
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.hidden{
+	display: none;
 }
