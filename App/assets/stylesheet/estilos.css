@@ -16,16 +16,23 @@
 
 
 /*------HORAS-----*/
-#horario tr td .item-hora, .hora-horario{
+#horario tr td .item-hora, .hora-horario, .hora-asesoria{
 	text-decoration: none;
 	display: block;
 	background: #ECE7E7;
 	color: #000;
+	cursor: pointer;
 }
 
 
 #horario tr td .hora-selected{
 	background: peru;
+	color: #fff;
+}
+
+
+#horario tr td .hora-blocked{
+	background: #212121;
 	color: #fff;
 }
 
@@ -58,15 +65,20 @@
 	margin-right: 5px;
 }
 
+#asesores .asesor-selected{
+	background: peru;
+	color: #fff;
+}
+
 /*OVERLAY*/
-.overlay{
+/*.overlay{
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
 	z-index: 10;
-	background-color: rgba(0,0,0,0.5); /*dim the background*/
+	background-color: rgba(0,0,0,0.5); /*dim the background
 }
 
 #reg-horario {
@@ -78,4 +90,4 @@
 
 .hidden{
 	display: none;
-}
+}*/

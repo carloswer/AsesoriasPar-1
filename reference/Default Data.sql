@@ -45,14 +45,22 @@ INSERT INTO ciclo(ciclo_inicio, ciclo_fin) VALUES
 
 
 INSERT INTO materia(mat_nombre, mat_semestre, FK_carrera) VALUES
-('Progra',		1,	1),
-('Progra 2',	2, 1),
-('SO',			2, 1),
-('APDS',			3, 1),
-('Diseño',		4, 1),
-('Quimica',		1, 2),
-('Materiales',	2, 2),
-('Fluidos',		3, 2);
+('Programación 1',			1,	1),
+('Programación 2',			2, 1),
+('Programación 2',			4, 1),
+('Sistemas Operativos',		2, 1),
+('Arquitectura',				1, 1),
+('Calidad de software',		6, 1),
+('Pruebas de software',		5, 1),
+('Funfamentos de redes',	5, 1),
+('APDS I',						4, 1),
+('APDS II',						5, 1),
+('Diseño I',					4, 1),
+('Diseño II',					5, 1);
+-- OTRA CARRERA
+('Quimica',						1, 2),
+('Materiales',					2, 2),
+('Fluidos',						3, 2);
 
 
 -- ----------------------------
@@ -63,14 +71,16 @@ INSERT INTO usuario(usu_username, usu_password, usu_correo, FK_rol) VALUES
 ('root',		md5('root'),				'carlosrozuma@gmail.com', 		1),
 ('charly',	md5('freedom'),			'c_01_12@gmail.com', 			2),
 ('noriega',	md5('randoming'),			'cnoriegacazarez@gmail.com', 	2),
-('lao',		md5('bobesponja2040'),	'enrikegl96@gmail.com', 		2);
+('lao',		md5('bobesponja2040'),	'enrikegl96@gmail.com', 		2),
+('alguien',	md5('12345'),				'@gmail.com', 						2);
 
 
 
 INSERT INTO estudiante(est_idItson, est_nombre, est_apellido, est_telefono, est_facebook, est_avatar, FK_usuario, FK_carrera) VALUES 
 ('00000162156', 'Carlos','Zuñiga',	'644', 'fb', 'av1', 2, 1),
 ('00000126079', 'Carlos','Noriega',	'644', 'fb', 'av2', 3, 1),
-('00000133494', 'Enrique','Garcia',	'644', 'fb', 'av3', 4, 1);
+('00000133494', 'Enrique','Garcia',	'644', 'fb', 'av3', 4, 1),
+('007', 'Pancho', 'Ponche', '644', 'fb', 'av1', 5, 1);
 
 
 
@@ -115,5 +125,8 @@ INSERT INTO asesoria(asesoria_fecha, asesoria_desc, FK_alumno, FK_dia_hora, FK_m
 -- YYYY-MM-DD
 ('2017-02-05','Es sobre los arreglos', 3, 1, 2);
 
+----- VALIDANDO
+INSERT INTO estado_asesoria(val_tipo, val_comentario, FK_asesoria) VALUES
+(2, 'Ya le entendi jeje', 5);
 
 

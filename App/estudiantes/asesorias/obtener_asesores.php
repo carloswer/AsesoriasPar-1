@@ -26,8 +26,6 @@
 			GROUP BY nombre_asesor
 			ORDER BY nombre_asesor";
 
-	// echo $query;
-	// exit();
 	$asesores = $generico->getDatos($query);
 
 	$resultado = '';

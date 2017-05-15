@@ -11,6 +11,13 @@ class Funciones{
         }
         return false;
     }
+
+    function getDiaHoraID( $horario, $dia, $hora ){
+    	foreach ($horario as $h) {
+            if( ($h['hora'] == $hora['id']) && ($h['dia'] == $dia['id']) )
+                return $h['id'];
+        }
+    }
 }
 
 ?>

@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS asesoria(
 	
 	-- Automaticos para primer registro
 	asesoria_registro	TIMESTAMP not null,
--- 	asesoria_estado 	TINYINT NOT NULL DEFAULT 0, -- 0 = Pendiente, 2 = validado
+-- 	asesoria_estado 	TINYINT NOT NULL DEFAULT 1, -- 1 = en tiempo, 2 = validado
 	
 	-- Foranea	
 	FK_alumno INT not null, 
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS asesoria(
 -- Cuando se valida asesoria (Realizado o No realizado)
 CREATE TABLE IF NOT EXISTS estado_asesoria(
 	PK_val_id 		INT AUTO_INCREMENT PRIMARY KEY,
-	val_tipo			TINYINT not null, -- 0 = Realizado, 1 = no realizado, 2 = cancelado
+	val_tipo			TINYINT not null, -- 1 = Realizado, 2 = no realizado, 3 = cancelado
 	val_comentario	text not null,
 	val_fecha		TIMESTAMP not null, -- fecha validacion
 

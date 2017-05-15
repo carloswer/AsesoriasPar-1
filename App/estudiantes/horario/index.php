@@ -2,7 +2,7 @@
 
     require_once '../../config.php';
 	require_once '../sesiones.php';
-    include_once 'funciones.class.php';
+    include_once '../funciones.class.php';
 	
 
     //Obtiene dias

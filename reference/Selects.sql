@@ -281,3 +281,67 @@ INNER JOIN ciclo c ON c.PK_ciclo_id = h.FK_ciclo
 INNER JOIN horario_materia hm ON hm.FK_horario = h.PK_horario_id 
 INNER JOIN materia m ON m.PK_mat_id = hm.FK_materia 
 WHERE (h.FK_ciclo = 2 AND e.PK_est_id <> 1) AND ( m.PK_mat_id = 4 ) GROUP BY nombre_asesor ORDER BY nombre_asesor
+
+
+
+DELETE FROM dia_hora;
+DELETE FROM horario_materia;
+DELETE FROM dia_hora;
+
+
+
+-- ---------------------------Asesorias registradas
+SELECT  
+	a.PK_asesoria_id as 'id_asesoria',
+	CONCAT(e.est_nombre,' ',e.est_apellido) as 'alumno',
+	CONCAT(eh.est_nombre,' ',eh.est_apellido) as 'asesor',
+	m.mat_nombre as 'materia',
+	a.asesoria_desc as 'descripcion',
+	d.dia_nombre as 'dia',
+	ho.hora as 'hora',
+	a.asesoria_fecha as 'fecha',
+	a.asesoria_registro as 'registro_asesoria'
+FROM asesoria a
+--  Alumno
+INNER JOIN estudiante e ON e.PK_est_id = a.FK_alumno
+INNER JOIN materia m ON m.PK_mat_id = a.FK_materia
+-- Asesor
+INNER JOIN dia_hora dh ON dh.PK_dia_hora = a.FK_dia_hora
+INNER JOIN hora ho ON ho.PK_hora_id = dh.FK_hora
+INNER JOIN dia d ON d.PK_dia_id = dh.FK_dia
+INNER JOIN horario h ON h.PK_horario_id = dh.FK_horario
+INNER JOIN estudiante eh ON eh.PK_est_id = h.FK_asesor
+LEFT JOIN estado_asesoria ea ON ea.FK_asesoria = a.PK_asesoria_id
+WHERE ea.FK_asesoria IS NULL
+-- WHERE h.FK_ciclo = 2 -- AND e.PK_est_id = 4
+
+
+-- Asesorias canceladas
+SELECT  
+	a.PK_asesoria_id as 'id_asesoria',
+	CONCAT(e.est_nombre,' ',e.est_apellido) as 'alumno',
+	CONCAT(eh.est_nombre,' ',eh.est_apellido) as 'asesor',
+	m.mat_nombre as 'materia',
+	a.asesoria_desc as 'descripcion',
+	d.dia_nombre as 'dia',
+	ho.hora as 'hora',
+	a.asesoria_fecha as 'fecha',
+	a.asesoria_registro as 'registro_asesoria',
+	ea.val_comentario as 'razon'
+FROM asesoria a
+--  Alumno
+INNER JOIN estudiante e ON e.PK_est_id = a.FK_alumno
+INNER JOIN materia m ON m.PK_mat_id = a.FK_materia
+-- Asesor
+INNER JOIN dia_hora dh ON dh.PK_dia_hora = a.FK_dia_hora
+INNER JOIN hora ho ON ho.PK_hora_id = dh.FK_hora
+INNER JOIN dia d ON d.PK_dia_id = dh.FK_dia
+INNER JOIN horario h ON h.PK_horario_id = dh.FK_horario
+INNER JOIN estudiante eh ON eh.PK_est_id = h.FK_asesor
+INNER JOIN estado_asesoria ea ON ea.FK_asesoria = a.PK_asesoria_id
+WHERE ea.val_tipo = 2 -- Cancelado
+
+
+SELECT * FROM asesoria;
+DELETE FROM estado_asesoria;
+DELETE FROM asesoria;
