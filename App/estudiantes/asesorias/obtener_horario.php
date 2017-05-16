@@ -35,17 +35,32 @@
     //Obtener horario del estudiante
     $funciones = new Funciones();
     // TODO: obtener asesorias de cierta 'dia_hora' para bloquearlas
-    $query = " SELECT dh.FK_hora as 'hora', dh.FK_dia as 'dia', dh.PK_dia_hora as 'id'
-                 FROM dia_hora dh
-                 INNER JOIN horario h ON h.PK_horario_id = dh.FK_horario
-                 WHERE h.FK_asesor = ".$estudianteID." AND h.FK_ciclo = ".$cicloID;
+    $query = "SELECT dh.FK_hora as 'hora', 
+				dh.FK_dia as 'dia', 
+				dh.PK_dia_hora as 'id'
+            FROM dia_hora dh
+            INNER JOIN horario h ON h.PK_horario_id = dh.FK_horario
+            WHERE h.FK_asesor = ".$estudianteID." AND h.FK_ciclo = ".$cicloID;
     $horario = $generico->getDatos($query);
+
+
+    // Obtener dia_hora de asesorias para bloquear las que esten utilizadas
+    $query = "SELECT 
+				a.asesoria_fecha as 'fecha', 
+				dh.FK_hora as 'hora',
+				dh.FK_dia as 'dia'
+			FROM asesoria a
+			INNER JOIN dia_hora dh ON dh.PK_dia_hora = a.FK_dia_hora";
+    $asesorias = $generico->getDatos($query);
 
 
     // --------------FORMANDO TABLA
     // Encabezado
     $diaF = 15;
     $fecha = '2017-05-';
+    // $horaActual = '10:00:00';
+    // $horasMinimas = 3;
+
 	$resultado = 
 	'
 		<h3>Seleccione una hora de las disponibles del asesor</h3>
@@ -80,18 +95,29 @@
 		foreach( $dias as $dia ){
 			$resultado .= '<td>';
 
+			// Incrementar a fecha para data-fecha
 			$contador = ($dia['id'] - 1);
-			
-			// Comparacion de dias y horas
-			if( $funciones->isHorario( $horario, $dia, $hora ) ){
-				$dh_id = $funciones->getDiaHoraID( $horario, $dia, $hora );
-				$resultado .= '<a class="item-hora hora-asesoria" data-dia-hora="'.$dh_id.'" data-fecha="'.$fecha.($diaF+$contador).'" data-dia="'.$dia["id"].'" data-hora="'. $hora["id"] .'">'.$hora["hora"].'</a>';
-			}
-			else{
-				$resultado .= ' <a class="item-hora hora-blocked" data-fecha="'.$fecha.($diaF+$contador).'" data-dia="'.$dia["id"].'" data-hora="'. $hora["id"] .'">'.$hora["hora"].'</a>';
-			}
 
-			$resultado .= '</td>';
+			// Solo muestra (bloquean) horas mayores (después a la hora actual, del dia actual) y un cierto rango antes (3 horas)
+			// if( $hora['hora'] > ($horaActual + $horasMinimas)  ){
+
+				//------ Comparacion de dias y horas del horario del asesor
+				// Disponible en horario
+				if( $funciones->isHorario( $horario, $dia, $hora ) ){
+					$dh_id = $funciones->getDiaHoraID( $horario, $dia, $hora );
+					$resultado .= '<a class="item-hora hora-asesoria" data-dia-hora="'.$dh_id.'" data-fecha="'.$fecha.($diaF+$contador).'" data-dia="'.$dia["id"].'" data-hora="'. $hora["id"] .'">'.$hora["hora"].'</a>';
+				}
+
+				// No disponible por asesoria registrada
+
+
+				// Cuando no esta dispible en horario
+				else{
+					$resultado .= ' <a class="item-hora hora-blocked" data-fecha="'.$fecha.($diaF+$contador).'" data-dia="'.$dia["id"].'" data-hora="'. $hora["id"] .'">'.$hora["hora"].'</a>';
+				}
+
+				$resultado .= '</td>';
+			// }
 		}
 		$resultado .= '</tr>';
 	}

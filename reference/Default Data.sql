@@ -56,7 +56,7 @@ INSERT INTO materia(mat_nombre, mat_semestre, FK_carrera) VALUES
 ('APDS I',						4, 1),
 ('APDS II',						5, 1),
 ('Diseño I',					4, 1),
-('Diseño II',					5, 1);
+('Diseño II',					5, 1),
 -- OTRA CARRERA
 ('Quimica',						1, 2),
 ('Materiales',					2, 2),
@@ -72,7 +72,8 @@ INSERT INTO usuario(usu_username, usu_password, usu_correo, FK_rol) VALUES
 ('charly',	md5('freedom'),			'c_01_12@gmail.com', 			2),
 ('noriega',	md5('randoming'),			'cnoriegacazarez@gmail.com', 	2),
 ('lao',		md5('bobesponja2040'),	'enrikegl96@gmail.com', 		2),
-('alguien',	md5('12345'),				'@gmail.com', 						2);
+('alguien',	md5('12345'),				'@gmail.com', 						2),
+('Tapia',	md5('12345'),				'tapia@gmail.com', 						2);
 
 
 
@@ -80,7 +81,8 @@ INSERT INTO estudiante(est_idItson, est_nombre, est_apellido, est_telefono, est_
 ('00000162156', 'Carlos','Zuñiga',	'644', 'fb', 'av1', 2, 1),
 ('00000126079', 'Carlos','Noriega',	'644', 'fb', 'av2', 3, 1),
 ('00000133494', 'Enrique','Garcia',	'644', 'fb', 'av3', 4, 1),
-('007', 'Pancho', 'Ponche', '644', 'fb', 'av1', 5, 1);
+('007', 			'Pancho', 'Ponche', '644', 'fb', 'av1', 5, 1),
+('001', 			'Ivan', 'Tapia', '644', 'fb', 'av1', 6, 1);
 
 
 

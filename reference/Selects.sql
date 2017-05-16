@@ -312,7 +312,8 @@ INNER JOIN dia d ON d.PK_dia_id = dh.FK_dia
 INNER JOIN horario h ON h.PK_horario_id = dh.FK_horario
 INNER JOIN estudiante eh ON eh.PK_est_id = h.FK_asesor
 LEFT JOIN estado_asesoria ea ON ea.FK_asesoria = a.PK_asesoria_id
-WHERE ea.FK_asesoria IS NULL
+-- WHERE ea.FK_asesoria IS NULL;
+WHERE (ea.FK_asesoria IS NULL) AND (e.PK_est_id = 1 OR eh.PK_est_id = 1)
 -- WHERE h.FK_ciclo = 2 -- AND e.PK_est_id = 4
 
 
@@ -342,6 +343,18 @@ INNER JOIN estado_asesoria ea ON ea.FK_asesoria = a.PK_asesoria_id
 WHERE ea.val_tipo = 2 -- Cancelado
 
 
+
+SELECT 
+	a.asesoria_fecha as 'fecha', 
+	dh.FK_hora as 'hora',
+	dh.FK_dia as 'dia'
+ FROM asesoria a
+INNER JOIN dia_hora dh ON dh.PK_dia_hora = a.FK_dia_hora
+
+
 SELECT * FROM asesoria;
+SELECT * FROM estado_asesoria
+
+
 DELETE FROM estado_asesoria;
 DELETE FROM asesoria;

@@ -22,14 +22,29 @@
 
     <h1>Iniciar sesion</h1>
     <form action="login.php" method="POST">
-        <label for="user">Usuario:</label>
-        <input type="text" name="user" id="user">
-        <br>
-
-        <label for="pass">Contraseña:</label>
-        <input type="password" name="pass" id="pass">
-        <br>
-        <input type="submit" value="Iniciar sesion">
+        <table>
+            <tr>
+                <td>
+                    <label for="user">Usuario:</label>
+                </td>
+                <td>
+                    <input type="text" name="user" id="user">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="pass">Contraseña:</label>    
+                </td>
+                <td>
+                    <input type="password" name="pass" id="pass">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Iniciar sesion">
+                </td>
+            </tr>
+        </table>
     </form>
     
 </body>
