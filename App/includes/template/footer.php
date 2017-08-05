@@ -1,5 +1,5 @@
 	<!-- javascript -->
-	<script src="<?= JS_PATH . "/vendor/jquery.js"; ?>"></script>
-	<script src="<?= JS_PATH . "/custom.js"; ?>"></script>
+	<script src="<?= LIBS_REF . "/jquery/jquery.js"; ?>"></script>
+	<script src="<?= JS_REF . "/custom.js"; ?>"></script>
 </body>
 </html>

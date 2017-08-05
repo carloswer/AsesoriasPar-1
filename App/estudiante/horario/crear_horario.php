@@ -1,0 +1,96 @@
+<?php
+
+    require_once '../../config.php';
+    include_once '../sesiones.php';
+
+    use Control\Sesiones;
+    use Control\ControlHorarios;
+    use Control\ControlMaterias;
+
+    //Si se es alumno
+    if( !Sesiones::isAsesor() )
+        header("Location: ../index.php");
+
+    $conHorarios = new ControlHorarios();
+    $cicloActual = $conHorarios->obtenerCicloActual();
+    if( $cicloActual == null )
+        header("Location: index.php");
+
+    //Obtiene horas
+    $horas = $conHorarios->obtenerHoras();
+    //Obtiene dias
+    $dias = $conHorarios->obtenerDias();
+
+    //Obtiene materias
+    $query = "SELECT PK_mat_id as 'id', mat_nombre as 'materia' 
+                    FROM materia order by PK_mat_id";
+    $materias = $generico->getDatos($query);
+
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../../assets/stylesheet/estilos.css">
+</head>
+<body>
+	
+	<?php $titulo = "Crear horario"; include_once EST_PATH . "/inc_menu.php"; ?>
+	
+	<!-- <div id="reg-horario" class="overlay hidden">
+		<h1 class="texto"></h1>
+	</div> -->
+	
+<!-- TABLA DE HORARIO -->
+	<div id="horario">
+		<h1>Seleccione horas</h1>
+        <table width="100%">
+            <tr>
+                <th>Lunes</th>
+                <th>Martes</th>
+                <th>Miercoles</th>
+                <th>Jueves</th>
+                <th>Viernes</th>
+            </tr>
+
+			<?php foreach( $horas as $hora ): ?>
+				<tr>
+					<?php foreach( $dias as $dia ): ?>
+						<td>
+							<a href="javascript:void(0)" class="item-hora hora-horario" data-dia="<?= $dia['id']; ?>" data-hora="<?= $hora['id']; ?>">
+								<?= $hora['hora']; ?> 
+							</a>
+                    	</td>
+					<?php endforeach; ?>
+				</tr>
+			<?php endforeach; ?>
+
+        </table>
+    </div>
+
+    <div id="materias">
+    	<h1>Seleccione materias</h1>
+    	<?php foreach( $materias as $mat ): ?>
+    		<a href="javascript:void(0)" class="item-materia materia-horario" data-materia="<?= $mat['id']; ?>">
+    			<?= $mat['materia']; ?>
+    		</a>
+    	<?php endforeach; ?>
+    </div>
+
+	<br><br><br>
+    <div id="opciones">
+    	<button id="btn-registrar-horario">Registrar horario</button>
+    	<button id="btn-reset-horario">Reset</button>
+    	<p id="estado"></p>
+    </div>
+
+
+	<!-- Scripts -->
+	<script src="../../assets/js/vendor/jquery.js"></script>
+	<script src="../../assets/js/custom.js"></script>
+</body>
+</html>

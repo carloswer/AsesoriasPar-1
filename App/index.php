@@ -1,51 +1,29 @@
 <?php
+
     require_once "config.php";
     $tituloPagina = "Inicio";
 
-
-    // use Negocio\Controles\ControlEstudiantes;
-    // $ctrlEstudiantes = new ControlEstudiantes();
-    // $listaEstudiantes = $ctrlEstudiantes->obtenerEstudiante();
-    // $numEstudiantes = count($listaEstudiantes);
-    
 ?>
 
+<?php include_once TEMP_PATH."/header.php"; ?>
+
+    <div class="encabezado">
+        <div class="container">
+            <h1>Bienvenido a la plataforma de Asesorias Par</h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Amet consequuntur, explicabo. Beatae dolorum exercitationem
+                expedita harum ipsum iure odio, tempore. Eum facilis id itaque
+                nobis non officia tempore veniam veritatis.
+            </p>
+            <div class="buttons">
+                <a href="login.php" class="btn btn-default" >Iniciar Sesion</a>
+                <a href="#" class="btn btn-primary" >Registrarse</a>
+            </div>
+        </div>
+    </div>
+    <!--fin encabezado-->
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
 
-    <h1>Iniciar sesion</h1>
-    <form action="login.php" method="POST">
-        <table>
-            <tr>
-                <td>
-                    <label for="user">Usuario:</label>
-                </td>
-                <td>
-                    <input type="text" name="user" id="user">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="pass">Contraseña:</label>    
-                </td>
-                <td>
-                    <input type="password" name="pass" id="pass">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="submit" value="Iniciar sesion">
-                </td>
-            </tr>
-        </table>
-    </form>
-    
-</body>
-</html>
+<?php include_once TEMP_PATH."/footer.php"; ?>

@@ -1,8 +1,12 @@
--Pendientes de validar
--Canceladas
--Validada
-	-Realizadas
-	-No realizadas
+----Horarios
+	-Requiere validar por admin
+
+----Asesorias
+	-Pendientes de validar
+	-Canceladas
+	-Validada
+		-Realizadas
+		-No realizadas
 
 ----------------------
 PROGRAMACIÓN
@@ -18,14 +22,12 @@ PROGRAMACIÓN
 			-Cancelar
 				-Quien cancelo asesoria (En caso de)
 
-------- Code
-	-Quitar Singleton a Conexion
-
 ------- APP
+	-Necesario que administrador acepte horario de asesor
 	-Manejar Concurrencia
 	-Verificar antes de registrar
 		-Por si pasa hora final
-	-Manejar por ciclos escolares (siempre actual)
+	-Manejar por periodos escolares (siempre actual)
 	-Almacenar 2 asesorias para un Asesor en una Fecha-Hora determinada
 	-Guardar selecciones como carritos de compras (cache)
 	-3 días maximo para validar, después de, se tomará como "realizada"
@@ -64,7 +66,13 @@ CASOS DE PRUEBA
 ----------------------
 OTROS
 ----------------------
-
-
 -Fechas en horario par determinar a que ciclo pertenece
 -Transaccion para registro en tabla "asesor_materia" y "Dias"
+
+
+
+----------------------
+IDEAS
+----------------------
+-Poner foro para dudas generales y apoyo entre todos
+	-como google plus comunidades etc

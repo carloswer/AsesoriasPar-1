@@ -1,10 +1,84 @@
 $(document).ready(function(){
 
-	var dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"];
 
-	//-------------------------
-	// 	SELECCIONAR HORARIO
-	//-------------------------
+    //-------------------------
+    // 	LOGIN Y REGISTRO
+    //-------------------------
+
+    $('#login-form').submit(function(e){
+        //Evitar el submit normal (que se recargue)
+        e.preventDefault();
+        var user = $('#txtUser').val();
+        var pass = $('#txtPass').val();
+
+        //Datos del formulario como JSON
+        var datos = { "user": user, "pass": pass };
+        // alert("USER: "+datos.user+" \nPASS: "+datos.pass);
+        login( datos );
+    });
+
+    function login(datos){
+        $.ajax({
+            url: 'includes/ajax/login.ajax.php',
+            type: 'post',
+            // Los datos se mandan como si fuera GET para poder obtenerlos por separado
+            data: "user="+datos.user+"&pass="+datos.pass,
+            // dataType: 'json',
+
+            //Metodo que se ejecuta antes de enviar el request
+            beforeSend: function(){
+                $('.login-message').remove();
+                //Cambia el icono del span
+                $('#login-spin').css('display','inline');
+            }
+        })
+        .done(function(response){
+
+            if( response == "false" ){
+                $('#login-status').html('<p class="login-message msj-error bg-warning">El usuario o contraseña son incorrectos</p>');
+            }
+            else if( response == "administrador" ){
+                $('#login-status').html('<p class="login-message msj-exito bg-success">Datos Correctos - Redireccionando</p>');
+                setTimeout(function(){ window.location = "administrador/"; },1000);
+            }
+            else if( response == "estudiante" ){
+                $('#login-status').html('<p class="login-message msj-exito bg-success">Datos Correctos - Redireccionando</p>');
+                setTimeout(function(){ window.location = "estudiante/"; },1000);
+            }
+            else
+                alert("Response desconocido: "+response);
+
+        })
+        .fail(function(){
+            $('#login-status').html('<p class="login-message msj-fail bg-danger">Ocurrio un error, intentelo más tarde</p>');
+        })
+        .always(function(response){
+            // oculta spin
+            $('#login-spin').hide();
+            console.log( response );
+
+            // Coultar mensaje
+            setTimeout(function(){
+                $('.login-message').hide();
+            },3000);
+
+        });
+    }
+
+
+
+
+    //-------------------------
+    //  ESTUDIANTES
+    //-------------------------
+    
+    //======================================= SELECCION DE TIPO
+    // $(".btn-acceso").on("click", function(event){
+    //     var btn = $( event.target );
+    //     var tipo = btn.data("tipo");
+    // });
+
+    //======================================= SELECCION DE HORARIO
 
 	$(".hora-horario").on( "click", function(event) {
 		var target = $( event.target );
@@ -87,11 +161,11 @@ $(document).ready(function(){
 
 
         if( enviar ){
-        	// alert("datos completos");
+        	// alert("persistencia completos");
         	//Se obtiene ID de usuario
         	var id = $('#user').data("id");
             var ciclo = $('#ciclo').data("id");
-        	//Se envian datos capturados
+        	//Se envian persistencia capturados
     		registrar_horario(id, ciclo, horario, materias);
         }
 
@@ -162,7 +236,7 @@ $(document).ready(function(){
         //Elimina horario mostrado en caso de
         $("#horario").html("");
 
-        //obtiene datos ocultos
+        //obtiene persistencia ocultos
         var id = $('#user').data("id");
         var ciclo = $('#ciclo').data("id");
         var materia = $(target).data("materia");
@@ -215,7 +289,7 @@ $(document).ready(function(){
         $(".asesor-selected").removeClass("asesor-selected");
         target.addClass("asesor-selected");
 
-        //obtiene datos ocultos
+        //obtiene persistencia ocultos
         var ciclo = $('#ciclo').data("id");
         obtenerHorarioAsesor(ciclo, asesor);
 

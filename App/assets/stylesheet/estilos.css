@@ -70,24 +70,10 @@
 	color: #fff;
 }
 
-/*OVERLAY*/
-/*.overlay{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 10;
-	background-color: rgba(0,0,0,0.5); /*dim the background
+.login-container{
+	margin-top: 20px;
 }
 
-#reg-horario {
-	color: #fff;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.login-message{
+	padding: 10px;
 }
-
-.hidden{
-	display: none;
-}*/

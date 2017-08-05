@@ -1,55 +1,51 @@
-<?php 
+<?php
 
-	require_once 'config.php';
-
-
-    //Verifico datos
-	if( !isset( $_POST['user'] ) || !isset( $_POST['pass'] ) )
-		header("Location: index.php");
-
-	
-	//Se obtienen los datos
-	$user = $_POST['user'];
-	$pass = $_POST['pass'];
-
-
-    $result = $generico->getDatos("
-	    	SELECT u.PK_usu_id, 
-	    			u.usu_username, 
-	    			r.PK_rol_id as rol_id, 
-	    			r.rol_nombre as rol 
-	    	FROM usuario u 
-	    	INNER JOIN rol r ON r.PK_rol_id = u.FK_rol
-	    	WHERE (usu_username = '".$user."' OR usu_correo = '".$user."')
-	    	AND usu_password = md5('".$pass."');
-    	");
+    require_once "config.php";
+    use Control\Sesiones;
+    
+    // Comprobar que haya una session activa
+    if( Sesiones::isSesionActiva() ){
+        $user = Sesiones::getDatosSesion();
+        if( $user['rol'] == "administrador" )
+            header("Location: administrador/");
+        else
+            header("Location: estudiante/");
+    }
 
 
-	if( count( $result ) == 1 ){
-		$user = $result[0];
-
-		$id = $user['PK_usu_id'];
-		$username = $user['usu_username'];
-		$rol = $user['rol_id'];
-
-		//Inicia una nueva session
-		session_start();
-		$_SESSION['idUser'] = $id;
-		$_SESSION['username'] = $username;
-		$_SESSION['rol'] = $rol;
-
-		//Si es administrador
-		if( $rol == 1 )
-			header('Location: administrador/');
-		//Si es estudiante
-		else if( $rol == 2 )
-			header('Location: estudiantes/');
-	}
-	else{
-		echo "No existe usuario";
-	}
-
-
-	
+    // $tituloPagina = "Iniciar Sesion";
 
 ?>
+
+<?php include_once TEMP_PATH."/header.php"; ?>
+
+    <div class="container">
+    	<div class="login-container col-md-6 col-md-offset-3 text-center">
+    		<h1>Iniciar Sesion</h1>
+    				<div id="login-status" class="status">
+                        
+    				</div>
+    		
+    		<form id="login-form">
+    			<div class="form-group">
+    				<label for="" class="sr-only label-control">Usuario</label>
+    				<input type="text" class="form-control" id="txtUser" placeholder="Usuario" name="user" required="true">
+    			</div>
+    			<div class="form-group">
+    				<label for="" class="sr-only label-control">Contraseña</label>
+    				<input type="password" class="form-control" id="txtPass" placeholder="Contraseña" name="pass" required="true">
+    			</div>
+    			<button class="form-control btn btn-primary" type="submit">
+    				<span id="login-spin" style="display: none;">
+    					<img src="assets/img/spin.gif" alt="spin">
+    				</span>
+    				Iniciar
+    			</button>
+    		</form>
+
+    	</div>
+    </div>
+
+
+
+<?php include_once TEMP_PATH."/footer.php"; ?>

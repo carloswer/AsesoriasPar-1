@@ -3,8 +3,8 @@
 -- ----------------------------
 
 INSERT INTO rol(rol_nombre) VALUES
-('Administrador'),
-('Estudiante');
+('administrador'),
+('estudiante');
 
 
 INSERT INTO carrera(ca_nombre, ca_nomAbre) VALUES 
@@ -37,30 +37,22 @@ INSERT INTO hora(hora) VALUES
 -- ADMIN ENTRIES
 -- ----------------------------
 
--- TODO: no crear ciclos empalmados
+-- TODO: no crear periodos empalmados
 INSERT INTO ciclo(ciclo_inicio, ciclo_fin) VALUES
 ('2016/01/10', '2016/05/19'), -- Pasado
-('2017/01/10', '2017/05/19');
+('2017/01/10', '2017/05/19'), -- Pasado
+('2017/08/01', '2017/12/01');
 
 
 
-INSERT INTO materia(mat_nombre, mat_semestre, FK_carrera) VALUES
-('Programación 1',			1,	1),
-('Programación 2',			2, 1),
-('Programación 2',			4, 1),
-('Sistemas Operativos',		2, 1),
-('Arquitectura',				1, 1),
-('Calidad de software',		6, 1),
-('Pruebas de software',		5, 1),
-('Funfamentos de redes',	5, 1),
-('APDS I',						4, 1),
-('APDS II',						5, 1),
-('Diseño I',					4, 1),
-('Diseño II',					5, 1),
--- OTRA CARRERA
-('Quimica',						1, 2),
-('Materiales',					2, 2),
-('Fluidos',						3, 2);
+
+INSERT INTO materia(mat_nombre, mat_abreviacion, mat_semestre, mat_plan, FK_carrera) VALUES
+('Programación 1',			,'P1', 1,	'2009', 1),
+('Programación 2',			,'P2', 2,	'2009', 1),
+('Programación 3',			,'P3', 3,	'2009', 1),
+('Administracion de Proyectos de software I',			,'APDS I', 4,	'2009', 1),
+('Diseño I',			,'', 4,	'2009', 1);
+
 
 
 -- ----------------------------
@@ -68,21 +60,17 @@ INSERT INTO materia(mat_nombre, mat_semestre, FK_carrera) VALUES
 -- ----------------------------
 
 INSERT INTO usuario(usu_username, usu_password, usu_correo, FK_rol) VALUES
-('root',		md5('root'),				'carlosrozuma@gmail.com', 		1),
-('charly',	md5('freedom'),			'c_01_12@gmail.com', 			2),
+('root',		md5('root'),				'c_01_12@hotmail.com',	 		1),
+('charly',	md5('freedom'),			'carlosrozuma@gmail.com',		2),
 ('noriega',	md5('randoming'),			'cnoriegacazarez@gmail.com', 	2),
-('lao',		md5('bobesponja2040'),	'enrikegl96@gmail.com', 		2),
-('alguien',	md5('12345'),				'@gmail.com', 						2),
-('Tapia',	md5('12345'),				'tapia@gmail.com', 						2);
+('lao',		md5('bobesponja2040'),	'enrikegl96@gmail.com', 		2);
 
 
 
-INSERT INTO estudiante(est_idItson, est_nombre, est_apellido, est_telefono, est_facebook, est_avatar, FK_usuario, FK_carrera) VALUES 
+INSERT INTO estudiante(est_id_tson, est_nombre, est_apellido, est_telefono, est_facebook, est_avatar, FK_usuario, FK_carrera) VALUES 
 ('00000162156', 'Carlos','Zuñiga',	'644', 'fb', 'av1', 2, 1),
 ('00000126079', 'Carlos','Noriega',	'644', 'fb', 'av2', 3, 1),
-('00000133494', 'Enrique','Garcia',	'644', 'fb', 'av3', 4, 1),
-('007', 			'Pancho', 'Ponche', '644', 'fb', 'av1', 5, 1),
-('001', 			'Ivan', 'Tapia', '644', 'fb', 'av1', 6, 1);
+('00000133494', 'Enrique','Garcia',	'644', 'fb', 'av3', 4, 1);
 
 
 
@@ -90,7 +78,7 @@ INSERT INTO estudiante(est_idItson, est_nombre, est_apellido, est_telefono, est_
 -- HORARIO Y MATERIAS
 -- ----------------------------
 
-INSERT INTO horario(FK_asesor, FK_ciclo) VALUES
+INSERT INTO horario(FK_asesor, FK_periodo) VALUES
 (1, 2);
 
 

@@ -8,7 +8,7 @@
         $class = __DIR__ . DS . str_replace("\\", DS, $class) . ".php";
 
         //Para pruebas
-        if( DEBUG )
+        if( DEBUG == 2 )
             echo $class . "<br>";
 
         if( !file_exists($class) )

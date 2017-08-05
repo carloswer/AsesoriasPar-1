@@ -25,10 +25,11 @@ CREATE TABLE IF NOT EXISTS usuario(
 
 
 CREATE TABLE IF NOT EXISTS carrera (
-	PK_ca_id 	INT AUTO_INCREMENT PRIMARY KEY,
-	ca_nombre 	VARCHAR(100) NOT NULL unique,
-	ca_nomAbre	VARCHAR(10) unique
+	PK_ca_id 		INT AUTO_INCREMENT PRIMARY KEY,
+	ca_nombre 		VARCHAR(100) NOT NULL unique,
+	ca_abreviacion	VARCHAR(10) unique
 );
+
 
 
 CREATE TABLE IF NOT EXISTS hora(
@@ -53,10 +54,12 @@ CREATE TABLE IF NOT EXISTS ciclo(
 
 
 CREATE TABLE IF NOT EXISTS materia(
-	PK_mat_id 		INT AUTO_INCREMENT PRIMARY KEY,
-	mat_nombre 		varchar(100) NOT NULL,
-	mat_Semestre 	int NOT NULL,
--- 	mat_plan			int,
+	PK_mat_id 			INT AUTO_INCREMENT PRIMARY KEY,
+	mat_nombre 			varchar(200) NOT NULL,
+	mat_semestre 		int NOT NULL,
+	mat_abreviacion   varchar(10),
+-- 	mat_clave			varchar(10),
+	mat_plan				varchar(4) not null,
 
 	-- Foranea	
 	FK_carrera INT, FOREIGN KEY (FK_carrera) REFERENCES carrera(PK_ca_id) ON UPDATE CASCADE
@@ -66,7 +69,7 @@ CREATE TABLE IF NOT EXISTS materia(
 
 CREATE TABLE IF NOT EXISTS estudiante(
 	PK_est_id		INT AUTO_INCREMENT PRIMARY KEY,
-	est_idItson 	varchar(20) NOT NULL unique,
+	est_id_itson 	varchar(20) NOT NULL unique,
 	est_nombre 		varchar(50) NOT NULL,
 	est_apellido 	varchar(50) NOT NULL,
 	est_telefono 	varchar(30),
@@ -90,9 +93,9 @@ CREATE TABLE IF NOT EXISTS estudiante(
 CREATE TABLE IF NOT EXISTS horario(
 	PK_horario_id 		INT AUTO_INCREMENT PRIMARY KEY,
 	horario_registro 	TIMESTAMP not null,
+	validado				TINYINT NOT NULL DEFAULT 0,
 	
 	-- Foranea
-
 	FK_asesor INT not null,
 	FOREIGN KEY (FK_asesor) REFERENCES estudiante(PK_est_id) ON UPDATE CASCADE,
 	FK_ciclo INT not null,
