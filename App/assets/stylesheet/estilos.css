@@ -43,7 +43,12 @@
 	display: inline-block;
 	background: #ECE7E7;
 	padding: 12px 20px;
+	margin-bottom: 10px;
 	color: #000;
+}
+
+#materias .item-materia:hover, .materia-horario:hover{
+	background: #a3deff;
 }
 
 

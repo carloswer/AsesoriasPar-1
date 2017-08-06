@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS materia(
 	mat_nombre 			varchar(200) NOT NULL,
 	mat_semestre 		int NOT NULL,
 	mat_abreviacion   varchar(10),
+	mat_descripcion	text,
 -- 	mat_clave			varchar(10),
 	mat_plan				varchar(4) not null,
 

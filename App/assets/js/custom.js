@@ -133,7 +133,7 @@ $(document).ready(function(){
 
             //Agregando elementos al array
             // horario.push( { "DiaID": dia, "DiaNombre": dias[dia - 1], "HoraID": hora} );
-            horario.push( { "DiaID": dia, "HoraID": hora} );
+            horario.push( { "diaID": dia, "horaID": hora} );
         });
 
 
@@ -141,8 +141,6 @@ $(document).ready(function(){
             alert("sin horas seleccionadas");
             enviar = false;
         }
-        	
-    	
 
     	//--------------------MATERIAS
     	$(".materia-selected").each(function () {
@@ -157,16 +155,14 @@ $(document).ready(function(){
             alert("sin materias seleccionadas");
             enviar = false;
         }
-        	
-
 
         if( enviar ){
         	// alert("persistencia completos");
         	//Se obtiene ID de usuario
-        	var id = $('#user').data("id");
-            var ciclo = $('#ciclo').data("id");
+        	var id = $('#data-estudiante').data("id");
+
         	//Se envian persistencia capturados
-    		registrar_horario(id, ciclo, horario, materias);
+    		registrar_horario(id, horario, materias);
         }
 
 	});
@@ -181,43 +177,52 @@ $(document).ready(function(){
     });
 
 
-    function registrar_horario(userID, cicloID, horario, materias){
+    function registrar_horario(estudiante, horario, materias){
 
         //JSON para enviar
         var horarioJSON = 
         {
-            "estudiante": userID,
-            "ciclo": cicloID,
+            "estudiante": estudiante,
             "horario": horario,
             "materias": materias
         };
 
         //Transforma a String
         var stringJSON = JSON.stringify( horarioJSON );
-        var overlay = $('reg-horario');
 
         $.ajax({
-                url: 'registrar_horario.php',
+                url: '../../includes/ajax/horario/registrar_horario.ajax.php',
                 type: 'post',
-                // dataType: 'html', //Tipo de dato que regresa
-                data: {jsonHM: stringJSON}
-                // beforeSend: function(){
+                dataType: 'json', //Tipo de dato que regresa
+                data: {json_horario: stringJSON},
+                beforeSend: function(){
                 //     overlay.children('.texto').html("Registrando horario");
                 //     overlay.css('display', 'block');
-                // }
+                    $('#login-estado').html("Cargando...");
+                }
         })
-        .done(function(){
-            alert("Horario registrado");
-            // overlay.children('.texto').html("Horario registrado");
-            location.href = "index.php";
+        .done(function(response){
+
+            if( response.resultado == "true" ){
+                $('#login-estado').html("Registrado con éxito");
+                //Redirecciona después de registrar (un segundo de espera)
+                setTimeout(function(){ location.href = "index.php"; }, 1000);
+            }
+            else if( response.resultado == "false" ) {
+                $('#login-estado').html("No se pudo registrar horario");
+                console.log( "Resultado: "+response.resultado+"\nMensaje: "+response.mensaje );
+            }
+            else{
+                alert("respuesta desconocida: "+response);
+            }
+
         })
         .fail(function(){
             alert("ocurrio un error");
-            // overlay.children('.texto').html("Error al registrar");
         })
         .always( function(response) {
-            console.log( response );
-            // overlay.css('display', 'none');
+            // $('#login-estado').html("");
+            console.log(  response );
         });
     }
 

@@ -6,9 +6,11 @@
 
 
         public function getEstudiante_UsuarioId( $id ){
-            $query = "SELECT * FROM estudiante 
-                      WHERE FK_usuario = ".$id;
-
+            $query = "SELECT e.PK_est_id, e.est_id_itson, e.est_nombre, e.est_apellido, e.est_telefono, 
+                        e.est_facebook, e.est_avatar, e.est_ReqValidar, c.ca_nombre as carrera, e.FK_usuario
+                        FROM estudiante e
+                        INNER JOIN carrera c ON c.PK_ca_id = e.FK_carrera
+                        WHERE e.FK_usuario =".$id;
             //Obteniendo resultados
             return $this->getResultado($query);
         }

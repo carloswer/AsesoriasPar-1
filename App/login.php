@@ -37,7 +37,7 @@
     			</div>
     			<button class="form-control btn btn-primary" type="submit">
     				<span id="login-spin" style="display: none;">
-    					<img src="assets/img/spin.gif" alt="spin">
+    					<img src="<?= ASSETS_REF; ?>/img/spin.gif" alt="spin">
     				</span>
     				Iniciar
     			</button>

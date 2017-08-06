@@ -25,5 +25,5 @@
 </ul>
 
 <!-- Elementos con datos importantes -->
-<!-- <input type="hidden" id="user" data-id="<?= $_SESSION['idEstudiante']; ?>"> -->
-<!-- <input type="hidden" id="ciclo" data-id="<?= $_SESSION['ciclo']['id']; ?>"> -->
+ <input type="hidden" id="data-estudiante" data-id="<?= $_SESSION['estudiante']['id']; ?>">
+<!-- <input type="hidden" id="ciclo" data-id="--><?//= $_SESSION['ciclo']['id']; ?><!--"> -->

@@ -22,6 +22,12 @@
 	        return $result;
 	    }
 
+        protected function insertarDatos($query){
+            $con = new Conexion();
+            $result = $con->ejecutarQuery($query);
+            return $result;
+        }
+
 	    /**
 	     * Método que sirve para encriptar un dato y regresa el valor
 	     */

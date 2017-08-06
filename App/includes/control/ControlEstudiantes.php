@@ -23,13 +23,13 @@ class ControlEstudiantes{
             // Asigna datos
             $estudiante->setIdUsuario( $result[0]['FK_usuario'] );
             $estudiante->setIdEstudiante( $result[0]['PK_est_id'] );
-//            $estudiante->setIdItson( $result[0]['est_id_itson'] );
+            $estudiante->setIdItson( $result[0]['est_id_itson'] );
             $estudiante->setNombre( $result[0]['est_nombre'] );
             $estudiante->setApellido( $result[0]['est_apellido'] );
             $estudiante->setTelefono( $result[0]['est_telefono'] );
             // $estudiante->setFacebook( $result[0]['est_facebook'] );
             $estudiante->setAvatar( $result[0]['est_avatar'] );
-            $estudiante->setCarrera( $result[0]['est_carrera'] );
+            $estudiante->setCarrera( $result[0]['carrera'] );
 
             return $estudiante;
         }
