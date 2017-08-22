@@ -14,6 +14,7 @@ INNER JOIN dia_hora dh ON dh.FK_hora = a.FK_dia_hora;
 
 -- WHERE ea.FK_asesoria IS NOT NULL;
 
+SELECT * FROM asesoria;
 
 SELECT 
 	a.PK_asesoria_id as 'asesoria_id',

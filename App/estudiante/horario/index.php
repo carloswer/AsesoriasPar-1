@@ -2,11 +2,11 @@
 
     require_once '../../config.php';
     include_once '../sesiones.php';
-
     use Control\Sesiones;
+
     //Si se es alumno
     if( !Sesiones::isAsesor() )
-        header("Location: ../index.php");
+        header("Location: ".EST_REF);
 
 	use Control\ControlHorarios;
     $conHorarios = new ControlHorarios();
@@ -15,17 +15,22 @@
     //TODO: hacer que funcion de obtener horario y demás obtengan el ciclo actual de forma automatica
     $cicloActual = $conHorarios->obtenerCicloActual();
 
-    global $horas, $dias, $horarioId, $horario, $materias;
+    global $horas, $arrayDias, $horarioId, $horario, $materias;
     if( $cicloActual != null ){
-        //Obtiene horas
-        $horas = $conHorarios->obtenerHoras();
-        //Obtiene dias
-        $dias = $conHorarios->obtenerDias();
+        //Obtiene dias y horas
+        $horas = $conHorarios->obtenerDiasHoras();
+
         //Obtener horario del estudiante
-        $horarioId = $conHorarios->obtenerHorarioId($_SESSION['estudiante']['id'], $cicloActual['id']);
-        $horario = $conHorarios->obtenerHorarioAsesor( $_SESSION['estudiante']['id'], $cicloActual['id'] );
-        $materias = $conHorarios->obtenerHorario_materias( $horarioId );
+        //TODO: debe saber si el horario ya esta validado antes de mostrarlo
+        $horarioId = $conHorarios->obtenerHorarioId( $_SESSION['estudiante']['id'], $cicloActual['id'] );
+        //Si hay horario, lo obtiene
+//        if( $horarioId != null ){
+//            $horario = $conHorarios->obtenerHorarioAsesor_horas( $_SESSION['estudiante']['id'], $cicloActual['id'] );
+//            $materias = $conHorarios->obtenerHorario_materias( $horarioId );
+//        }
     }
+
+
 
 
  ?>
@@ -46,45 +51,47 @@
                 <a href="crear_horario.php">Crear horario</a>
             </h4>
         <?php else: ?>
-            <h4>Ya tiene un horario creado</h4>
-            <a href="#">Modificar horario</a>
-
-            <!-- Horario -->
-            <div id="horario">
-                <table width="100%">
-                    <tr>
-                        <th>Lunes</th>
-                        <th>Martes</th>
-                        <th>Miercoles</th>
-                        <th>Jueves</th>
-                        <th>Viernes</th>
-                    </tr>
-                    <?php foreach( $horas as $hora ): ?>
-                        <tr>
-                            <?php foreach( $dias as $dia ): ?>
-                                <td>
-
-                                    <?php if( $conHorarios->isHorario($horario, $dia, $hora ) ): ?>
-                                        <a class="item-hora hora-selected" data-dia="<?= $dia['id']; ?>" data-hora="<?= $hora['id']; ?>"><?= $hora['hora']; ?></a>
-
-                                    <?php else: ?>
-
-                                        <a class="item-hora" data-dia="<?= $dia['id']; ?>" data-hora="<?= $hora['id']; ?>"><?= $hora['hora']; ?></a>
-
-                                    <?php endif; ?>
-
-                                </td>
-                            <?php endforeach; ?>
-                        </tr>
-                    <?php endforeach; ?>
-                </table>
-            </div>
-
-            <?php foreach($materias as $mat ): ?>
-                <a href="javascript:void(0)" class="item-materia materia-horario" data-materia="<?= $mat->getId(); ?>">
-                    <?php echo $mat->getNombre(); ?>
-                </a>
-            <?php endforeach; ?>
+<!--            <h4>Ya tiene un horario creado</h4>-->
+<!--            <a href="#">Modificar horario</a>-->
+<!---->
+<!--            <h3>Días  y horas</h3>-->
+<!--            <!-- Horario -->-->
+<!--            <div id="horario">-->
+<!--                <table width="100%">-->
+<!--                    <tr>-->
+<!--                        <th>Lunes</th>-->
+<!--                        <th>Martes</th>-->
+<!--                        <th>Miercoles</th>-->
+<!--                        <th>Jueves</th>-->
+<!--                        <th>Viernes</th>-->
+<!--                    </tr>-->
+<!--                    --><?php //foreach( $horas as $hora ): ?>
+<!--                        <tr>-->
+<!--                            --><?php //foreach( $dias as $dia ): ?>
+<!--                                <td>-->
+<!---->
+<!--                                    --><?php //if( $conHorarios->isHorario($horario, $dia, $hora ) ): ?>
+<!--                                        <a href="javascript:void(0)" class="item-hora hora-selected" data-dia="--><?//= $dia['id']; ?><!--" data-hora="--><?//= $hora['id']; ?><!--">--><?//= $hora['hora']; ?><!--</a>-->
+<!---->
+<!--                                    --><?php //else: ?>
+<!---->
+<!--                                        <a href="javascript:void(0)" class="item-hora" data-dia="--><?//= $dia['id']; ?><!--" data-hora="--><?//= $hora['id']; ?><!--">--><?//= $hora['hora']; ?><!--</a>-->
+<!---->
+<!--                                    --><?php //endif; ?>
+<!---->
+<!--                                </td>-->
+<!--                            --><?php //endforeach; ?>
+<!--                        </tr>-->
+<!--                    --><?php //endforeach; ?>
+<!--                </table>-->
+<!--            </div>-->
+<!--            <h3>Materias: --><?//= count( $materias ); ?><!--</h3>-->
+<!---->
+<!--            --><?php //foreach($materias as $mat ): ?>
+<!--                <a href="javascript:void(0)" class="item-materia materia-horario" data-materia="--><?//= $mat->getId(); ?><!--">-->
+<!--                    --><?php //echo $mat->getNombre(); ?>
+<!--                </a>-->
+<!--            --><?php //endforeach; ?>
 
         <?php endif; ?>
     <?php endif; ?>

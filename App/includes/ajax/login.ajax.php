@@ -15,72 +15,47 @@
 	$pass = $_POST['pass'];
 
 	$conUsuario = new ControlUsuarios();
-    $usuario = $conUsuario->verificarUsuario($user, $pass);
+    $resultado = $conUsuario->verificarUsuario($user, $pass);
 
-    if( $usuario != null ){
+    //TODO: crear metodo para crear JSON's
+    //Si se encuentra usuario
+    if( $resultado == 'error' ){
+        $respuesta = [
+            'resultado' => 'error',
+            'mensaje' => 'Ocurrio un error'
+        ];
+        echo json_encode( $respuesta );
+    }
+    if( $resultado != null ){
         // Establece la session (usuario y estudiante)
-        Sesiones::setSesionUsuario( $usuario );
+        Sesiones::setSesionUsuario( $resultado );
+
 
         //Si es estudiante
-        if( $usuario->getRol() == 'estudiante' ) {
-            Sesiones::setSesionEstudiante( $usuario->getId() );
+        if( $resultado->getRol() == 'estudiante' ) {
+            $estRespuesta = Sesiones::setSesionEstudiante( $resultado->getId() );
+            //Si ocurre un error al buscar estudiante
+            if( $estRespuesta != true )
+                echo json_encode( $estRespuesta );
         }
 
+
         // Regresa el nombre del rol para redireccionamiento
-        echo $usuario->getRol();
+        $respuesta = [
+            'resultado' => true,
+            'mensaje' => 'Usuario encontrado',
+            'rol' => $resultado->getRol()
+        ];
+        echo json_encode( $respuesta );
     }
     else{
-        echo "false";
+        //Si no e encontro usuario
+        $respuesta = [
+            'resultado' => false,
+            'mensaje' => 'Usuario y/o contraseña incorrectos'
+        ];
+        echo json_encode( $respuesta );
     }
-
-
-
-// //si se encontro un usuario
-// 	if( !empty($usuario) ){
-
-// 		//----------Datos del usuario y rol
-// 		session_start();
-// 		$_SESSION['usuario']['id']      = $usuario['id'];
-// 		$_SESSION['usuario']['username']= $usuario['username'];
-// 		$_SESSION['usuario']['rol']     = $usuario['rol'];
-
-//         //----------Datos del perido actual
-//         $ctrlHorario = new ControlHorarios();
-//         $periodo = $ctrlHorario->obtenerPeriodoActual();
-
-//         //Si hay un periodo actual disponible
-//         if( !empty( $periodo ) ){
-//             $_SESSION['periodo']['id']      = $periodo['id'];
-//             $_SESSION['periodo']['inicio']  = $periodo['inicio'];
-//             $_SESSION['periodo']['fin']     = $periodo['fin'];
-//         }
-
-
-//         //----------REDIRECCION Y ROL
-//         //si es administrador
-// 		if( $_SESSION['usuario']['rol'] == 1 ){
-//             //Redireccionando
-//             header('Location: administrador/');
-//             echo "ADMIN";
-//         }
-// 		//Si es estudiante
-// 		else if( $_SESSION['usuario']['rol'] == 2 ){
-
-// 		    $estudiante = $ctrlUsuarios->obtenerEstudianteIdUsuario( $_SESSION['usuario']['id'] );
-
-// 		    //-------Estudiante
-//             $_SESSION['estudiante']['id']       = $estudiante['id'];
-//             $_SESSION['estudiante']['nombre']   = $estudiante['nombre'];
-//             $_SESSION['estudiante']['carrera']  = $estudiante['carrera'];
-
-//             //Redireccionando
-//             header('Location: estudiantes/');
-//         }
-// 	}
-// 	else{
-// 		echo "No existe usuario <br>";
-// 		echo "<a href='index.php'>regresar</a>";
-// 	}
 
 
 	

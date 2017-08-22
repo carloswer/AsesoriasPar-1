@@ -3,7 +3,7 @@
 -- GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP
 -- ON asesoriaspar.* TO 'asesoriaspar_admin'@'localhost';
 -- FLUSH PRIVILEGES;
-
+SHOW GRANTS FOR 'asesoriaspar_admin'@'localhost';
 
 DROP DATABASE asesoriaspar;
 CREATE DATABASE IF NOT EXISTS asesoriaspar CHARACTER SET utf8 COLLATE utf8_general_ci;

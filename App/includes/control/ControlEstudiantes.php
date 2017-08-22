@@ -15,20 +15,20 @@ class ControlEstudiantes{
 
     public function obtenerEstudiante_UsuarioId( $id ){
         $result = $this->perEstudiantes->getEstudiante_UsuarioId( $id );
-        if( count($result) == 0 )
-            return null;
+        if( !is_array($result) )
+            return $result;
         else{
             // Crea objeto
             $estudiante = new Estudiante();
             // Asigna datos
-            $estudiante->setIdUsuario( $result[0]['FK_usuario'] );
-            $estudiante->setIdEstudiante( $result[0]['PK_est_id'] );
-            $estudiante->setIdItson( $result[0]['est_id_itson'] );
-            $estudiante->setNombre( $result[0]['est_nombre'] );
-            $estudiante->setApellido( $result[0]['est_apellido'] );
-            $estudiante->setTelefono( $result[0]['est_telefono'] );
-            // $estudiante->setFacebook( $result[0]['est_facebook'] );
-            $estudiante->setAvatar( $result[0]['est_avatar'] );
+            $estudiante->setIdUsuario( $result[0]['usuario_id'] );
+            $estudiante->setIdEstudiante( $result[0]['id'] );
+            $estudiante->setIdItson( $result[0]['id_itson'] );
+            $estudiante->setNombre( $result[0]['nombre'] );
+            $estudiante->setApellido( $result[0]['apellido'] );
+            $estudiante->setTelefono( $result[0]['telefono'] );
+            $estudiante->setFacebook( $result[0]['facebook'] );
+            $estudiante->setAvatar( $result[0]['avatar'] );
             $estudiante->setCarrera( $result[0]['carrera'] );
 
             return $estudiante;

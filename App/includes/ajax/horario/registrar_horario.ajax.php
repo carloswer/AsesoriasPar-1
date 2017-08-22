@@ -50,6 +50,7 @@
 
 
     //-----Registro de horas y dias
+    //TODO: crea un array con registros y enviar todos a la vez (dias_horas)
     foreach($dias_horas as $dh ){
         //la variable $dh se convirtio en objeto al decodificarse y por eso se maneja como tal
         $res = $conHorarios->registrarHorario_DiasHoras($horario, $dh->diaID, $dh->horaID);
@@ -61,6 +62,7 @@
     }
 
     //-----Registro de materias
+//TODO: crea un array con registros y enviar todos a la vez (materias)
     foreach( $materias as $mat ){
         $res = $conHorarios->registrarHorario_Materias($horario, $mat);
         if( $res == null ){

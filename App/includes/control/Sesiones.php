@@ -43,6 +43,14 @@
                 $_SESSION['estudiante']['id'] = $estudiante->getIdEstudiante();
                 $_SESSION['estudiante']['nombre'] = $estudiante->getNombre() . " " . $estudiante->getApellido();
                 $_SESSION['estudiante']['carrera'] = $estudiante->getCarrera();
+                return true;
+            }
+            else{
+                $respuesta = [
+                    'resultado' => 'error',
+                    'mensaje' => 'No existe un estudiate asociado al usuario'
+                ];
+                return $respuesta;
             }
         }
 

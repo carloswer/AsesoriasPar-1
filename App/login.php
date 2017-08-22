@@ -1,5 +1,7 @@
 <?php
 
+    //TODO: checar cada vez que se realice algo que el usuario aun existe
+    //TODO: checar que los registros a utilizar aun existan (validar)
     require_once "config.php";
     use Control\Sesiones;
     
@@ -35,7 +37,7 @@
     				<label for="" class="sr-only label-control">Contraseña</label>
     				<input type="password" class="form-control" id="txtPass" placeholder="Contraseña" name="pass" required="true">
     			</div>
-    			<button class="form-control btn btn-primary" type="submit">
+    			<button id="btn-form-login" class="form-control btn btn-primary" type="submit">
     				<span id="login-spin" style="display: none;">
     					<img src="<?= ASSETS_REF; ?>/img/spin.gif" alt="spin">
     				</span>

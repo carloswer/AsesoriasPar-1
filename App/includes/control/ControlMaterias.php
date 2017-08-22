@@ -13,8 +13,8 @@
 
         public function obtenerMaterias(){
             $result = $this->perMaterias->getMaterias();
-            if( count($result) == 0 )
-                return null;
+            if( !is_array($result) )
+                return $result;
             else{
                 $arrayMaterias = array();
                 foreach( $result as $mat ) {
@@ -27,8 +27,8 @@
 
         public function obtenerMateriasPorCarrera($carrera){
             $result = $this->perMaterias->getMateriasCarrera($carrera);
-            if( count($result) == 0 )
-                return null;
+            if( !is_array($result) )
+                return $result;
             else{
                 $arrayMaterias = array();
                 foreach( $result as $mat ) {

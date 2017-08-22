@@ -5,8 +5,8 @@
     class Conexion {
 
         private $host  = "localhost";
-        private $user  = "root";
-        private $pass  = "";
+        private $user  = "asesoriaspar_admin";
+        private $pass  = "asesorias_pass";
         private $db    = "asesoriaspar";
         private $_connection;
 
@@ -24,8 +24,8 @@
             );
 
              //Manejo de error
-            if(mysqli_connect_error()) {
-                trigger_error("Error al tratar de conectar con MySQL: " . mysql_connect_error(),
+            if( mysqli_connect_error() ) {
+                trigger_error("Error al tratar de conectar con MySQL: " . mysqli_connect_error(),
                     E_USER_ERROR);
             }
 
@@ -36,15 +36,56 @@
         }
 
 
+
+        public function doQuery($query){
+            $result = $this->_connection->query($query);
+            return $result;
+        }
+
+        public function getError(){
+            return $this->_connection->error;
+        }
+
+        public function cerrarConexion(){
+            $this->_connection->close();
+        }
+
+/*
+        public function ejecutarTransaccion(array $queries){
+            //para que el registro sea manual
+            $this->_connection->autocommit( false );
+            try{
+                //Registros uno a uno
+                foreach( $queries as $query ){
+                    $this->_connection->query($query);
+                }
+                //Para registrar cambios
+                $this->_connection->commit();
+            }catch( Exception $ex ){
+                $this->_connection->rollback();
+                echo 'algo fallo: ',  $ex->getMessage(), "\n";
+            }
+
+
+
+//            $this->_connection->query($query);
+        }
+
         public function ejecutarQuery(String $query){
             $result = $this->_connection->query($query);
             $this->cerrarConexion();
             return $result;
         }
 
+        public function getError(){
+            return mysqli_error( $this->_connection );
+        }
+
         private function cerrarConexion(){
             $this->_connection->close();
         }
+
+*/
 
     }
 

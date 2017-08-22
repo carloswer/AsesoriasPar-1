@@ -23,30 +23,36 @@ $(document).ready(function(){
             type: 'post',
             // Los datos se mandan como si fuera GET para poder obtenerlos por separado
             data: "user="+datos.user+"&pass="+datos.pass,
-            // dataType: 'json',
+            dataType: 'json',
 
             //Metodo que se ejecuta antes de enviar el request
             beforeSend: function(){
                 $('.login-message').remove();
                 //Cambia el icono del span
                 $('#login-spin').css('display','inline');
+                // $('#btn-form-login').html("Verificando...");
+                // $('#btn-form-login').attr("disabled", true);
             }
         })
         .done(function(response){
 
-            if( response == "false" ){
+            if( response.resultado == true ){
+                if( response.rol == "administrador" ){
+                    $('#login-status').html('<p class="login-message msj-exito bg-success">Datos Correctos - Redireccionando</p>');
+                    setTimeout(function(){ window.location = "administrador/"; },1000);
+                }
+                else if( response.rol == 'estudiante' ){
+                    $('#login-status').html('<p class="login-message msj-exito bg-success">Datos Correctos - Redireccionando</p>');
+                    setTimeout(function(){ window.location = "estudiante/"; },1000);
+                }
+            }
+            //Si no se pudo iniciar sesion
+            else if( response.resultado == false )
                 $('#login-status').html('<p class="login-message msj-error bg-warning">El usuario o contraseña son incorrectos</p>');
-            }
-            else if( response == "administrador" ){
-                $('#login-status').html('<p class="login-message msj-exito bg-success">Datos Correctos - Redireccionando</p>');
-                setTimeout(function(){ window.location = "administrador/"; },1000);
-            }
-            else if( response == "estudiante" ){
-                $('#login-status').html('<p class="login-message msj-exito bg-success">Datos Correctos - Redireccionando</p>');
-                setTimeout(function(){ window.location = "estudiante/"; },1000);
-            }
+            else if( response.resultado == "error" )
+                alert("Algo salio mal...");
             else
-                alert("Response desconocido: "+response);
+                alert("Response desconocido: " + response);
 
         })
         .fail(function(){
@@ -61,6 +67,9 @@ $(document).ready(function(){
             setTimeout(function(){
                 $('.login-message').hide();
             },3000);
+
+            // $('#btn-form-login').html("Iniciar");
+            // $('#btn-form-login').attr("disabled", false);
 
         });
     }
@@ -168,7 +177,7 @@ $(document).ready(function(){
 	});
 
 
-
+    //--------------Quita clases de horas y dias seleccionados
     $("#btn-reset-horario").on( "click", function(event) {
 		//A todos los elementos les quita la clase "##-selected"
         $(".hora-horario").removeClass("hora-selected");

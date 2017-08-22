@@ -6,13 +6,22 @@
 
 
         public function getEstudiante_UsuarioId( $id ){
-            $query = "SELECT e.PK_est_id, e.est_id_itson, e.est_nombre, e.est_apellido, e.est_telefono, 
-                        e.est_facebook, e.est_avatar, e.est_ReqValidar, c.ca_nombre as carrera, e.FK_usuario
+            $query = "SELECT 
+                        e.PK_id as 'id', 
+                        e.id_itson as 'id_itson', 
+                        e.nombre as 'nombre', 
+                        e.apellido as 'apellido', 
+                        e.telefono as 'telefono', 
+                        e.facebook as 'facebook', 
+                        e.avatar as 'avatar', 
+                        e.requiere_validar as 'requiere_validar', 
+                        c.nombre as 'carrera', 
+                        e.FK_usuario as 'usuario_id'
                         FROM estudiante e
-                        INNER JOIN carrera c ON c.PK_ca_id = e.FK_carrera
+                        INNER JOIN carrera c ON c.PK_id = e.FK_carrera
                         WHERE e.FK_usuario =".$id;
             //Obteniendo resultados
-            return $this->getResultado($query);
+            return $this->ejecutarQuery($query);
         }
 
         // public function getEstudiantes(): array{
