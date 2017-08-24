@@ -2,18 +2,35 @@
 
     require_once '../../config.php';
     include_once '../sesiones.php';
-    use Control\Sesiones;
 
-    global $asesorias_proximas, $asesorias_pendientes, $asesorias_canceladas;
-    if( Sesiones::isAlumno() ){
-        // obtiene asesorias como asesor
+    use Control\ControlAsesorias;
+    use Control\ControlHorarios;
 
+    $conAsesorias = new ControlAsesorias();
+    $conHorarios = new ControlHorarios();
+
+    $cicloActual = $conHorarios->obtenerCicloActual();
+
+    $arrayAsesorias = null;
+//    $arrayProximas;
+//    $arrayPendientes;
+//    $arrayCanceladas;
+    if( $cicloActual != null ){
+        $arrayAsesorias = $conAsesorias->obtenerAsesorias_Asesor_CicloActual( $_SESSION['estudiante']['id'], $cicloActual['id'] );
     }
-    else{
-        // obtiene asesorias como alumno
-    }
+
+    var_dump( $arrayAsesorias );
+
+//    if( Sesiones::isAlumno() ){
+//        // obtiene asesorias como asesor
+//
+//    }
+//    else{
+//        // obtiene asesorias como alumno
+//    }
 
 
+    exit();
 
 ?>
 

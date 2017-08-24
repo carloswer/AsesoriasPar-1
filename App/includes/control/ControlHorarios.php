@@ -2,34 +2,40 @@
 
 
 use Modelo\Persistencia\Horarios;
-use Objetos\Materia;
 
 class ControlHorarios{
 
     private $perHorarios;
+    private $conMaterias;
 
     public function __construct(){
         $this->perHorarios = new Horarios();
+        $this->conMaterias = new ControlMaterias();
     }
 
 
     //------------------ CALENDARIO
     
-    public function obtenerDiasHoras(){
-        $result = $this->perHorarios->getDiasHoras();
-        return $result;
-    }
-    
-    public function obtenerDias(){
-        $result = $this->perHorarios->getDias();
+//    public function obtenerDiasHoras(){
+//        $result = $this->perHorarios->getDiasHoras();
+//        return $result;
+//    }
+
+//    public function obtenerDias(){
+//        $result = $this->perHorarios->getDias();
+//        return $result;
+//    }
+
+    public function obtenerDiasHoras_PorHora(){
+        $result = $this->perHorarios->getDiasHoras_PorHoras();
         return $result;
     }
 
 
     public function obtenerCicloActual(){
         $result = $this->perHorarios->getCicloActual();
-        if( count( $result ) == 0 )
-            return null;
+        if( !is_array($result) )
+            return $result;
         else{
             $ciclo = [
                 "id"    => $result[0]['id'],
@@ -40,46 +46,20 @@ class ControlHorarios{
         }
     }
 
-    public function separarDias( $dias_horas ){
-        $arrayDias = array();
-        //Separando dias de resultado
-        foreach($dias_horas as $dias ){
-            if( !in_array($dias['dia'], $arrayDias) )
-                $arrayDias[] = $dias['dia'];
-        }
-        return $arrayDias;
-    }
-
-    public function obtenerDiasHorasSeparados($dias_horas ){
-        $arrayDias = $this->separarDias( $dias_horas );
-        $arrayDiasHoras = array();
-
-        foreach( $arrayDias as $dia ){
-            $arrayHoras = array();
-            foreach( $dias_horas as $hora ){
-                // Si la hora pertenece al dia lo agrega
-                if( $hora['dia'] == $dia ) {
-                    $arrayHoras[] = $hora;
-                    echo "Se agrego hora ".$hora['hora']." al día ".$dia."<br>";
-                }
-            }
-            //Lo agrega al array
-            $arrayDiasHoras[] = $arrayHoras;
-        }
-        return $arrayDiasHoras;
-    }
-
-
     //------------------ HORARIO DEL ESTUDIANTE
+
+
+
     //TODO: deben juntarse las horas y las materias
-    public function obtenerHorarioAsesor_horas($idEstudiante, $idCiclo){
-        $result = $this->perHorarios->getHorarioAsesor_horas($idEstudiante, $idCiclo);
-        if( count($result) == 0 )
-            return null;
+    public function obtenerHorario_Estudiante($idEstudiante, $idCiclo){
+        $result = $this->perHorarios->getHorario_Estudiante($idEstudiante, $idCiclo);
+        if( !is_array($result) )
+            return $result;
         else{
                $horario = array();
                foreach( $result as $dh ){
                    $dia_hora = [
+                       'id'  => $dh['id'],
                        'dia'  => $dh['dia'],
                        'hora' => $dh['hora']
                    ];
@@ -89,64 +69,48 @@ class ControlHorarios{
         }
     }
 
-    public function obtenerHorarioId($idEstudiante, $idCiclo){
-        $result = $this->perHorarios->getHorarioId($idEstudiante, $idCiclo);
-        if( count($result) == 0 )
-            return null;
+    public function obtenerIdHorario_Estudiante_CicloActual($idEstudiante, $idCiclo){
+        $result = $this->perHorarios->getHorarioId_CicloActual($idEstudiante, $idCiclo);
+        if( !is_array($result) )
+            return $result;
         else
             return $result[0]['id'];
+    }
+
+    public function obtenerMaterias_Horario( $IdHorario ){
+        return $result = $this->conMaterias->obtenerMaterias_Horario( $IdHorario );
     }
 
     public function registrarHorario($idEstudiante, $idCiclo){
         return $this->perHorarios->insertHorario($idEstudiante, $idCiclo);
     }
 
-    public function registrarHorario_DiasHoras($idHorario, $idDia, $idHora){
-        return $this->perHorarios->insertHorario_DiasHoras($idHorario, $idDia, $idHora);
+    public function registrarHorario_DiasHoras($idHorario, $hora){
+        return $this->perHorarios->insertHorario_DiasHoras($idHorario, $hora);
     }
 
-    /**
-     * Método que obtiene las materias de un horario
-     * @param $idHorario
-     * @return array|null
-     */
-    public function obtenerHorario_materias($idHorario){
-        $result = $this->perHorarios->getHorarioMaterias($idHorario);
-        if( count($result) == 0 )
-            return null;
-        else{
-            $materias = array();
-            foreach( $result as $mat ){
-                $materia = new Materia();
 
-                $materia->setId( $mat['PK_mat_id'] );
-                $materia->setNombre( $mat['mat_nombre'] );
-                $materia->setAbreviacion( $mat['mat_abreviacion'] );
-                $materia->setDescripcion( $mat['mat_descripcion'] );
-                $materia->setPlan( $mat['mat_plan'] );
-                $materia->setSemestre( $mat['mat_semestre'] );
-                $materia->setCarrera( $mat['FK_carrera'] );
-                $materias[] = $materia;
-            }
-            return $materias;
-        }
+    public function obtenerMaterias_Carrera( $carrera ){
+        return $this->conMaterias->obtenerMaterias_Carrera( $carrera['nombre'] );
     }
+
 
     public function registrarHorario_Materias($idHorario, $idMateria){
         return $this->perHorarios->insertHorario_Materias($idHorario, $idMateria);
     }
-    
-    
-    
 
-    //------------------ FUNCIONES ADICIONALES
+
+
+    //------------------------------
+    // FUNCIONES ADICIONALES
+    //------------------------------
 
     /**
      * Método que verifica si la hora del día son parte del horario del asesor
      */
-    public function isHorario($horario, $dia, $hora){
+    public function isHoraHorario( $hora, $horario ){
         foreach ($horario as $h) {
-            if( ($h['hora'] == $hora['id']) && ($h['dia'] == $dia['id']) )
+            if( $h['id'] == $hora['id'] )
                 return true;
         }
         return false;
@@ -158,4 +122,15 @@ class ControlHorarios{
                 return $h['id'];
         }
     }
+
+    public function separarDias($arrayDiasHoras ){
+        $arrayDias = array();
+        //Separando dias de resultado
+        foreach($arrayDiasHoras as $dias ){
+            if( !in_array($dias['dia'], $arrayDias) )
+                $arrayDias[] = $dias['dia'];
+        }
+        return $arrayDias;
+    }
+
 }

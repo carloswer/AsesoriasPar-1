@@ -131,39 +131,39 @@ CREATE TABLE IF NOT EXISTS horario_materia(
 
 
 CREATE TABLE IF NOT EXISTS asesoria(
-	PK_asesoria_id 		INT AUTO_INCREMENT PRIMARY KEY,
+	PK_id 			BIGINT AUTO_INCREMENT PRIMARY KEY,
 	-- Cuando se solicita
-	asesoria_fecha			DATE NOT NULL,
-	asesoria_descripcion	TEXT NOT NULL,
+	fecha				DATE NOT NULL,
+	hora 				TIME NOT NULL,
+	descripcion		TEXT NOT NULL,
 	
 	-- Automaticos para primer registro
-	asesoria_registro		TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	asesoria_estado 		TINYINT NOT NULL DEFAULT 1, -- 0 = cancelada, 1 = activa, 2 = pendiente validacion, 3 = validada
+	fecha_registro		TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	estado_asesoria	TINYINT NOT NULL DEFAULT 1, -- 0 = cancelada, 1 = activa, 2 = pendiente validacion, 3 = validada
 	
 	-- Foranea	
-	FK_alumno 	INT NOT NULL, 
-	FOREIGN KEY (FK_alumno) REFERENCES estudiante(PK_est_id) ON UPDATE CASCADE,
-    -- FK_asesor 	INT NOT NULL, 
-	-- FOREIGN KEY (FK_asesor) REFERENCES estudiante(PK_est_id) ON UPDATE CASCADE,
-	FK_dia_hora INT NOT NULL,
-	FOREIGN KEY (FK_dia_hora) REFERENCES dia_hora(PK_dia_hora) ON UPDATE CASCADE,
-	-- de aqui se obtiene quien es el asesor
-	FK_materia 	INT NOT NULL,
-	FOREIGN KEY (FK_materia) REFERENCES horario_materia(PK_mat_id) ON UPDATE CASCADE
+	FK_alumno 	BIGINT NOT NULL, 
+	FOREIGN KEY (FK_alumno) REFERENCES estudiante(PK_id) ON UPDATE CASCADE,
+	FK_asesor 	BIGINT NOT NULL, 
+	FOREIGN KEY (FK_asesor) REFERENCES estudiante(PK_id) ON UPDATE CASCADE,
+	FK_materia 	BIGINT NOT NULL,
+	FOREIGN KEY (FK_materia) REFERENCES horario_materia(PK_id) ON UPDATE CASCADE
 );
 
 
 -- Cuando se valida asesoria (Realizado o No realizado)
 CREATE TABLE IF NOT EXISTS estado_asesoria(
-	PK_val_id 		INT AUTO_INCREMENT PRIMARY KEY,
-	val_tipo		TINYINT NOT NULL, -- 1 = Realizado, 2 = no realizado, 3 = cancelado
-	val_comentario	TEXT NOT NULL,
-	val_fecha		TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- fecha validacion
+	PK_id 				BIGINT AUTO_INCREMENT PRIMARY KEY,
+	tipo					TINYINT NOT NULL, -- 1 = Realizado, 2 = no realizado, 3 = cancelado
+
+	-- Realizado | No realizado
+	comentario			TEXT NOT NULL,
+	fecha_validacon	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- fecha validacion
 
 	-- Realizado
-	val_califacion	int, -- 0 a 5
+	calificacion_asesor	TINYINT, -- 0 a 5
 	
 	-- Foraneo
-	FK_asesoria int NOT NULL,
-	FOREIGN KEY (FK_asesoria) REFERENCES asesoria(PK_asesoria_id) ON UPDATE CASCADE
+	FK_asesoria BIGINT NOT NULL,
+	FOREIGN KEY (FK_asesoria) REFERENCES asesoria(PK_id) ON UPDATE CASCADE
 );

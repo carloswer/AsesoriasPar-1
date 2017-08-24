@@ -24,6 +24,5 @@
     <li><a href="#">Perfil</a></li>
 </ul>
 
-<!-- Elementos con datos importantes -->
+<!-- Elementos con datos para utilizar con AJAX -->
  <input type="hidden" id="data-estudiante" data-id="<?= $_SESSION['estudiante']['id']; ?>">
-<!-- <input type="hidden" id="ciclo" data-id="--><?//= $_SESSION['ciclo']['id']; ?><!--"> -->

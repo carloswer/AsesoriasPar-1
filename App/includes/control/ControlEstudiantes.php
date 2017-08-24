@@ -19,20 +19,30 @@ class ControlEstudiantes{
             return $result;
         else{
             // Crea objeto
-            $estudiante = new Estudiante();
-            // Asigna datos
-            $estudiante->setIdUsuario( $result[0]['usuario_id'] );
-            $estudiante->setIdEstudiante( $result[0]['id'] );
-            $estudiante->setIdItson( $result[0]['id_itson'] );
-            $estudiante->setNombre( $result[0]['nombre'] );
-            $estudiante->setApellido( $result[0]['apellido'] );
-            $estudiante->setTelefono( $result[0]['telefono'] );
-            $estudiante->setFacebook( $result[0]['facebook'] );
-            $estudiante->setAvatar( $result[0]['avatar'] );
-            $estudiante->setCarrera( $result[0]['carrera'] );
-
-            return $estudiante;
+            return $this->crearObjeto( $result[0] );
         }
+    }
+
+    private function crearObjeto($est){
+        // Crea objeto
+        $estudiante = new Estudiante();
+        // Asigna datos
+        $estudiante->setIdUsuario( $est['usuario_id'] );
+        $estudiante->setIdEstudiante( $est['id'] );
+        $estudiante->setIdItson( $est['id_itson'] );
+        $estudiante->setNombre( $est['nombre'] );
+        $estudiante->setApellido( $est['apellido'] );
+        $estudiante->setTelefono( $est['telefono'] );
+        $estudiante->setFacebook( $est['facebook'] );
+        $estudiante->setAvatar( $est['avatar'] );
+        $estudiante->setCarrera( $est['carrera'] );
+        $carrera = [
+            'id' => $est['carrera_id'],
+            'nombre' => $est['carrera_nombre']
+        ];
+        $estudiante->setCarrera( $carrera );
+        //Se regresa
+        return $estudiante;
     }
 
 

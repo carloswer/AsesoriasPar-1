@@ -13,8 +13,19 @@
             $query = "SELECT 
                         PK_id as 'id',
                         dia as 'dia',
-                        hora as 'hora'  
+                        TIME_FORMAT(hora, '%H:%i') as 'hora'  
                       FROM dia_hora";
+            //Obteniendo resultados
+            return $this->ejecutarQuery($query);
+        }
+
+        public function getDiasHoras_PorHoras(){
+            $query = "SELECT 
+                        PK_id as 'id',
+                        dia as 'dia',
+                        TIME_FORMAT(hora, '%H:%i') as 'hora' 
+                        FROM dia_hora
+                      ORDER BY hora, PK_id";
             //Obteniendo resultados
             return $this->ejecutarQuery($query);
         }
@@ -43,7 +54,6 @@
                         fecha_fin as 'fin'
                       FROM  ciclo
                       WHERE DATE(NOW()) BETWEEN fecha_inicio AND fecha_fin";
-            
             //Obteniendo resultados
             return $this->ejecutarQuery($query);
         }
@@ -54,18 +64,23 @@
         //------------
 
 
-        public function getHorarioAsesor_horas($idEstudiante, $idCiclo ){
-            $query = "SELECT dh.FK_hora as 'hora', dh.FK_dia as 'dia'
-                 FROM dia_hora dh
-                 INNER JOIN horario h ON h.PK_horario_id = dh.FK_horario
-                 WHERE h.FK_estudiante = '".$idEstudiante."' AND h.FK_ciclo = '".$idCiclo."'";
-            //Obteniendo resultados
+        public function getHorario_Estudiante($idEstudiante, $idCiclo ){
+            $query = "SELECT 
+                        dh.PK_id as 'id', 
+                        dh.hora as 'hora', 
+                        dh.dia as 'dia' 
+                    FROM dia_hora dh 
+                    INNER JOIN horario_dia_hora hdh ON hdh.FK_dia_hora = dh.PK_id
+                    INNER JOIN horario h ON h.PK_id = hdh.FK_horario
+                    WHERE h.FK_estudiante = '".$idEstudiante."' AND h.FK_ciclo = '".$idCiclo."'";
+            //Obteniendo resultadosd
             return $this->ejecutarQuery($query);
         }
 
-        public function getHorarioId($idEstudiante, $idCiclo){
+        public function getHorarioId_CicloActual($idEstudiante, $idCiclo){
             $query = "SELECT PK_id as 'id' FROM horario h
-                      WHERE h.FK_ciclo = ".$idEstudiante." AND h.FK_estudiante = ".$idCiclo;
+                      WHERE h.FK_ciclo = ".$idCiclo." AND h.FK_estudiante = ".$idEstudiante."
+                      ORDER BY PK_id DESC LIMIT 1";
             //Obteniendo resultados
             return $this->ejecutarQuery($query);
         }
@@ -73,15 +88,16 @@
 
         //TODO: utilizar una transaccion
         public function insertHorario( $idEstudiante, $idCiclo ){
-            $query = "INSERT INTO horario(FK_estudiante, FK_ciclo) VALUES (".$idEstudiante.", ".$idCiclo.")";
+            $query = "INSERT INTO horario(FK_estudiante, FK_ciclo) 
+                      VALUES (".$idEstudiante.", ".$idCiclo.")";
             //Obteniendo resultados
             return $this->ejecutarQuery($query);
         }
 
         //TODO: utilizar una transaccion
-        public function insertHorario_DiasHoras($idHorario, $idDia, $idHora){
-            $query = "INSERT INTO dia_hora(FK_horario, FK_dia, FK_hora) VALUES
-                      (".$idHorario.", ".$idDia.", ".$idHora.")";
+        public function insertHorario_DiasHoras($IdHorario, $IdHora){
+            $query = "INSERT INTO horario_dia_hora(FK_horario, FK_dia_hora) VALUES
+                      (".$IdHorario.", ".$IdHora.")";
             return $this->ejecutarQuery($query);
         }
 

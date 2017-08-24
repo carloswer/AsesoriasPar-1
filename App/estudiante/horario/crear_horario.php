@@ -8,39 +8,35 @@
     use Control\ControlHorarios;
     use Control\ControlMaterias;
 
+
     //Si se es alumno
     if( !Sesiones::isAsesor() )
         header("Location: ../index.php");
 
     $conHorarios = new ControlHorarios();
-//    $conMaterias = new ControlMaterias();
-//    $conCarreras = new ControlCarreras();
+    $conMaterias = new ControlMaterias();
 
 
     //TODO: Juntar con el metodo "obtenerHorarioId"
     $cicloActual = $conHorarios->obtenerCicloActual();
-//    if( $cicloActual == null )
-//        header("Location: index.php");
-
+    if( $cicloActual == null )
+        header("Location: index.php");
 
     //Si ya tiene horario
-//    $horario = $conHorarios->obtenerHorarioId( $_SESSION['estudiante']['id'], $cicloActual['id'] );
-//    if( $horario != null )
-//        header("Location: index.php");
+    $horario = $conHorarios->obtenerIdHorario_Estudiante_CicloActual( $_SESSION['estudiante']['id'], $cicloActual['id'] );
+    if( $horario != null )
+        header("Location: index.php");
 
     //Obtiene dias y horas
-    $dias_horas = $conHorarios->obtenerDiasHoras();
+    $arrayDiasHoras = $conHorarios->obtenerDiasHoras_PorHora();
+    $arrayDias = $conHorarios->separarDias( $arrayDiasHoras );
+
     //Obtiene materias
-//    $arrayMaterias = $conMaterias->obtenerMateriasPorCarrera( $_SESSION['estudiante']['carrera'] );
-
-    $arrayDiasHoras = $conHorarios->obtenerDiasHorasSeparados( $dias_horas );
-    var_dump( $arrayDiasHoras );
-    $json = json_encode( $arrayDiasHoras );
-    echo $json;
-
-    exit();
-
+    $arrayMaterias = $conHorarios->obtenerMaterias_Carrera( $_SESSION['estudiante']['carrera'] );
+//    var_dump( $arrayMaterias );
+//    exit();
 ?>
+
 
     <?php include_once TEMP_PATH."/header.php"; ?>
     <div class="container">
@@ -49,40 +45,45 @@
 
 
         <?php if( $arrayMaterias == null ): ?>
-            <h4>No hay materias registradas, no se puede crear un horario aún.</h4>
+            <h4>No hay materias disponibles</h4>
         <?php else: ?>
 
-            <?php if( $arrayDias == null || $horas == null ): ?>
-                <h4>No hay dias/horas disponibles para registro</h4>
+            <?php if( $arrayDiasHoras == null ): ?>
+                <h4>No hay dias/horas disponibles para registro. Contacte Administrador</h4>
             <?php else: ?>
 
             <!-- TABLA DE HORARIO -->
                 <div id="horario">
-                    <h4>Seleccione horas</h4>
-                    <table width="100%">
+                    <table width="100%" id="tabla-horario">
                         <tr>
-                            <th>Lunes</th>
-                            <th>Martes</th>
-                            <th>Miercoles</th>
-                            <th>Jueves</th>
-                            <th>Viernes</th>
+                            <?php foreach($arrayDias as $dia ): ?>
+                                <th> <?= $dia; ?> </th>
+                            <?php endforeach; ?>
                         </tr>
+                        <?php
+                            $cont = 0;
+                            //Recorre todas las horas
+                            foreach( $arrayDiasHoras as $dh ){
 
-                        <?php foreach( $horas as $hora ): ?>
-                            <tr>
-                                <?php foreach($arrayDias as $dias ): ?>
-                                    <td>
-                                        <a href="javascript:void(0)" class="item-hora hora-horario" data-dia="<?= $dias['dia']; ?>" data-hora="<?= $hora['id']; ?>">
-                                            <?= $hora['hora']; ?>
-                                        </a>
-                                    </td>
-                                <?php endforeach; ?>
-                            </tr>
-                        <?php endforeach; ?>
-
+                                if( $cont == 0 ) {
+                                    echo "<tr>\n";
+                                }
+                                else if( $cont == count($arrayDias) ) {
+                                    echo "</tr>\n";
+                                    $cont = 0;
+                                }
+                                //Siempre se ejecuta
+                                if( $cont < count($arrayDias) ) {
+                                    $cont++;
+                                    echo '<td><a href="javascript:void(0)" class="item-hora hora-horario" data-id="'.$dh['id'].'" data-dia="'.$dh['dia'].'" data-hora="'.$dh['hora'].'">'.$dh['hora'];
+                                    echo "</a></td>\n";
+                                }
+                            }
+                        ?>
                     </table>
                 </div>
 
+                <!-- Seccion de materias -->
                 <div id="materias">
                     <h4>Seleccione materias</h4>
                     <div class="controles" style="margin-bottom: 20px;">
@@ -103,14 +104,12 @@
                     </div>
 
 
-                    <?php foreach($arrayMaterias as $mat ): ?>
-                        <a href="javascript:void(0)" class="item-materia materia-horario" data-materia="<?= $mat->getId(); ?>">
-                            <?php echo $mat->getNombre(); ?>
-                        </a>
+                    <?php foreach( $arrayMaterias as $mat ): ?>
+                        <a href="javascript:void(0)" class="item-materia materia-horario" data-id="<?= $mat->getId(); ?>"><?php echo $mat->getNombre(); ?></a>
                     <?php endforeach; ?>
                 </div>
 
-                <br><br><br>
+                <br>
                 <div id="opciones">
                     <button id="btn-registrar-horario" class="btn btn-success">Registrar horario</button>
                     <button id="btn-reset-horario" class="btn btn-default">Reset</button>
@@ -118,6 +117,8 @@
 
                     <span id="login-estado"></span>
                 </div>
+
+                <br><br><br>
             <?php endif; ?>
         <?php endif; ?>
     </div>

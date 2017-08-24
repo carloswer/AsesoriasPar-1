@@ -137,12 +137,12 @@ $(document).ready(function(){
         //--------------------HORAS Y DIAS
         //Recorriendo cada elemento con el mismo classname
         $(".hora-selected").each(function () {
-            var dia = $(this).data("dia");
-            var hora = $(this).data("hora");
-
+            // var dia = $(this).data("dia");
+            // var hora = $(this).data("hora");
+            var hora = $(this).data("id");
             //Agregando elementos al array
             // horario.push( { "DiaID": dia, "DiaNombre": dias[dia - 1], "HoraID": hora} );
-            horario.push( { "diaID": dia, "horaID": hora} );
+            horario.push( hora );
         });
 
 
@@ -153,8 +153,7 @@ $(document).ready(function(){
 
     	//--------------------MATERIAS
     	$(".materia-selected").each(function () {
-            var materia = $(this).data("materia");
-
+            var materia = $(this).data("id");
             //Agregando elementos al array
             materias.push( materia );
         });

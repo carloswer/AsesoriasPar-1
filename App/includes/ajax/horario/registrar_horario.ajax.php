@@ -13,7 +13,7 @@
 	$datos = json_decode($json);
 
 	//Elementos
-	$estudiante = $datos->estudiante;
+	$estudianteID = $datos->estudiante;
 	$dias_horas	= $datos->horario;
 	$materias 	= $datos->materias;
 
@@ -31,7 +31,7 @@
 
     // TODO: Hacer con un SP para evitar concurrencia y tomar el ID de otro registro diferente
     //registrando horario
-    $res = $conHorarios->registrarHorario( $estudiante, $ciclo['id'] );
+    $res = $conHorarios->registrarHorario( $estudianteID, $ciclo['id'] );
     if( $res == false ){
         $respuesta = ['resultado' => 'false', 'mensaje' => 'no se registro horario'];
         echo json_encode($respuesta);
@@ -39,9 +39,9 @@
     }
     //obteniendo ultimo horario registrado
     // TODO: Verificar que no tenga ya un horario registrado
-    $horario = $conHorarios->obtenerHorarioId($estudiante, $ciclo['id']);
+    $horarioID = $conHorarios->obtenerIdHorario_Estudiante_CicloActual($estudianteID, $ciclo['id']);
     //Si no existe un horario
-    if( $horario == null ){
+    if( $horarioID == null ){
         $respuesta = ['resultado' => 'false', 'mensaje' => 'horario null'];
         echo json_encode($respuesta);
         exit();
@@ -53,7 +53,8 @@
     //TODO: crea un array con registros y enviar todos a la vez (dias_horas)
     foreach($dias_horas as $dh ){
         //la variable $dh se convirtio en objeto al decodificarse y por eso se maneja como tal
-        $res = $conHorarios->registrarHorario_DiasHoras($horario, $dh->diaID, $dh->horaID);
+//        $res = $conHorarios->registrarHorario_DiasHoras($horario, $dh->diaID, $dh->horaID);
+        $res = $conHorarios->registrarHorario_DiasHoras($horarioID, $dh);
         if( $res == null ){
             $respuesta = ['resultado' => 'false', 'mensaje' => 'no se registro Dia y Hora'];
             echo json_encode($respuesta);
@@ -64,7 +65,7 @@
     //-----Registro de materias
 //TODO: crea un array con registros y enviar todos a la vez (materias)
     foreach( $materias as $mat ){
-        $res = $conHorarios->registrarHorario_Materias($horario, $mat);
+        $res = $conHorarios->registrarHorario_Materias($horarioID, $mat);
         if( $res == null ){
             $respuesta = ['resultado' => 'false', 'mensaje' => 'no se registro materia'];
             echo json_encode($respuesta);

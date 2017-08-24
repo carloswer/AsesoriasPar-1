@@ -1,14 +1,12 @@
 <?php
 
     require_once '../../config.php';
+
     use Control\ControlUsuarios;
     use Control\Sesiones;
-//    use Objetos\Usuario;
-//    use Objetos\Estudiante;
 
-    if( !isset($_POST['user']) || !isset($_POST['pass']) ){
+    if( !isset($_POST['user']) || !isset($_POST['pass']) )
         exit();
-    }
 
     //Se obtienen los persistencia
 	$user = $_POST['user'];

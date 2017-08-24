@@ -13,8 +13,8 @@ class ControlAsesorias
         $this->perAsesorias = new Asesorias();
     }
 
-    public function obtenerAsesorias_asesor( $idAsesor  ){
-        $result = $this->perAsesorias->getAsesorias_asesor();
+    public function obtenerAsesorias_Asesor_CicloActual( $idAsesor, $idCiclo  ){
+        $result = $this->perAsesorias->getAsesorias_Asesor_Ciclo( $idAsesor, $idCiclo );
         if (count($result) == 0)
             return null;
         else {
@@ -27,7 +27,7 @@ class ControlAsesorias
         }
     }
 
-    public function doObjetoAsesoria( $as ){
+    private function doObjetoAsesoria( $as ){
         $asesoria = new Asesoria();
         $asesoria->setId($as['asesoria_id']);
         $asesoria->setFecha($as['asesoria_fecha']);

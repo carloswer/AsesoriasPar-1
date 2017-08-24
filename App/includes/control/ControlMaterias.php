@@ -19,37 +19,56 @@
                 $arrayMaterias = array();
                 foreach( $result as $mat ) {
                     //Se agrega al array
-                    $arrayMaterias[] = $this->doObjeto($mat);
+                    $arrayMaterias[] = $this->crearObjeto($mat);
                 }
                 return $arrayMaterias;
             }
         }
 
-        public function obtenerMateriasPorCarrera($carrera){
-            $result = $this->perMaterias->getMateriasCarrera($carrera);
+        public function obtenerMaterias_Carrera($carrera){
+            $result = $this->perMaterias->getMaterias_Carrera($carrera);
             if( !is_array($result) )
                 return $result;
             else{
                 $arrayMaterias = array();
                 foreach( $result as $mat ) {
                     //Se agrega al array
-                    $arrayMaterias[] = $this->doObjeto($mat);
+                    $arrayMaterias[] = $this->crearObjeto($mat);
                 }
                 return $arrayMaterias;
             }
         }
 
-        private function doObjeto($mat){
+
+        public function obtenerMaterias_Horario( $horarioID ){
+            $result = $this->perMaterias->getMaterias_Horario( $horarioID );
+            if( !is_array($result) )
+                return $result;
+            else{
+                $arrayMaterias = array();
+                foreach( $result as $mat ) {
+                    //Se agrega al array
+                    $arrayMaterias[] = $this->crearObjeto($mat);
+                }
+                return $arrayMaterias;
+            }
+        }
+
+        private function crearObjeto($mat){
             // Crea objeto
             $materia = new Materia();
-            $materia->setId($mat['PK_mat_id']);
-            $materia->setNombre($mat['mat_nombre']);
-            $materia->setAbreviacion($mat['mat_abreviacion']);
-            $materia->setDescripcion($mat['mat_descripcion']);
-            $materia->setPlan($mat['mat_plan']);
-            $materia->setSemestre($mat['mat_semestre']);
-            //Cambiar por nombre
-            $materia->setCarrera($mat['FK_carrera']);
+            $materia->setId($mat['id']);
+            $materia->setNombre($mat['nombre']);
+            $materia->setAbreviacion($mat['abreviacion']);
+            $materia->setDescripcion($mat['descripcion']);
+            $materia->setPlan($mat['plan']);
+            $materia->setSemestre($mat['semestre']);
+
+            $carrera = [
+                'id' => $mat['carrera_id'],
+                'nombre' => $mat['carrera_nombre']
+            ];
+            $materia->setCarrera( $carrera );
             //Se regresa
             return $materia;
         }
