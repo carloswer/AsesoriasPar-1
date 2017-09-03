@@ -40,7 +40,7 @@ INNER JOIN dia_hora dh ON dh.PK_dia_hora = a.FK_dia_hora
 INNER JOIN hora ho ON ho.PK_hora_id = dh.FK_hora
 INNER JOIN dia d ON d.PK_dia_id = dh.FK_dia
 INNER JOIN horario h ON h.PK_horario_id = dh.FK_horario
-INNER JOIN estudiante eh ON eh.PK_est_id = h.FK_estudiante -- para asesor (con tabla horario)
+INNER JOIN estudiante eh ON eh.PK_est_id = h.FK_estudiante; -- para asesor (con tabla horario)
 LEFT JOIN estado_asesoria ea ON ea.FK_asesoria = a.PK_asesoria_id; -- para aquellas que no tienen un estado (tabla)
 
 -- Cuando se es asesor
@@ -64,3 +64,39 @@ ORDER BY a.PK_asesoria_id ASC
 -- WHERE ( ea.PK_val_id IS NULL ) AND ( h.FK_estudiante = 1 );
 -- separado para ver
 -- WHERE e.PK_est_id <> 1
+
+
+
+
+SELECT 
+	-- asesoria
+	a.PK_id as 'id',
+	a.fecha as 'fecha_asesoria',
+	a.fecha_solicitud as 'fecha_solicitud',
+	a.hora as 'hora',
+	a.descripcion as 'descripcion',
+	-- materia
+	m.nombre as 'materia_nombre',
+	m.PK_id as 'materia_id',
+	-- horario
+	hm.PK_id as 'horario_materia_id',
+   -- Estudiantes
+	e_al.PK_id as 'alumno_id',
+	CONCAT( e_al.nombre,' ',e_al.apellido ) as 'alumno_nombre',
+	e_as.PK_id as 'asesor_id',
+	CONCAT( e_as.nombre,' ',e_as.apellido ) as 'asesor_nombre',
+	-- estado
+	ea.PK_id as 'estado_id',
+	ea.tipo as 'estado_tipo',
+	ea.comentario as 'estado_comentario',
+	ea.fecha_validacon as 'estado_fecha',
+	ea.calificacion_asesor as 'estado_calificacion'
+FROM asesoria a
+INNER JOIN estudiante e_al ON e_al.PK_id = a.FK_alumno
+INNER JOIN estudiante e_as ON e_as.PK_id = a.FK_asesor
+INNER JOIN horario_materia hm ON hm.PK_id = a.FK_materia
+INNER JOIN materia m ON m.PK_id = hm.FK_materia
+INNER JOIN horario h ON h.PK_id = hm.FK_horario
+-- Para mostrar siempre el estado aunque no tenga
+LEFT JOIN estado_asesoria ea ON ea.FK_asesoria = a.PK_id;
+WHERE a.FK_asesor = '' AND h.FK_ciclo = '';

@@ -5,6 +5,7 @@
 
     use Control\ControlAsesorias;
     use Control\ControlHorarios;
+    use Control\Sesiones;
 
     $conAsesorias = new ControlAsesorias();
     $conHorarios = new ControlHorarios();
@@ -12,25 +13,19 @@
     $cicloActual = $conHorarios->obtenerCicloActual();
 
     $arrayAsesorias = null;
-//    $arrayProximas;
-//    $arrayPendientes;
-//    $arrayCanceladas;
+
     if( $cicloActual != null ){
-        $arrayAsesorias = $conAsesorias->obtenerAsesorias_Asesor_CicloActual( $_SESSION['estudiante']['id'], $cicloActual['id'] );
+        //Si es alumno
+        if( Sesiones::isAlumno() )
+            $arrayAsesorias = $conAsesorias->obtenerAsesorias_Alumno_CicloActual( $_SESSION['estudiante']['id'], $cicloActual['id'] );
+        //Si es asesor
+        else
+            $arrayAsesorias = $conAsesorias->obtenerAsesorias_Asesor_CicloActual( $_SESSION['estudiante']['id'], $cicloActual['id'] );
     }
 
-    var_dump( $arrayAsesorias );
+//    var_dump( $arrayAsesorias );
+//    exit();
 
-//    if( Sesiones::isAlumno() ){
-//        // obtiene asesorias como asesor
-//
-//    }
-//    else{
-//        // obtiene asesorias como alumno
-//    }
-
-
-    exit();
 
 ?>
 
@@ -41,45 +36,88 @@
     <?php include_once TEMP_PATH."/estudiante-menu.php"; ?>
     <h2>Asesorias</h2>
 
-    <h3>Proximas</h3>
-    <h3>Pendientes de validar</h3>
-    <h3>Canceladas</h3>
+    <?php if( $cicloActual == null ): ?>
+        <h3>No hay un ciclo actual disponible</h3>
+
+    <?php else: ?>
+        <?php if( Sesiones::isAlumno() ): ?>
+            <div class="opciones">
+                <h3>
+                    <a href="solicitar-asesoria.php" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-plus"></span> Solicitar Asesoria
+                    </a>
+                </h3>
+            </div>
+        <?php endif; ?>
+
+        <?php if( $arrayAsesorias == null ): ?>
+            <h3>No cuenta con asesorias registradas</h3>
+
+        <?php else: ?>
 
 
-<!--    --><?php //if( (count($asesorias) == 0) &&  (count($canceladas) == 0) ): ?>
-<!--        <h3>No cuenta con asesorias registradas</h3>-->
-<!--    --><?php //else: ?>
-<!--        <div id="asesorias">-->
-<!--            <h3>Asesorias en tiempo</h3>-->
-<!--            --><?php //foreach( $asesorias as $a ): ?>
-<!--                <div class="item-asesoria" style="padding: 10px; border: 1px solid black; display: inline-block; width: 500px;">-->
-<!--                    <p class="alumno-asesoria"> Alumno: --><?//= $a['alumno'] ?><!-- </p>-->
-<!--                    <p class="materia-asesoria"> <strong>Materia:</strong>: --><?//= $a['materia'] ?><!-- </p>-->
-<!--                    <p class="asesor-asesoria"> <strong>Asesor</strong>: --><?//= $a['asesor'] ?><!-- </p>-->
-<!--                    <p class="fecha-asesoria"> <strong>Fecha</strong>: --><?//= $a['fecha'] ?><!-- </p>-->
-<!--                    <p class="dia-hora-asesoria"> --><?//= $a['dia'] ?><!-- a las --><?//= $a['hora'] ?><!-- </p>-->
-<!--                    <p class="descripcion-asesoria"> <strong>Descripcion:</strong> --><?//= $a['descripcion'] ?><!-- </p>-->
-<!--                    <button class="btn-cancelar-asesoria" data-asesoria="--><?//= $a['id_asesoria'] ?><!--">Cancelar asesoria</button>-->
-<!--                </div>-->
-<!--            --><?php //endforeach; ?>
-<!--        </div>-->
-<!---->
-<!---->
-<!--        <div id="asesorias-canceladas">-->
-<!--            <h3 style="color: red">Asesorias canceladas</h3>-->
-<!--            --><?php //foreach( $canceladas as $c ): ?>
-<!--                <div class="item-asesoria" style="padding: 10px; border: 1px solid black; display: inline-block; width: 500px;">-->
-<!--                    <p class="alumno-asesoria"> Alumno: --><?//= $c['alumno'] ?><!-- </p>-->
-<!--                    <p class="materia-asesoria"> <strong>Materia:</strong>: --><?//= $c['materia'] ?><!-- </p>-->
-<!--                    <p class="asesor-asesoria"> <strong>Asesor</strong>: --><?//= $c['asesor'] ?><!-- </p>-->
-<!--                    <p class="fecha-asesoria"> <strong>Fecha</strong>: --><?//= $c['fecha'] ?><!-- </p>-->
-<!--                    <p class="dia-hora-asesoria"> --><?//= $c['dia'] ?><!-- a las --><?//= $c['hora'] ?><!-- </p>-->
-<!--                    <p class="descripcion-asesoria"> <strong>Descripcion:</strong> --><?//= $c['descripcion'] ?>
-<!--                    <p class="razon-asesoria"> <strong>Razon de cancelacion:</strong> --><?//= $c['razon'] ?><!-- </p>-->
-<!--                </div>-->
-<!--            --><?php //endforeach; ?>
-<!--        </div>-->
-<!--    --><?php //endif; ?>
+                <div class="filtro-asesorias">
+                    <!-- Filtro -->
+                    <label for="filtro-asesorias">Filtrar por:</label>
+                    <select name="" id="filtro-asesorias">
+                        <option value="0">Todas</option>
+                        <option value="1">Proximas</option>
+                        <option value="2">Sin validar</option>
+                        <option value="3">Validadas</option>
+                    </select>
+
+                    <label for="">Buscar:</label>
+                    <input type="text" placeholder="nombre..">
+
+                    <label for="">Fecha desde:</label>
+                    <input type="date">
+
+                    <label for="">Hasa:</label>
+                    <input type="date">
+                </div>
+
+                <div class="table-responsive">
+                    <!-- Registros -->
+                    <table class="table table-striped">
+                        <thead class="thead-inverse">
+                            <tr>
+<!--                                <th>Id</th>-->
+                                <th><?= ( Sesiones::isAlumno() ) ? "Asesor" : "Alumno" ?></th>
+                                <th>Fecha Solicitud</th>
+                                <th>Fecha Asesoria</th>
+                                <th>Hora</th>
+                                <th>Materia</th>
+                                <th>Descripcion</th>
+                                <th>Estado</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-asesorias">
+                            <?php foreach( $arrayAsesorias as $asesoria ): ?>
+                                <tr class="warning">
+                                    <!--<td><?php //$asesoria->getId(); ?></td>-->
+                                    <th><?= ( Sesiones::isAlumno() ) ? $asesoria->getAsesor()['nombre'] : $asesoria->getAlumno()['nombre'] ?></th>
+                                    <td><?= $asesoria->getFechaSolicitud(); ?></td>
+                                    <td><?= $asesoria->getFechaAsesoria(); ?></td>
+                                    <td><?= $asesoria->getHora(); ?></td>
+                                    <td><?= $asesoria->getMateria()['nombre']; ?></td>
+                                    <td><?= $asesoria->getDescripcion(); ?></td>
+                                    <td>
+                                        <?= $conAsesorias->verificarEstado( $asesoria->getEstado(), $asesoria->getFechaAsesoria() ); ?>
+                                    </td>
+                                    <td>
+                                        <?= $conAsesorias->obtenerOpcion( $asesoria->getEstado() ); ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+
+        <?php endif; ?>
+    <?php endif; ?>
+
+
 </div>
 
 <?php include_once TEMP_PATH."/footer.php"; ?>

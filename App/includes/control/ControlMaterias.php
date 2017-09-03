@@ -54,6 +54,20 @@
             }
         }
 
+        public function obtenerMateriasConAsesores( $ciclo ){
+            $result = $this->perMaterias->getMateriasConAsesores( $ciclo );
+            if( !is_array($result) )
+                return $result;
+            else{
+                $arrayMaterias = array();
+                foreach( $result as $mat ) {
+                    //Se agrega al array
+                    $arrayMaterias[] = $this->crearObjeto($mat);
+                }
+                return $arrayMaterias;
+            }
+        }
+
         private function crearObjeto($mat){
             // Crea objeto
             $materia = new Materia();
@@ -66,7 +80,8 @@
 
             $carrera = [
                 'id' => $mat['carrera_id'],
-                'nombre' => $mat['carrera_nombre']
+                'nombre' => $mat['carrera_nombre'],
+                'abreviacion' => $mat['carrera_abreviacion']
             ];
             $materia->setCarrera( $carrera );
             //Se regresa

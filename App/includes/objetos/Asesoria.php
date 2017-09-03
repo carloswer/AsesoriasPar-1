@@ -6,10 +6,9 @@
         private $alumno;
         private $asesor;
         private $materia;
-        private $fecha;
-        private $registro;
+        private $fecha_asesoria;
+        private $fecha_solicitud;
         private $hora;
-        private $dia;
         private $descripcion;
         private $estado;
 
@@ -83,33 +82,33 @@
         /**
          * @return mixed
          */
-        public function getFecha()
+        public function getFechaAsesoria()
         {
-            return $this->fecha;
+            return $this->fecha_asesoria;
         }
 
         /**
-         * @param mixed $fecha
+         * @param mixed $fecha_asesoria
          */
-        public function setFecha($fecha)
+        public function setFechaAsesoria($fecha_asesoria)
         {
-            $this->fecha = $fecha;
+            $this->fecha_asesoria = $fecha_asesoria;
         }
 
         /**
          * @return mixed
          */
-        public function getRegistro()
+        public function getFechaSolicitud()
         {
-            return $this->registro;
+            return $this->fecha_solicitud;
         }
 
         /**
-         * @param mixed $registro
+         * @param mixed $fecha_solicitud
          */
-        public function setRegistro($registro)
+        public function setFechaSolicitud($fecha_solicitud)
         {
-            $this->registro = $registro;
+            $this->fecha_solicitud = $fecha_solicitud;
         }
 
         /**
@@ -126,22 +125,6 @@
         public function setHora($hora)
         {
             $this->hora = $hora;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getDia()
-        {
-            return $this->dia;
-        }
-
-        /**
-         * @param mixed $dia
-         */
-        public function setDia($dia)
-        {
-            $this->dia = $dia;
         }
 
         /**
@@ -175,6 +158,7 @@
         {
             $this->estado = $estado;
         }
+
 
 
     }

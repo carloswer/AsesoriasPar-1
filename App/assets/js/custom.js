@@ -1,5 +1,37 @@
 $(document).ready(function(){
 
+    function multiToggleButton(target, selector){
+        if( !target.hasClass(selector) )
+            target.addClass(selector);
+        else
+            target.removeClass(selector);
+    }
+
+    function singleToggleButton(target, selector){
+        var clase = "."+selector;
+
+        if( target.hasClass(selector) )
+            target.removeClass(selector);
+        else{
+            //Le quita el class al elemento que lo tiene
+            $(clase).removeClass(selector);
+            //Se lo pone al target
+            target.addClass(selector);
+        }
+    }
+
+    function hideAndShow(hide, show){
+        hide.fadeOut();
+        setTimeout(function(){
+            show.fadeIn();
+        }, 500);
+    }
+
+    function addAndRemove(toAdd, toRemove, selector){
+        toRemove.removeClass(selector);
+        toAdd.addClass(selector);
+    }
+
 
     //-------------------------
     // 	LOGIN Y REGISTRO
@@ -90,7 +122,7 @@ $(document).ready(function(){
     //======================================= SELECCION DE HORARIO
 
 	$(".hora-horario").on( "click", function(event) {
-		var target = $( event.target );
+            var target = $( event.target );
 
 		//------Cambia el estilo del elemento
 		if( !target.hasClass("hora-selected") )
@@ -235,237 +267,303 @@ $(document).ready(function(){
     }
 
 
-    $(".materia-asesoria").on( "click", function(event) {
-        var target = $( event.target );
+    //-----------------------------
+    //  ASESORIAS
+    //-----------------------------
 
-        //----Cambia el estilo
-        //Obtiene elementos
-        var elementos = $('.materia-asesoria');
-        //les quita el class
-        elementos.removeClass("materia-selected");
-        //se lo agrega al target
-        target.addClass("materia-selected");
 
-        //Elimina horario mostrado en caso de
-        $("#horario").html("");
+    //---------MATERIAS
+    $('.materias-asesorias .item-materia').on( "click", function(event) {
+        var target = $(event.target);
+        //selecciona elemento
+        singleToggleButton(target, "selected");
+    });
 
-        //obtiene persistencia ocultos
-        var id = $('#user').data("id");
-        var ciclo = $('#ciclo').data("id");
-        var materia = $(target).data("materia");
+    //Siguiente
+    $('#btn-siguiente-materia').click(function(){
+        // alert("Presionaste siguiente: Materias");
+        // var materia = $('.selected');
+        // if( materia.length === 0 )
+        //     alert("No hay seleccionado materia");
+        // else{
+        //     materia = $(materia[0]);
+        //     var res = confirm( "La materia es: "+ materia.html() );
+        //     //Si es aceptar, muestra siguiente
+        //     if( res ){
+        //         //Almacena en sessionStorage
+        //         sessionStorage.setItem("materia", materia.data("id"));
+        //         console.log("Materia agregada al localstorage");
+        //         hideAndShow($('.materias-asesorias'), $('.asesores-asesorias'));
+        //         //Cambiar encabezados
+        //         addAndRemove($('.encabezado-asesoria #asesor'), $('.encabezado-asesoria #materia'), "active");
+        //     }
+        //
+        // }
+        hideAndShow($('.materias-asesorias'), $('.asesores-asesorias'));
+        addAndRemove($('.encabezado-asesoria #asesor'), $('.encabezado-asesoria #materia'), "active");
+    });
 
-        obtenerAsesoresMateria(ciclo, materia, id);
 
+    //---------ASESORES
+    $('#btn-anterior-asesor').click(function () {
+        hideAndShow($('.asesores-asesorias'), $('.materias-asesorias'));
+        addAndRemove($('.encabezado-asesoria #materia'), $('.encabezado-asesoria #asesor'), "active");
+    });
+
+    $('#btn-siguiente-asesor').click(function () {
+        hideAndShow($('.asesores-asesorias'), $('.fechas-asesorias'));
+        addAndRemove($('.encabezado-asesoria #horario'), $('.encabezado-asesoria #asesor'), "active");
+    });
+
+
+    //---------FECHAS
+    $('#btn-anterior-fecha').click(function () {
+        hideAndShow($('.fechas-asesorias'), $('.asesores-asesorias'));
+        addAndRemove($('.encabezado-asesoria #asesor'), $('.encabezado-asesoria #horario'), "active");
+    });
+
+    $('#btn-finalizar-asesoria').click(function(){
+        alert("Presionaste Finalizar");
     });
 
 
 
-    function obtenerAsesoresMateria(cicloID, materiaID, asesorID){
-        //JSON para enviar
-        var json = 
-        {
-            "estudiante": asesorID,
-            "ciclo": cicloID,
-            "materia": materiaID
-        };
-
-        //Transforma a String
-        var stringJSON = JSON.stringify( json );
-
-        $.ajax({
-                url: 'obtener_asesores.php',
-                type: 'post',
-                //dataType: 'json', //Tipo de dato de respuesta del servidor
-                data: {json: stringJSON}
-        })
-        .done(function( data ){
-            //alert("OK: \n"+data);
-            $('#asesores').html( data );
-        })
-        .fail(function( data ){
-            alert("Ocurrio un error");
-        })
-        .always( function(response) {
-            console.log( response );
-        });
-    }
 
 
-    // Para que cargue elementos cargados con ajax es necesario especificar
-    // clic en el document y en el elemento
-    $(document).on( "click", ".item-asesor", function(event) {
-        var target = $( event.target );
+    //$('.btn-seleccionar-asesoria')
 
-        //Obtiene id del asesor
-        var asesor = target.data("asesor");
-        // Cambiando estilo
-        $(".asesor-selected").removeClass("asesor-selected");
-        target.addClass("asesor-selected");
-
-        //obtiene persistencia ocultos
-        var ciclo = $('#ciclo').data("id");
-        obtenerHorarioAsesor(ciclo, asesor);
-
-    });
-
-
-
-    function obtenerHorarioAsesor(cicloID, asesorID){
-        //JSON para enviar
-        var json = 
-        {
-            "estudiante": asesorID,
-            "ciclo": cicloID
-        };
-
-        //Transforma a String
-        var stringJSON = JSON.stringify( json );
-
-        $.ajax({
-                url: 'obtener_horario.php',
-                type: 'post',
-                dataType: 'html', //Tipo de dato de respuesta del servidor
-                data: {json: stringJSON}
-        })
-        .done(function( data ){
-            $('#horario').html( data );
-        })
-        .fail(function( data ){
-            alert("Ocurrio un error");
-        })
-        .always( function(response) {
-            console.log( response );
-        });
-    }
-
-
-
-    $("#btn-registrar-asesoria").on("click", function(){
-
-        //Elementos seleccionados
-        var materia = $(".materia-selected");
-        var asesor  = $(".asesor-selected");
-        var dhf     = $(".hora-selected");
-        var desc    = $("#comentario");
-
-        var completo = true;
-        if( materia.length == 0 ){
-            completo = false;
-            alert("Falta Materia");
-        }
-        if( asesor.length == 0 ){
-            completo = false;
-            alert("Falta Asesor");
-        }
-        if( dhf.length == 0 ){
-            completo = false;
-            alert("Falta Hora-dia-fecha");
-        }
-
-        //Obtener info
-        var materiaID   = materia.data("materia");
-        var asesorID    = asesor.data("asesor");
-        // var hora        = dhf.data("hora");
-        // var dia         = dhf.data("dia");
-        var dia_horaID  = dhf.data("dia-hora");
-        var fecha       = dhf.data("fecha");
-        var descripcion = desc.val();
-        // Datos ocultos
-        var alumnoID = $('#user').data("id");
-        var cicloID = $('#ciclo').data("id");
-
-        if( descripcion.length == 0 ){
-            completo = false;
-            alert("Falta descripcion");
-        }
-
-        if( completo ){
-            registrarAsesoria( materiaID, asesorID, alumnoID, cicloID, dia_horaID, fecha, descripcion );
-            // alert("hasta aqui si jala");
-        }
-    });
-
-
-    function registrarAsesoria( materiaID, asesorID, alumnoID, cicloID, dia_horaID, fecha, descripcion ){
-        //JSON para enviar
-        var json = 
-        {
-            "materia": materiaID,
-            "asesor": asesorID,
-            "alumno": alumnoID,
-            "dia_hora": dia_horaID,
-            "ciclo": cicloID,
-            "fecha": fecha,
-            "descripcion": descripcion
-        };
-
-        //Transforma a String
-        var stringJSON = JSON.stringify( json );
-
-        $.ajax({
-                url: 'registrar_asesoria.php',
-                type: 'post',
-                dataType: 'html', //Tipo de dato de respuesta del servidor
-                data: {json: stringJSON}
-        })
-        .done(function( data ){
-            // $('#horario').html( data );
-            alert("Asesoria registrada");
-            location.href = "index.php";
-        })
-        .fail(function( data ){
-            alert("Ocurrio un error");
-        })
-        .always( function(response) {
-            console.log( response );
-        });
-    }
-
-
-    // Para que cargue elementos cargados con ajax es necesario especificar
-    // clic en el document y en el elemento
-    $(document).on( "click", ".btn-cancelar-asesoria", function(event) {
-        var target = $( event.target );
-
-        //Obtiene elementos
-        var asesoriaID = target.data("asesoria");
-        var comentario = prompt("Escriba sus razones", "Because i can >:p");
-        // alert("hasta aqui funciona... moment, men are working");
-        cancelarAsesoria( asesoriaID, comentario );
-    });
-
-    function cancelarAsesoria( asesoriaID, comentario ){
-        //JSON para enviar
-        var json = 
-        {
-            "asesoriaID": asesoriaID,
-            "comentario": comentario
-        };
-
-        //Transforma a String
-        var stringJSON = JSON.stringify( json );
-
-        $.ajax({
-                url: 'cancelar-asesoria.php',
-                type: 'post',
-                // dataType: 'html', //Tipo de dato de respuesta del servidor
-                data: {json: stringJSON}
-        })
-        .done(function( data ){
-            alert("Asesoria cancelada");
-            // alert( data );
-            /*Recargamos desde caché*/
-            // location.reload();
-            /*Forzamos la recarga*/
-            location.reload(true);
-        })
-        .fail(function( data ){
-            alert("Ocurrio un error");
-        })
-        .always( function(response) {
-            console.log( response );
-        });
-    }
+    //
+    // $(".materia-asesoria").on( "click", function(event) {
+    //     var target = $( event.target );
+    //
+    //     //----Cambia el estilo
+    //     //Obtiene elementos
+    //     var elementos = $('.materia-asesoria');
+    //     //les quita el class
+    //     elementos.removeClass("materia-selected");
+    //     //se lo agrega al target
+    //     target.addClass("materia-selected");
+    //
+    //     //Elimina horario mostrado en caso de
+    //     $("#horario").html("");
+    //
+    //     //obtiene persistencia ocultos
+    //     var id = $('#user').data("id");
+    //     var ciclo = $('#ciclo').data("id");
+    //     var materia = $(target).data("materia");
+    //
+    //     obtenerAsesoresMateria(ciclo, materia, id);
+    //
+    // });
+    //
+    //
+    //
+    // function obtenerAsesoresMateria(cicloID, materiaID, asesorID){
+    //     //JSON para enviar
+    //     var json =
+    //     {
+    //         "estudiante": asesorID,
+    //         "ciclo": cicloID,
+    //         "materia": materiaID
+    //     };
+    //
+    //     //Transforma a String
+    //     var stringJSON = JSON.stringify( json );
+    //
+    //     $.ajax({
+    //             url: 'obtener_asesores.php',
+    //             type: 'post',
+    //             //dataType: 'json', //Tipo de dato de respuesta del servidor
+    //             data: {json: stringJSON}
+    //     })
+    //     .done(function( data ){
+    //         //alert("OK: \n"+data);
+    //         $('#asesores').html( data );
+    //     })
+    //     .fail(function( data ){
+    //         alert("Ocurrio un error");
+    //     })
+    //     .always( function(response) {
+    //         console.log( response );
+    //     });
+    // }
+    //
+    //
+    // // Para que cargue elementos cargados con ajax es necesario especificar
+    // // clic en el document y en el elemento
+    // $(document).on( "click", ".item-asesor", function(event) {
+    //     var target = $( event.target );
+    //
+    //     //Obtiene id del asesor
+    //     var asesor = target.data("asesor");
+    //     // Cambiando estilo
+    //     $(".asesor-selected").removeClass("asesor-selected");
+    //     target.addClass("asesor-selected");
+    //
+    //     //obtiene persistencia ocultos
+    //     var ciclo = $('#ciclo').data("id");
+    //     obtenerHorarioAsesor(ciclo, asesor);
+    //
+    // });
+    //
+    //
+    //
+    // function obtenerHorarioAsesor(cicloID, asesorID){
+    //     //JSON para enviar
+    //     var json =
+    //     {
+    //         "estudiante": asesorID,
+    //         "ciclo": cicloID
+    //     };
+    //
+    //     //Transforma a String
+    //     var stringJSON = JSON.stringify( json );
+    //
+    //     $.ajax({
+    //             url: 'obtener_horario.php',
+    //             type: 'post',
+    //             dataType: 'html', //Tipo de dato de respuesta del servidor
+    //             data: {json: stringJSON}
+    //     })
+    //     .done(function( data ){
+    //         $('#horario').html( data );
+    //     })
+    //     .fail(function( data ){
+    //         alert("Ocurrio un error");
+    //     })
+    //     .always( function(response) {
+    //         console.log( response );
+    //     });
+    // }
+    //
+    //
+    //
+    // $("#btn-registrar-asesoria").on("click", function(){
+    //
+    //     //Elementos seleccionados
+    //     var materia = $(".materia-selected");
+    //     var asesor  = $(".asesor-selected");
+    //     var dhf     = $(".hora-selected");
+    //     var desc    = $("#comentario");
+    //
+    //     var completo = true;
+    //     if( materia.length == 0 ){
+    //         completo = false;
+    //         alert("Falta Materia");
+    //     }
+    //     if( asesor.length == 0 ){
+    //         completo = false;
+    //         alert("Falta Asesor");
+    //     }
+    //     if( dhf.length == 0 ){
+    //         completo = false;
+    //         alert("Falta Hora-dia-fecha");
+    //     }
+    //
+    //     //Obtener info
+    //     var materiaID   = materia.data("materia");
+    //     var asesorID    = asesor.data("asesor");
+    //     // var hora        = dhf.data("hora");
+    //     // var dia         = dhf.data("dia");
+    //     var dia_horaID  = dhf.data("dia-hora");
+    //     var fecha       = dhf.data("fecha");
+    //     var descripcion = desc.val();
+    //     // Datos ocultos
+    //     var alumnoID = $('#user').data("id");
+    //     var cicloID = $('#ciclo').data("id");
+    //
+    //     if( descripcion.length == 0 ){
+    //         completo = false;
+    //         alert("Falta descripcion");
+    //     }
+    //
+    //     if( completo ){
+    //         registrarAsesoria( materiaID, asesorID, alumnoID, cicloID, dia_horaID, fecha, descripcion );
+    //         // alert("hasta aqui si jala");
+    //     }
+    // });
+    //
+    //
+    // function registrarAsesoria( materiaID, asesorID, alumnoID, cicloID, dia_horaID, fecha, descripcion ){
+    //     //JSON para enviar
+    //     var json =
+    //     {
+    //         "materia": materiaID,
+    //         "asesor": asesorID,
+    //         "alumno": alumnoID,
+    //         "dia_hora": dia_horaID,
+    //         "ciclo": cicloID,
+    //         "fecha": fecha,
+    //         "descripcion": descripcion
+    //     };
+    //
+    //     //Transforma a String
+    //     var stringJSON = JSON.stringify( json );
+    //
+    //     $.ajax({
+    //             url: 'registrar_asesoria.php',
+    //             type: 'post',
+    //             dataType: 'html', //Tipo de dato de respuesta del servidor
+    //             data: {json: stringJSON}
+    //     })
+    //     .done(function( data ){
+    //         // $('#horario').html( data );
+    //         alert("Asesoria registrada");
+    //         location.href = "index.php";
+    //     })
+    //     .fail(function( data ){
+    //         alert("Ocurrio un error");
+    //     })
+    //     .always( function(response) {
+    //         console.log( response );
+    //     });
+    // }
+    //
+    //
+    // // Para que cargue elementos cargados con ajax es necesario especificar
+    // // clic en el document y en el elemento
+    // $(document).on( "click", ".btn-cancelar-asesoria", function(event) {
+    //     var target = $( event.target );
+    //
+    //     //Obtiene elementos
+    //     var asesoriaID = target.data("asesoria");
+    //     var comentario = prompt("Escriba sus razones", "Because i can >:p");
+    //     // alert("hasta aqui funciona... moment, men are working");
+    //     cancelarAsesoria( asesoriaID, comentario );
+    // });
+    //
+    // function cancelarAsesoria( asesoriaID, comentario ){
+    //     //JSON para enviar
+    //     var json =
+    //     {
+    //         "asesoriaID": asesoriaID,
+    //         "comentario": comentario
+    //     };
+    //
+    //     //Transforma a String
+    //     var stringJSON = JSON.stringify( json );
+    //
+    //     $.ajax({
+    //             url: 'cancelar-asesoria.php',
+    //             type: 'post',
+    //             // dataType: 'html', //Tipo de dato de respuesta del servidor
+    //             data: {json: stringJSON}
+    //     })
+    //     .done(function( data ){
+    //         alert("Asesoria cancelada");
+    //         // alert( data );
+    //         /*Recargamos desde caché*/
+    //         // location.reload();
+    //         /*Forzamos la recarga*/
+    //         location.reload(true);
+    //     })
+    //     .fail(function( data ){
+    //         alert("Ocurrio un error");
+    //     })
+    //     .always( function(response) {
+    //         console.log( response );
+    //     });
+    // }
 
 
     // function sendAJAX(url, type, dataType, data){

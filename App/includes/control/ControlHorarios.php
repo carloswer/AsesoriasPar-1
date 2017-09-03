@@ -49,6 +49,13 @@ class ControlHorarios{
     //------------------ HORARIO DEL ESTUDIANTE
 
 
+    public function obtenerIdHorario_Estudiante_CicloActual($idEstudiante, $idCiclo){
+        $result = $this->perHorarios->getHorarioId_CicloActual($idEstudiante, $idCiclo);
+        if( !is_array($result) )
+            return $result;
+        else
+            return $result[0]['id'];
+    }
 
     //TODO: deben juntarse las horas y las materias
     public function obtenerHorario_Estudiante($idEstudiante, $idCiclo){
@@ -69,17 +76,11 @@ class ControlHorarios{
         }
     }
 
-    public function obtenerIdHorario_Estudiante_CicloActual($idEstudiante, $idCiclo){
-        $result = $this->perHorarios->getHorarioId_CicloActual($idEstudiante, $idCiclo);
-        if( !is_array($result) )
-            return $result;
-        else
-            return $result[0]['id'];
-    }
-
     public function obtenerMaterias_Horario( $IdHorario ){
         return $result = $this->conMaterias->obtenerMaterias_Horario( $IdHorario );
     }
+
+
 
     public function registrarHorario($idEstudiante, $idCiclo){
         return $this->perHorarios->insertHorario($idEstudiante, $idCiclo);
@@ -88,6 +89,7 @@ class ControlHorarios{
     public function registrarHorario_DiasHoras($idHorario, $hora){
         return $this->perHorarios->insertHorario_DiasHoras($idHorario, $hora);
     }
+
 
 
     public function obtenerMaterias_Carrera( $carrera ){

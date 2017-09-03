@@ -99,3 +99,35 @@
 .login-message{
 	padding: 10px;
 }
+
+/*---------------------------------------------------*/
+.materias-asesorias{
+	margin-bottom: 20px;
+}
+.materias-asesorias .item-materia{
+	background-color: #d5d5d5;
+	padding: 10px;
+	margin-bottom: 10px;
+	margin-right: 5px;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: bold;
+}
+
+.materias-asesorias .selected{
+	background-color: #d58512;
+	color: #fff;
+}
+
+.encabezado-asesoria .encabezado{
+    display: inline-block;
+    padding: 20px 15px;
+    border: 2px solid black;
+    text-align: center;
+    font-size: 2em;
+}
+
+.encabezado-asesoria .active{
+    background: #000;
+    color: #fff;
+}

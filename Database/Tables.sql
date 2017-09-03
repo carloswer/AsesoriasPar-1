@@ -138,8 +138,8 @@ CREATE TABLE IF NOT EXISTS asesoria(
 	descripcion		TEXT NOT NULL,
 	
 	-- Automaticos para primer registro
-	fecha_registro		TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	estado_asesoria	TINYINT NOT NULL DEFAULT 1, -- 0 = cancelada, 1 = activa, 2 = pendiente validacion, 3 = validada
+	fecha_solicitud		TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+-- 	estado_asesoria	TINYINT NOT NULL DEFAULT 1, -- 0 = cancelada, 1 = activa, 2 = pendiente validacion, 3 = validada
 	
 	-- Foranea	
 	FK_alumno 	BIGINT NOT NULL, 
@@ -154,7 +154,7 @@ CREATE TABLE IF NOT EXISTS asesoria(
 -- Cuando se valida asesoria (Realizado o No realizado)
 CREATE TABLE IF NOT EXISTS estado_asesoria(
 	PK_id 				BIGINT AUTO_INCREMENT PRIMARY KEY,
-	tipo					TINYINT NOT NULL, -- 1 = Realizado, 2 = no realizado, 3 = cancelado
+	tipo					VARCHAR(30) NOT NULL, -- Proximo, No validado, Validado: Cancelado / Realizado / No realizado
 
 	-- Realizado | No realizado
 	comentario			TEXT NOT NULL,
@@ -162,6 +162,7 @@ CREATE TABLE IF NOT EXISTS estado_asesoria(
 
 	-- Realizado
 	calificacion_asesor	TINYINT, -- 0 a 5
+	tiempo				TIME, 
 	
 	-- Foraneo
 	FK_asesoria BIGINT NOT NULL,

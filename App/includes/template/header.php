@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- stylesheet -->
-    <?= '<link rel="stylesheet" href="'. LIBS_REF . '/bootstrap/css/bootstrap.min.css">'; ?>
-    <?= '<link rel="stylesheet" href="'. CSS_REF . '/estilos.css">'; ?>
+    <?= '<link rel="stylesheet" href="'. LIBS_REF . '/bootstrap/css/bootstrap.min.css">'."\n"; ?>
+    <?= '<link rel="stylesheet" href="'. CSS_REF . '/estilos.css">'."\n"; ?>
 </head>
 <body>

@@ -46,24 +46,6 @@ class ControlEstudiantes{
     }
 
 
-    // public function obtenerEstudiante(int $id){
-
-    // }
-
-    // public function obtenerEstudiantes(){
-
-    // }
-
-    // public function obtenerEstudianteIdUsuario(int $id): array{
-        // $result = $this->usuariosObj->getEstudianteIDUsuario($id);
-        // //Agregando valores
-        // $estudiante = array(
-        //     "id"        => $result['PK_est_id'],
-        //     "nombre"    => $result['est_nombre']." ".$result['est_apellido'],
-        //     "carrera"   => $result['ca_nombre']
-        // );
-        // return $estudiante;
-    // }
 
 
 }
