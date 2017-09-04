@@ -1,9 +1,18 @@
--- DROP USER asesoriaspar_root;
--- CREATE USER asesoriaspar_admin IDENTIFIED BY 'asesorias_pass';
--- GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP
--- ON asesoriaspar.* TO 'asesoriaspar_admin'@'localhost';
--- FLUSH PRIVILEGES;
-SHOW GRANTS FOR 'asesoriaspar_admin'@'localhost';
+-- ----------------
+-- USUARIO BASE DE DATOS
+-- ----------------
+
+DROP USER asesoriaspar_admin;
+
+GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP 
+ON asesoriaspar.* TO 'asesoriaspar_itson'@'localhost' IDENTIFIED BY 'asesorias_pass';
+FLUSH PRIVILEGES;
+
+SHOW GRANTS FOR 'asesoriaspar_itson'@'localhost';
+
+-- ----------------
+-- TABLAS
+-- ----------------
 
 DROP DATABASE asesoriaspar;
 CREATE DATABASE IF NOT EXISTS asesoriaspar CHARACTER SET utf8 COLLATE utf8_general_ci;
@@ -17,47 +26,49 @@ CREATE TABLE IF NOT EXISTS rol(
 
 
 CREATE TABLE IF NOT EXISTS usuario(
-	PK_id			BIGINT AUTO_INCREMENT PRIMARY KEY,
-	nombre_usuario	VARCHAR(200) NOT NULL UNIQUE,
-	password 		VARCHAR(200) NOT NULL,
-	correo 			VARCHAR(200) NOT NULL UNIQUE,
-	estado_usuario 	TINYINT NOT NULL DEFAULT 1 COMMENT '0 = Inactivo (eliminado / cancelado)\n1 = Activo',
+	PK_id					BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nombre_usuario		VARCHAR(200) NOT NULL UNIQUE,
+	password 			VARCHAR(200) NOT NULL,
+	correo 				VARCHAR(200) NOT NULL UNIQUE,
+	estado_usuario 	TINYINT NOT NULL DEFAULT 1, -- COMMENT '0 = Inactivo (eliminado / cancelado)\n1 = Activo',
 	fecha_registro 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	
 	-- Foraneas
-	FK_rol INT NOT NULL, 
+	FK_rol BIGINT NOT NULL,
 	FOREIGN KEY (FK_rol) REFERENCES rol(PK_id) ON UPDATE CASCADE
 );
 
 
 CREATE TABLE IF NOT EXISTS carrera (
-	PK_id 		BIGINT AUTO_INCREMENT PRIMARY KEY,
-	nombre 		VARCHAR(100) NOT NULL UNIQUE,
-	abreviacion	VARCHAR(10) UNIQUE
+	PK_id 			BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nombre 			VARCHAR(100) NOT NULL UNIQUE,
+	abreviacion		VARCHAR(10) UNIQUE,
+	fecha_registro TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 
 CREATE TABLE IF NOT EXISTS ciclo(
-	PK_id	 		INT AUTO_INCREMENT PRIMARY KEY,
+	PK_id	 			INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	fecha_inicio 	DATE NOT NULL,
 	fecha_fin	 	DATE NOT NULL,
-	fecha_registro 	TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+	fecha_registro TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 
 
 
 CREATE TABLE IF NOT EXISTS materia(
-	PK_id 			BIGINT AUTO_INCREMENT PRIMARY KEY,
+	PK_id 			BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	nombre 			VARCHAR(200) NOT NULL,
 	abreviacion   	VARCHAR(10),
 	descripcion		TEXT,
 	semestre 		INT NOT NULL,
-	plan			VARCHAR(4) NOT NULL,
+	plan				VARCHAR(4) NOT NULL,
+	fecha_registro TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
 	-- Foranea	
 	FK_carrera BIGINT NOT NULL,
-	FOREIGN KEY (FK_carrera) REFERENCES carrera(PK_ca_id) ON UPDATE CASCADE
+	FOREIGN KEY (FK_carrera) REFERENCES carrera(PK_id) ON UPDATE CASCADE
 );
 
 
@@ -75,9 +86,9 @@ CREATE TABLE IF NOT EXISTS estudiante(
 	
 	-- llaves foraneas
 	FK_usuario BIGINT NOT NULL UNIQUE,
-	FOREIGN KEY (FK_usuario) REFERENCES usuario(PK_usu_id) ON UPDATE CASCADE,
+	FOREIGN KEY (FK_usuario) REFERENCES usuario(PK_id) ON UPDATE CASCADE,
 	FK_carrera BIGINT NOT NULL,
-	FOREIGN KEY (FK_carrera) REFERENCES carrera(PK_ca_id) ON UPDATE CASCADE
+	FOREIGN KEY (FK_carrera) REFERENCES carrera(PK_id) ON UPDATE CASCADE
 );
 
 
@@ -91,21 +102,21 @@ CREATE TABLE IF NOT EXISTS dia_hora (
 
 
 CREATE TABLE IF NOT EXISTS horario(
-	PK_id 			BIGINT AUTO_INCREMENT PRIMARY KEY,
-	fecha_registro 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	validado		TINYINT NOT NULL DEFAULT 0 COMMENT '0 = No, 1 = SI',
+	PK_id 			BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	validado			TINYINT NOT NULL DEFAULT 0 COMMENT '0 = No, 1 = SI',
 	
 	-- Foranea
-	FK_estudiante BIGINT NOT NULL,
-	FOREIGN KEY (FK_estudiante) REFERENCES estudiante(PK_est_id) ON UPDATE CASCADE,
-	FK_ciclo INT NOT NULL,
-	FOREIGN KEY (FK_ciclo) REFERENCES ciclo(PK_ciclo_id) ON UPDATE CASCADE
+	FK_estudiante 	BIGINT NOT NULL,
+	FOREIGN KEY (FK_estudiante) REFERENCES estudiante(PK_id) ON UPDATE CASCADE,
+	FK_ciclo 		INT NOT NULL,
+	FOREIGN KEY (FK_ciclo) REFERENCES ciclo(PK_id) ON UPDATE CASCADE
 );
 
 
 
 CREATE TABLE IF NOT EXISTS horario_dia_hora(
-	PK_id 		BIGINT AUTO_INCREMENT PRIMARY KEY,
+	PK_id 		BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 
 	-- Foreaneas
 	FK_dia_hora INT NOT NULL,
@@ -118,8 +129,9 @@ CREATE TABLE IF NOT EXISTS horario_dia_hora(
 
 
 CREATE TABLE IF NOT EXISTS horario_materia(
-	PK_id		BIGINT AUTO_INCREMENT PRIMARY KEY,
-	aprobado 	TINYINT NOT NULL DEFAULT 0 COMMENT '0 = NO, 1 = SI',
+	PK_id				BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	aprobado 		TINYINT NOT NULL DEFAULT 0 COMMENT '0 = NO, 1 = SI',
+	fecha_registro TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	
 	-- Foranea	
 	FK_horario BIGINT NOT NULL,
@@ -153,7 +165,7 @@ CREATE TABLE IF NOT EXISTS asesoria(
 
 -- Cuando se valida asesoria (Realizado o No realizado)
 CREATE TABLE IF NOT EXISTS estado_asesoria(
-	PK_id 				BIGINT AUTO_INCREMENT PRIMARY KEY,
+	PK_id 				BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	tipo					VARCHAR(30) NOT NULL, -- Proximo, No validado, Validado: Cancelado / Realizado / No realizado
 
 	-- Realizado | No realizado

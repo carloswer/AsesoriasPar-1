@@ -5,7 +5,7 @@
     class Conexion {
 
         private $host  = "localhost";
-        private $user  = "asesoriaspar_admin";
+        private $user  = "asesoriaspar_itson";
         private $pass  = "asesorias_pass";
         private $db    = "asesoriaspar";
         private $_connection;
