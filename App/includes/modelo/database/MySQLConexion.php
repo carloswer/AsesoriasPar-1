@@ -1,8 +1,9 @@
 <?php namespace Modelo\Database;
 
-    use mysqli;
+    use Exception;
+use mysqli;
 
-    class Conexion {
+    class MySQLConexion {
 
         private $host  = "localhost";
         private $user  = "asesoriaspar_itson";
@@ -36,7 +37,11 @@
         }
 
 
-
+        /**
+         * @param $query String a ejecutar
+         * @return bool|\mysqli_result Regresa un mysqli_result en caso de ser una consulta exitosa
+         * de un SELECT, TRUE cuando es diferente de un SELECT exitoso y FALSE al ocurrir un error.
+         */
         public function doQuery($query){
             $result = $this->_connection->query($query);
             return $result;
@@ -46,46 +51,49 @@
             return $this->_connection->error;
         }
 
-        public function cerrarConexion(){
-            $this->_connection->close();
+        public function closeConnection(){
         }
 
-/*
-        public function ejecutarTransaccion(array $queries){
-            //para que el registro sea manual
+
+        //----------TRANSACCIONES
+        public function iniTransaction(){
             $this->_connection->autocommit( false );
+        }
+
+        public function doCommit(){
             try{
-                //Registros uno a uno
-                foreach( $queries as $query ){
-                    $this->_connection->query($query);
-                }
-                //Para registrar cambios
                 $this->_connection->commit();
-            }catch( Exception $ex ){
-                $this->_connection->rollback();
+            }catch(Exception $ex){
+                //TODO: retornar valor para control
+                $this->doRollback();
                 echo 'algo fallo: ',  $ex->getMessage(), "\n";
             }
-
-
-
-//            $this->_connection->query($query);
         }
 
-        public function ejecutarQuery(String $query){
-            $result = $this->_connection->query($query);
-            $this->cerrarConexion();
-            return $result;
+        public function doRollback(){
+            $this->_connection->rollback();
         }
 
-        public function getError(){
-            return mysqli_error( $this->_connection );
-        }
 
-        private function cerrarConexion(){
-            $this->_connection->close();
-        }
+//        public function ejecutarTransaccion(array $queries){
+//            //para que el registro sea manual
+//            $this->_connection->autocommit( false );
+//            try{
+//                //Registros uno a uno
+//                foreach( $queries as $query ){
+//                    $this->_connection->query($query);
+//                }
+//                //Para registrar cambios
+//                $this->_connection->commit();
+//            }catch( Exception $ex ){
+//                $this->_connection->rollback();
+//                echo 'algo fallo: ',  $ex->getMessage(), "\n";
+//            }
+//           $this->_connection->query($query);
+//        }
 
-*/
+
+
 
     }
 

@@ -6,10 +6,10 @@ class Usuario{
     private $id;
     private $username;
     private $password;
-    private $correo;
-    private $estatus;
-    private $fechaRegistro;
-    private $rol;
+    private $email;
+    private $status;
+    private $RegisterDate;
+    private $role;
 
 
     public function __construct(){}
@@ -77,19 +77,19 @@ class Usuario{
     /**
      * @return mixed
      */
-    public function getCorreo()
+    public function getEmail()
     {
-        return $this->correo;
+        return $this->email;
     }
 
     /**
-     * @param mixed $correo
+     * @param mixed $email
      *
      * @return self
      */
-    public function setCorreo($correo)
+    public function setEmail($email)
     {
-        $this->correo = $correo;
+        $this->email = $email;
 
         return $this;
     }
@@ -97,19 +97,19 @@ class Usuario{
     /**
      * @return mixed
      */
-    public function getEstatus()
+    public function getStatus()
     {
-        return $this->estatus;
+        return $this->status;
     }
 
     /**
-     * @param mixed $estatus
+     * @param mixed $status
      *
      * @return self
      */
-    public function setEstatus($estatus)
+    public function setStatus($status)
     {
-        $this->estatus = $estatus;
+        $this->status = $status;
 
         return $this;
     }
@@ -117,19 +117,19 @@ class Usuario{
     /**
      * @return mixed
      */
-    public function getFechaRegistro()
+    public function getRegisterDate()
     {
-        return $this->fechaRegistro;
+        return $this->RegisterDate;
     }
 
     /**
-     * @param mixed $fechaRegistro
+     * @param mixed $RegisterDate
      *
      * @return self
      */
-    public function setFechaRegistro($fechaRegistro)
+    public function setRegisterDate($RegisterDate)
     {
-        $this->fechaRegistro = $fechaRegistro;
+        $this->RegisterDate = $RegisterDate;
 
         return $this;
     }
@@ -138,19 +138,19 @@ class Usuario{
     /**
      * @return mixed
      */
-    public function getRol()
+    public function getRole()
     {
-        return $this->rol;
+        return $this->role;
     }
 
     /**
-     * @param mixed $rol
+     * @param mixed $role
      *
      * @return self
      */
-    public function setRol($rol)
+    public function setRole($role)
     {
-        $this->rol = $rol;
+        $this->role = $role;
 
         return $this;
     }

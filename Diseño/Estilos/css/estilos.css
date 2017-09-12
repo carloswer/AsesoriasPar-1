@@ -1,0 +1,17 @@
+.algo {
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  background: peru; }
+
+.schedule .column {
+  display: inline-block;
+  background-color: peru;
+  text-align: center;
+  margin: 0; }
+  .schedule .column .column__item {
+    color: #212121;
+    padding: 10px 20px;
+    background: #DDDBDB; }
+  .schedule .column .column__item--header {
+    background: #92E55A; }

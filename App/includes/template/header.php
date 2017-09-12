@@ -12,5 +12,6 @@
     <!-- stylesheet -->
     <?= '<link rel="stylesheet" href="'. LIBS_REF . '/bootstrap/css/bootstrap.min.css">'."\n"; ?>
     <?= '<link rel="stylesheet" href="'. CSS_REF . '/estilos.css">'."\n"; ?>
+    <?= '<link rel="stylesheet" href="'.ASSETS_REF.'/vendor/font-awesome/css/font-awesome.min.css">'."\n" ?>
 </head>
 <body>

@@ -6,16 +6,12 @@
     use Control\Sesiones;
     
     // Comprobar que haya una session activa
-    if( Sesiones::isSesionActiva() ){
-        $user = Sesiones::getDatosSesion();
-        if( $user['rol'] == "administrador" )
+    if( Sesiones::isSessionON() ){
+        if( Sesiones::isAdmin() )
             header("Location: administrador/");
         else
             header("Location: estudiante/");
     }
-
-
-    // $tituloPagina = "Iniciar Sesion";
 
 ?>
 
@@ -24,9 +20,7 @@
     <div class="container">
     	<div class="login-container col-md-6 col-md-offset-3 text-center">
     		<h1>Iniciar Sesion</h1>
-    				<div id="login-status" class="status">
-                        
-    				</div>
+            <div id="login-status" class="status"></div>
     		
     		<form id="login-form">
     			<div class="form-group">
@@ -37,9 +31,9 @@
     				<label for="" class="sr-only label-control">Contraseña</label>
     				<input type="password" class="form-control" id="txtPass" placeholder="Contraseña" name="pass" required="true">
     			</div>
-    			<button id="btn-form-login" class="form-control btn btn-primary" type="submit">
-    				<span id="login-spin" style="display: none;">
-    					<img src="<?= ASSETS_REF; ?>/img/spin.gif" alt="spin">
+    			<button id="btn-auth" class="form-control btn btn-primary" type="submit">
+    				<span id="login-spin" class="none">
+                        <i class="icon fa fa-spinner fa-spin"></i>
     				</span>
     				Iniciar
     			</button>

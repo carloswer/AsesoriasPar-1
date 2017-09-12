@@ -1,22 +1,15 @@
-<?php namespace Negocio\Objetos;
+<?php namespace Objetos;
 
     class Carrera{
 
         private $id;
-        private $nombre;
-        private $abreviacion;
+        private $name;
+        private $shortName;
 
         /**
          * Carrera constructor.
-         * @param $IDcarrera
-         * @param $Nombre
          */
-
-        public function __construct($idCarrera, $Nombre, $abreviacion){
-            $this->id = $idCarrera;
-            $this->nombre = $Nombre;
-            $this->abreviacion = $abreviacion;
-        }
+        public function __construct(){}
 
         /**
          * @return mixed
@@ -37,23 +30,36 @@
         /**
          * @return mixed
          */
-        public function getNombre()
+        public function getName()
         {
-            return $this->nombre;
+            return $this->name;
         }
 
         /**
-         * @param mixed $nombre
+         * @param mixed $name
          */
-        public function setNombre($nombre)
+        public function setName($name)
         {
-            $this->nombre = $nombre;
+            $this->name = $name;
         }
 
-        function __toString()
+        /**
+         * @return mixed
+         */
+        public function getShortName()
         {
-            return $this->id.", ".$this->nombre.", ".$this->abreviacion;
+            return $this->shortName;
         }
+
+        /**
+         * @param mixed $shortName
+         */
+        public function setShortName($shortName)
+        {
+            $this->shortName = $shortName;
+        }
+
+
 
 
     }

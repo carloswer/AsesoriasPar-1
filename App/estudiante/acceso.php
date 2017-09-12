@@ -2,38 +2,23 @@
 
     require_once '../config.php';
     $tituloPagina = "Inicio | Asesor";
-    // SESIONES
+
     use Control\Sesiones;
+    //Para evitar redireccion de sesion.php
+    $isAcceso = true;
+    include_once 'sesion.php';
+
 
 	//---- Determinacion del tipo por GET
 	if( isset( $_GET['tipo'] ) ){
 		$tipo = $_GET['tipo'];
-		if( $tipo == "alumno" || $tipo == "asesor" ){
-			Sesiones::setTipo($tipo);
+		if( $tipo == Sesiones::$ALUMNO || $tipo == Sesiones::$ASESOR ){
+		    //Establece tipo de estudiante
+			Sesiones::setStudentType($tipo);
+			//Redirecciona
 			header("Location: index.php");
 		}
 	}
-
-
-
-
-	//sesion activa
-	if( Sesiones::isSesionActiva() ){
-		//---Rol
-		//Administrador
-		if( Sesiones::isAdministrador() )
-			header("Location: ".ADMIN_REF);
-		//Estudiante
-//		else{
-//			//Tipo de estudiante
-//			if( Sesiones::isTipoSeleccionado() )
-//				header("Location: ".EST_REF);
-//		}
-	}
-	else
-		header("Location: ".ROOT_REF."/login.php");
-
-
 
 
 ?>
@@ -42,12 +27,12 @@
 
 	<!--MENU-->
 	<div class="container">
-<!--        --><?php //include_once TEMP_PATH."/estudiante-menu.php"; ?>
+        <?php //include_once TEMP_PATH."/estudiante-menu.php"; ?>
 
 		<h1>Seleccione una opción:</h1>
 		<h4>Esta página se muestra ya que no ha decidido como acceder al sistema</h4>
-		<a href="acceso.php?tipo=alumno" type="button" class="btn btn-primary">Alumno</a>
-		<a href="acceso.php?tipo=asesor" type="button" class="btn btn-success">Asesor</a>
+		<a href="acceso.php?tipo=<?= Sesiones::$ALUMNO; ?>" type="button" class="btn btn-primary">Alumno</a>
+		<a href="acceso.php?tipo=<?= Sesiones::$ASESOR; ?>" type="button" class="btn btn-success">Asesor</a>
 
 		<a href="<?= ROOT_REF; ?>/logout.php" type="button" class="btn btn-default">Cerrar Session</a>
 	</div>

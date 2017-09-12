@@ -1,0 +1,53 @@
+*{
+	// padding: 0;
+	// margin: 0;
+	// box-sizing: border-box;
+}
+
+// .horario{
+// 	.horario-table{
+// 		width: 100%;
+// 		text-align: center;
+
+// 		//--- Quitar espacio entre celdas
+// 		border-spacing: 0;
+// 		tr,th,td{
+// 			padding: 0;
+// 			margin: 0;
+// 		}
+
+// 		.dia-item{
+// 			background-color: #5EF36C;
+// 			display: block;
+// 		}
+
+// 		.hora-item{
+// 			background-color: #DA4C4C;
+// 			display: block;
+// 		}
+
+// 	}
+// }
+
+
+
+.schedule{
+	.column{
+		display: inline-block;
+		background-color: peru;
+		text-align: center;
+		margin: 0;
+
+		.column__item{
+			color: #212121;
+			padding: 10px 20px;
+			background: #DDDBDB;
+		}
+
+		.column__item--header{
+			background: #92E55A;
+		}
+	}	
+}
+
+

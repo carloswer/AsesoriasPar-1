@@ -1,93 +1,73 @@
 <?php namespace Control;
 
-	use Control\ControlEstudiantes;
     use Objetos\Usuario;
     use Objetos\Estudiante;
+    use Control\ControlEstudiantes;
+    use Control\ControlUsuarios;
+    session_start();
+
 
     class Sesiones{
 
+        public static $ALUMNO = 'alumno';
+        public static $ASESOR = 'asesor';
+
 		//---------------- LOGGIN
 
-		public static function setSesionUsuario(Usuario $usuario){
-			session_start();
-            //Si es estudiante
-            $rol = $usuario->getRol();
-
+		public static function setUserSession(Usuario $user){
             //Datos del usuario
-			$_SESSION['usuario']['id']       = $usuario->getId();
-            $_SESSION['usuario']['username'] = $usuario->getUsername();
-            $_SESSION['usuario']['rol']      = $rol;
-
-
-            //----------Datos del perido actual
-            // $ctrlHorario = new ControlHorarios();
-            // $periodo = $ctrlHorario->obtenerPeriodoActual();
-            //Si hay un periodo actual disponible
-            // if( !empty( $periodo ) ){
-            //     $_SESSION['periodo']['id']      = $periodo['id'];
-            //     $_SESSION['periodo']['inicio']  = $periodo['inicio'];
-            //     $_SESSION['periodo']['fin']     = $periodo['fin'];
-            // }
+			$_SESSION['user']['id']       = $user->getId();
+            $_SESSION['user']['username'] = $user->getUsername();
+            $_SESSION['user']['role']     = $user->getRole();
 		}
 
+        public static function setStudentSession(Estudiante $student){
+            //Datos del usuario
+            $_SESSION['student']['id']      = $student->getIdStudent();
+            $_SESSION['student']['name']    = $student->getFirstName() . " " . $student->getLastname();
+            $_SESSION['student']['career']  = $student->getCareer();
+        }
 
-		public static function setSesionEstudiante( $id ){
-		    session_start();
 
-            //Obtiene datos del estudiante
-            $conEst = new ControlEstudiantes();
-            $estudiante = $conEst->obtenerEstudiante_UsuarioId( $id );
+        public static function checkCurrentSession(){
+            $conUsers = new ControlUsuarios();
+            $user = $conUsers->getUser_ById( self::getUserId() );
 
-            if( $estudiante != null ) {
-                //Datos del estudiante
-                $_SESSION['estudiante']['id'] = $estudiante->getIdEstudiante();
-                $_SESSION['estudiante']['nombre'] = $estudiante->getNombre() . " " . $estudiante->getApellido();
-                $_SESSION['estudiante']['carrera'] = $estudiante->getCarrera();
-                return true;
+            if( $user == null || $user == 'error' ) {
+                //reset de sesion
+                self::destroySession();
             }
             else{
-                $respuesta = [
-                    'resultado' => 'error',
-                    'mensaje' => 'No existe un estudiate asociado al usuario'
-                ];
-                return $respuesta;
+                $conStudens = new ControlEstudiantes();
+                $conStudens->getStudent_ById( self::getStudentId() );
+                if( $user == null || $user == 'error' ) {
+                    //reset de sesion
+                    self::destroySession();
+                }{
+                    //TODO: actualizar datos (user y estudiante)
+                }
             }
         }
 
-		public static function borrarSesion(){
-			session_start();
-			//Borra toda la session
+
+		public static function destroySession(){
     		session_destroy();
 		}
 
 
 		//---------------- DATOS
-		public static function isSesionActiva(){
-			session_start();
-			if( isset( $_SESSION['usuario']['id'] ) )
+		public static function isSessionON(){
+			if( isset( $_SESSION['user']['id'] ) )
 				return true;
 			else 
 				return false;
 		}
 
-		public static function getDatosSesion(){
-			// session_start();
-			if( self::isSesionActiva() ){
-				$user = [
-					"id" 		=> $_SESSION['usuario']['id'],
-					"username" 	=> $_SESSION['usuario']['username'],
-					"rol" 		=> $_SESSION['usuario']['rol']
-				];
-				return $user;
-			}
-			else 
-				return null;
-		}
 
 		//--------------------- ROL
-		public static function isAdministrador(){
-			if( self::isSesionActiva() ){
-				if( $_SESSION['usuario']['rol'] == "administrador" )
+		public static function isAdmin(){
+			if( self::isSessionON() ){
+				if( $_SESSION['user']['role'] == "administrador" )
 					return true;
 				else
 					return false;
@@ -97,9 +77,9 @@
 		}
 
 
-		public static function isEstudiante(){
-			if( self::isSesionActiva() ){
-				if( $_SESSION['usuario']['rol'] == "estudiante" )
+		public static function isStudent(){
+			if( self::isSessionON() ){
+				if( $_SESSION['user']['role'] == "estudiante" )
 					return true;
 				else
 					return false;
@@ -108,18 +88,17 @@
 				return null;
 		}
 
-		public static function getRol(){
-			if( self::isSesionActiva() )
-				return $_SESSION['usuario']['rol'];
-			else
-				return null;
-		}
+
+        //--------------------- USUARIO
+        public static function getUserId(){
+            return $_SESSION['user']['id'];
+        }
 
 
 		//--------------------- ESTUDIANTE
-		public static function isTipoSeleccionado(){
-			if( self::isSesionActiva() ){
-				if( isset( $_SESSION['estudiante']['tipo'] ) )
+		public static function isTypeSelected(){
+			if( self::isSessionON() ){
+				if( isset( $_SESSION['student']['type'] ) )
 					return true;
 				else
 					return false;
@@ -128,31 +107,40 @@
 				return false;
 		}
 
-		public static function borrarTipo(){
-			session_start();
-			unset( $_SESSION['estudiante']['tipo'] );
-		}
+        public static function setStudentType($type){
+		    $_SESSION['student']['type'] = $type;
+        }
 
 
-		public static function setTipo($tipo){
-			session_start();
-			$_SESSION['estudiante']['tipo'] = $tipo;
-		}
-
-		public static function getTipo(){
-            session_start();
-            return $_SESSION['estudiante']['tipo'];
-		}
-
-		public static function isAsesor(){
-            return ( $_SESSION['estudiante']['tipo'] == "asesor" ) ? true : false;
-		}
+        public static function isAsesor(){
+            return ( $_SESSION['student']['type'] == self::$ASESOR )? true : false;
+        }
 
         public static function isAlumno(){
-            return ( $_SESSION['estudiante']['tipo'] == "alumno" ) ? true : false;
-		}
+            return ( $_SESSION['student']['type'] == self::$ALUMNO )? true : false;
+        }
+
+        public static function getStudentType(){
+            return $_SESSION['student']['type'];
+        }
+
+        //--------------------- ESTUDIANTE DATOS
+
+        public static function getStudentId(){
+            return $_SESSION['student']['id'];
+        }
+
+        public static function getStudentName(){
+            return $_SESSION['student']['name'];
+        }
+
+        public static function getStudentCarrer(){
+            return $_SESSION['student']['career'];
+        }
 
 
-	}
+
+
+    }
 
  ?>

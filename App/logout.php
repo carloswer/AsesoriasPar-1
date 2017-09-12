@@ -3,8 +3,7 @@
 	require_once 'config.php';
     use Control\Sesiones;
 
-    Sesiones::borrarSesion();
-    echo "Espere un momento";
+    Sesiones::destroySession();
 	header("Location: login.php");
 
  ?>

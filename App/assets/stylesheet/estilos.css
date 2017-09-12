@@ -1,96 +1,14 @@
 /*-------------------------------*/
-/*          HORARIO             */
+/*          GENERAL              */
 /*-------------------------------*/
-.horario-contenedor th, td{
-    border-bottom: 1px solid #ddd;
-    text-align: center;
-    padding: 0;
-    margin: 0;
+
+.none{
+	display: none;
 }
 
-.horario-contenedor hora-item{
-
-}
-
-
-
-/*----------------------------------------- OLD STYLES*/
-#horario th, td {
-	border-bottom: 1px solid #ddd;
-	text-align: center;
-	padding: 0;
-	margin: 0;
-}
-
-#horario th, .item-hora{
-	padding: 10px 15px;
-}
-
-#horario table th {
-	background-color: #4CAF50;
-	color: #fff;
-}
-
-
-/*------HORAS-----*/
-#horario tr td .item-hora, .hora-horario, .hora-asesoria{
-	text-decoration: none;
-	display: block;
-	background: #ECE7E7;
-	color: #000;
-	cursor: pointer;
-}
-
-
-#horario tr td .hora-selected{
-	background: peru;
-	color: #fff;
-}
-
-
-#horario tr td .hora-blocked{
-	background: #212121;
-	color: #fff;
-}
-
-
-/*------MATERIAS-----*/
-#materias .item-materia, .materia-horario{
-	text-decoration: none;
-	display: inline-block;
-	background: #ECE7E7;
-	padding: 12px 20px;
-	margin-bottom: 10px;
-	color: #000;
-}
-
-#materias .item-materia:hover, .materia-horario:hover{
-	background: #a3deff;
-}
-
-
-#materias .materia-selected{
-	background: peru;
-	color: #fff;
-}
-
-#asesores{
-	padding: 20px 0;
-}
-
-#asesores .item-asesor{
-	text-decoration: none;
-	display: inline-block;
-	background: #AFDBFD;
-	padding: 12px 20px;
-	color: #000;
-	margin-right: 5px;
-}
-
-#asesores .asesor-selected{
-	background: peru;
-	color: #fff;
-}
+/*-------------------------------*/
+/*          LOGIN                */
+/*-------------------------------*/
 
 .login-container{
 	margin-top: 20px;
@@ -100,34 +18,143 @@
 	padding: 10px;
 }
 
-/*---------------------------------------------------*/
-.materias-asesorias{
-	margin-bottom: 20px;
-}
-.materias-asesorias .item-materia{
-	background-color: #d5d5d5;
-	padding: 10px;
-	margin-bottom: 10px;
-	margin-right: 5px;
-	cursor: pointer;
-	display: inline-block;
-	font-weight: bold;
+
+
+/*-------------------------------*/
+/*          HORARIO             */
+/*-------------------------------*/
+.horario{}
+
+.horario table th, td{
+	text-align: center;
 }
 
-.materias-asesorias .selected{
-	background-color: #d58512;
+.horario .dia-item, .hora-item{
+	padding: 10px 20px;
+	border: 1px solid #e9e9e9;
+	display: block;
+}
+
+.horario .dia-item{
+	background: #4CAF50;
 	color: #fff;
 }
 
-.encabezado-asesoria .encabezado{
-    display: inline-block;
-    padding: 20px 15px;
-    border: 2px solid black;
-    text-align: center;
-    font-size: 2em;
+.horario .hora-item{
+	background: #fff;
+	font-weight: bold;
 }
 
-.encabezado-asesoria .active{
-    background: #000;
-    color: #fff;
+.horario .hora-selected{
+	background: #88e3dc;
+}
+
+/*Para elementos seleccionables del horario*/
+.single-select hora-selected, .multi-select .hora-selected{
+	background: #88e3dc;
+}
+
+.single-select .hora-item:hover, .multi-select .hora-item:hover{
+	background: #e3e3e3;
+	cursor: pointer;
+}
+
+
+
+
+/*-----------------------------
+			MATERIAS
+-------------------------------*/
+
+.materias .materia-item{
+	background: #88e3dc;
+	margin-bottom: 5px;
+	padding: 10px 20px;
+	display: block;
+	font-weight: bold;
+	border: 1px solid #212121;
+}
+
+
+/*!*----Para seleccionar elemento*!*/
+.single-select .materia-item, .multi-select .materia-item{
+	cursor: pointer;
+	background: #fff;
+}
+
+.single-select .materia-item:hover, .multi-select .materia-item:hover{
+	background: #d5d5d5;
+}
+
+.single-select .materia-selected, .multi-select .materia-selected{
+	background: #85d5ce;
+}
+
+
+
+/*-----------------------------
+			ASESORIAS
+-------------------------------*/
+
+
+/*-------Encabezadoa*/
+.solicitar .asesorias__encabezados{
+	width: 100%;
+}
+
+.solicitar .asesorias__encabezados .encabezado{
+	background: #fff;
+	box-shadow: inset 0 0 0 3px  #212121;
+	color: #212121;
+	padding: 20px;
+	font-weight: bold;
+	font-size: 1.5em;
+	text-align: center;
+}
+
+.solicitar .asesorias__encabezados #encabezado__materia:after{
+	content: "Materia";
+}
+
+.solicitar .asesorias__encabezados #encabezado__fecha:after{
+	content: "Fecha";
+}
+
+.solicitar .asesorias__encabezados #encabezado__asesor:after{
+	content: "Asesor";
+}
+
+.solicitar .asesorias__encabezados .active{
+	background: #212121;
+	color: #fff;
+}
+
+.solicitar .asesorias__encabezados .done{
+	background: #d5d5d5;
+	color: #212121;
+}
+
+/*------Secciones*/
+.solicitar .asesorias__secciones{
+	height: auto;
+	width: 100%;
+	overflow: hidden;
+	/*background: tomato;*/
+	padding-bottom: 20px;
+}
+
+
+
+.solicitar .seccion .loader{
+    width: 100%;
+    text-align: center;
+    color: #bdbdbd;
+}
+
+
+/*--------Controles*/
+
+.solicitar .asesorias__controles{
+	padding: 10px 0;
+	/*background: #212121;*/
 }

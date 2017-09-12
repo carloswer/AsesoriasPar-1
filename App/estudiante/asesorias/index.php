@@ -1,7 +1,7 @@
 <?php
 
     require_once '../../config.php';
-    include_once '../sesiones.php';
+    include_once '../sesion.php';
 
     use Control\ControlAsesorias;
     use Control\ControlHorarios;
@@ -10,7 +10,7 @@
     $conAsesorias = new ControlAsesorias();
     $conHorarios = new ControlHorarios();
 
-    $cicloActual = $conHorarios->obtenerCicloActual();
+    $cicloActual = $conHorarios->getCurrentCycle();
 
     $arrayAsesorias = null;
 
@@ -43,7 +43,7 @@
         <?php if( Sesiones::isAlumno() ): ?>
             <div class="opciones">
                 <h3>
-                    <a href="solicitar-asesoria.php" class="btn btn-primary">
+                    <a href="solicitar.php" class="btn btn-primary">
                         <span class="glyphicon glyphicon-plus"></span> Solicitar Asesoria
                     </a>
                 </h3>
@@ -51,7 +51,11 @@
         <?php endif; ?>
 
         <?php if( $arrayAsesorias == null ): ?>
-            <h3>No cuenta con asesorias registradas</h3>
+            <?php if( Sesiones::isAlumno() ): ?>
+                <h3>No cuenta con asesorias registradas</h3
+            <?php else: ?>
+                <h3>No cuenta con solicitudes</h3
+            <?php endif; ?>
 
         <?php else: ?>
 

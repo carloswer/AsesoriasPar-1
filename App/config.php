@@ -52,7 +52,7 @@
     define('MEDIA_REF',     ASSETS_REF . "/media");
     define('JS_REF',        ASSETS_REF . "/js");
     define('CSS_REF',       ASSETS_REF . "/stylesheet");
-    define('LIBS_REF',      ASSETS_REF.  "/libs");
+    define('LIBS_REF',      ASSETS_REF.  "/vendor");
     //Directorios
     define('ADMIN_REF',    ROOT_REF.  "/administrador");
     define('EST_REF',      ROOT_REF.  "/estudiante");

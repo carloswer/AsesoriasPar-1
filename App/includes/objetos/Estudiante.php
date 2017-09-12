@@ -2,16 +2,16 @@
 
     class Estudiante {
 
-        private $idUsuario;
+        private $idUser;
         // ----
-        private $idEstudiante;
-        private $iditson;
-        private $nombre;
-        private $apellido;
-        private $telefono;
+        private $idStudent;
+        private $idItson;
+        private $firstName;
+        private $lastname;
+        private $phone;
         private $facebook;
         private $avatar;
-        private $carrera;
+        private $career;
 
 
         public function __construct(){}
@@ -19,19 +19,19 @@
         /**
          * @return mixed
          */
-        public function getIdUsuario()
+        public function getIdUser()
         {
-            return $this->idUsuario;
+            return $this->idUser;
         }
 
         /**
-         * @param mixed $idUsuario
+         * @param mixed $idUser
          *
          * @return self
          */
-        public function setIdUsuario($idUsuario)
+        public function setIdUser($idUser)
         {
-            $this->idUsuario = $idUsuario;
+            $this->idUser = $idUser;
 
             return $this;
         }
@@ -39,19 +39,19 @@
         /**
          * @return mixed
          */
-        public function getIdEstudiante()
+        public function getIdStudent()
         {
-            return $this->idEstudiante;
+            return $this->idStudent;
         }
 
         /**
-         * @param mixed $idEstudiante
+         * @param mixed $idStudent
          *
          * @return self
          */
-        public function setIdEstudiante($idEstudiante)
+        public function setIdStudent($idStudent)
         {
-            $this->idEstudiante = $idEstudiante;
+            $this->idStudent = $idStudent;
 
             return $this;
         }
@@ -59,19 +59,19 @@
         /**
          * @return mixed
          */
-        public function getIditson()
+        public function getIdItson()
         {
-            return $this->iditson;
+            return $this->idItson;
         }
 
         /**
-         * @param mixed $iditson
+         * @param mixed $idItson
          *
          * @return self
          */
-        public function setIditson($iditson)
+        public function setIdItson($idItson)
         {
-            $this->iditson = $iditson;
+            $this->idItson = $idItson;
 
             return $this;
         }
@@ -79,19 +79,19 @@
         /**
          * @return mixed
          */
-        public function getNombre()
+        public function getFirstName()
         {
-            return $this->nombre;
+            return $this->firstName;
         }
 
         /**
-         * @param mixed $nombre
+         * @param mixed $firstName
          *
          * @return self
          */
-        public function setNombre($nombre)
+        public function setFirstName($firstName)
         {
-            $this->nombre = $nombre;
+            $this->firstName = $firstName;
 
             return $this;
         }
@@ -99,19 +99,19 @@
         /**
          * @return mixed
          */
-        public function getApellido()
+        public function getLastname()
         {
-            return $this->apellido;
+            return $this->lastname;
         }
 
         /**
-         * @param mixed $apellido
+         * @param mixed $lastname
          *
          * @return self
          */
-        public function setApellido($apellido)
+        public function setLastname($lastname)
         {
-            $this->apellido = $apellido;
+            $this->lastname = $lastname;
 
             return $this;
         }
@@ -119,19 +119,19 @@
         /**
          * @return mixed
          */
-        public function getTelefono()
+        public function getPhone()
         {
-            return $this->telefono;
+            return $this->phone;
         }
 
         /**
-         * @param mixed $telefono
+         * @param mixed $phone
          *
          * @return self
          */
-        public function setTelefono($telefono)
+        public function setPhone($phone)
         {
-            $this->telefono = $telefono;
+            $this->phone = $phone;
 
             return $this;
         }
@@ -179,19 +179,19 @@
         /**
          * @return mixed
          */
-        public function getCarrera()
+        public function getCareer()
         {
-            return $this->carrera;
+            return $this->career;
         }
 
         /**
-         * @param mixed $carrera
+         * @param mixed $career
          *
          * @return self
          */
-        public function setCarrera($carrera)
+        public function setCareer($career)
         {
-            $this->carrera = $carrera;
+            $this->career = $career;
 
             return $this;
         }

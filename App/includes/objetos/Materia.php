@@ -4,12 +4,12 @@
     class Materia{
 
         private $id;
-        private $nombre;
-        private $abreviacion;
+        private $name;
+        private $shortName;
         private $descripcion;
-        private $plan;
-        private $semestre;
-        private $carrera;
+        private $schoolPlan;
+        private $semester;
+        private $career;
 
         public function __construct(){}
 
@@ -32,33 +32,33 @@
         /**
          * @return mixed
          */
-        public function getNombre()
+        public function getName()
         {
-            return $this->nombre;
+            return $this->name;
         }
 
         /**
-         * @param mixed $nombre
+         * @param mixed $name
          */
-        public function setNombre($nombre)
+        public function setName($name)
         {
-            $this->nombre = $nombre;
+            $this->name = $name;
         }
 
         /**
          * @return mixed
          */
-        public function getAbreviacion()
+        public function getShortName()
         {
-            return $this->abreviacion;
+            return $this->shortName;
         }
 
         /**
-         * @param mixed $abreviacion
+         * @param mixed $shortName
          */
-        public function setAbreviacion($abreviacion)
+        public function setShortName($shortName)
         {
-            $this->abreviacion = $abreviacion;
+            $this->shortName = $shortName;
         }
 
         /**
@@ -80,49 +80,49 @@
         /**
          * @return mixed
          */
-        public function getPlan()
+        public function getSchoolPlan()
         {
-            return $this->plan;
+            return $this->schoolPlan;
         }
 
         /**
-         * @param mixed $plan
+         * @param mixed $schoolPlan
          */
-        public function setPlan($plan)
+        public function setSchoolPlan($schoolPlan)
         {
-            $this->plan = $plan;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getSemestre()
-        {
-            return $this->semestre;
-        }
-
-        /**
-         * @param mixed $semestre
-         */
-        public function setSemestre($semestre)
-        {
-            $this->semestre = $semestre;
+            $this->schoolPlan = $schoolPlan;
         }
 
         /**
          * @return mixed
          */
-        public function getCarrera()
+        public function getSemester()
         {
-            return $this->carrera;
+            return $this->semester;
         }
 
         /**
-         * @param mixed $carrera
+         * @param mixed $semester
          */
-        public function setCarrera($carrera)
+        public function setSemester($semester)
         {
-            $this->carrera = $carrera;
+            $this->semester = $semester;
+        }
+
+        /**
+         * @return mixed
+         */
+        public function getCareer()
+        {
+            return $this->career;
+        }
+
+        /**
+         * @param mixed $career
+         */
+        public function setCareer($career)
+        {
+            $this->career = $career;
         }
 
 

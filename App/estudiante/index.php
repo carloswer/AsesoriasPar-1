@@ -1,6 +1,6 @@
 <?php 
 	require_once '../config.php';
-	include_once 'sesiones.php';
+	include_once 'sesion.php';
 	use Control\Sesiones;
  ?>
  

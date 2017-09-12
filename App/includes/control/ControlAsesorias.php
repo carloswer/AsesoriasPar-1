@@ -57,8 +57,12 @@ class ControlAsesorias
     }
 
 
-    public function obtenerMateriasConAsesores( $ciclo ){
-        return $this->conMaterias->obtenerMateriasConAsesores($ciclo);
+    public function obtenerMateriasConAsesores( $idCiclo ){
+        return $this->conMaterias->obtenerMateriasConAsesores( $idCiclo );
+    }
+
+    public function obtenerMateriasConAsesores_SinEstudianteX($idCiclo, $idEstudiante ){
+        return $this->conMaterias->obtenerMateriasConAsesores_SinEstudianteX( $idCiclo, $idEstudiante );
     }
 
 

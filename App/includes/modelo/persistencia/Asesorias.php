@@ -41,7 +41,7 @@ class Asesorias extends Persistencia{
                     LEFT JOIN estado_asesoria ea ON ea.FK_asesoria = a.PK_id
                     WHERE a.FK_asesor = ".$idEstudiante." AND h.FK_ciclo = ".$idCiclo;
         //Obteniendo resultados
-        return $this->ejecutarQuery($query);
+        return $this->executeQuery($query);
     }
 
 
@@ -56,7 +56,7 @@ class Asesorias extends Persistencia{
                     LEFT JOIN estado_asesoria ea ON ea.FK_asesoria = a.PK_id
                     WHERE a.FK_alumno = ".$idEstudiante." AND h.FK_ciclo = ".$idCiclo;
         //Obteniendo resultados
-        return $this->ejecutarQuery($query);
+        return $this->executeQuery($query);
     }
 
 

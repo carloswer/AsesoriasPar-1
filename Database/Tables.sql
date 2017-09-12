@@ -2,6 +2,8 @@
 -- USUARIO BASE DE DATOS
 -- ----------------
 
+-- http://dev.mysql.com/doc/refman/5.0/en/user-account-management.html
+
 DROP USER asesoriaspar_admin;
 
 GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP 
@@ -10,13 +12,22 @@ FLUSH PRIVILEGES;
 
 SHOW GRANTS FOR 'asesoriaspar_itson'@'localhost';
 
+
+-- -----------Actualizar privilegios
+-- REVOKE ALL PRIVILEGES ON asesoriaspar.* FROM 'asesoriaspar_itson'@'localhost';
+-- GRANT SELECT,INSERT,UPDATE,DELETE ON asesoriaspar.* TO 'asesoriaspar_itson'@'localhost';
+-- FLUSH PRIVILEGES;
+
+
 -- ----------------
 -- TABLAS
 -- ----------------
 
+-- show engines;
 DROP DATABASE asesoriaspar;
 CREATE DATABASE IF NOT EXISTS asesoriaspar CHARACTER SET utf8 COLLATE utf8_general_ci;
 use asesoriaspar;
+
 
 
 CREATE TABLE IF NOT EXISTS rol(
@@ -30,12 +41,12 @@ CREATE TABLE IF NOT EXISTS usuario(
 	nombre_usuario		VARCHAR(200) NOT NULL UNIQUE,
 	password 			VARCHAR(200) NOT NULL,
 	correo 				VARCHAR(200) NOT NULL UNIQUE,
-	estado_usuario 	TINYINT NOT NULL DEFAULT 1, -- COMMENT '0 = Inactivo (eliminado / cancelado)\n1 = Activo',
 	fecha_registro 	TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	estado				TINYINT NOT NULL DEFAULT 1, -- '0 = Inactivo, 1 = Activo,
 	
 	-- Foraneas
 	FK_rol BIGINT NOT NULL,
-	FOREIGN KEY (FK_rol) REFERENCES rol(PK_id) ON UPDATE CASCADE
+	FOREIGN KEY (FK_rol) REFERENCES rol(PK_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -65,10 +76,11 @@ CREATE TABLE IF NOT EXISTS materia(
 	semestre 		INT NOT NULL,
 	plan				VARCHAR(4) NOT NULL,
 	fecha_registro TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	estado			TINYINT NOT NULL DEFAULT 1, -- '0 = Inactivo, 1 = Activo,
 
 	-- Foranea	
 	FK_carrera BIGINT NOT NULL,
-	FOREIGN KEY (FK_carrera) REFERENCES carrera(PK_id) ON UPDATE CASCADE
+	FOREIGN KEY (FK_carrera) REFERENCES carrera(PK_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -79,16 +91,18 @@ CREATE TABLE IF NOT EXISTS estudiante(
 	nombre 				VARCHAR(100) NOT NULL,
 	apellido 			VARCHAR(100) NOT NULL,
 	telefono 			VARCHAR(45) NULL,
-	requiere_validar 	TINYINT NOT NULL DEFAULT 1 COMMENT '0 = no\n1 = si',
 	avatar 				VARCHAR(255) NULL,
 	facebook 			VARCHAR(45) NULL,
-	fecha_registro 		TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	fecha_registro 	TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	
+	requiere_validar 	TINYINT NOT NULL DEFAULT 1, -- '0 = No, 1 = SI
+	estado				TINYINT NOT NULL DEFAULT 1, -- '0 = Inactivo, 1 = Activo,
 	
 	-- llaves foraneas
 	FK_usuario BIGINT NOT NULL UNIQUE,
-	FOREIGN KEY (FK_usuario) REFERENCES usuario(PK_id) ON UPDATE CASCADE,
+	FOREIGN KEY (FK_usuario) REFERENCES usuario(PK_id) ON UPDATE CASCADE ON DELETE CASCADE,
 	FK_carrera BIGINT NOT NULL,
-	FOREIGN KEY (FK_carrera) REFERENCES carrera(PK_id) ON UPDATE CASCADE
+	FOREIGN KEY (FK_carrera) REFERENCES carrera(PK_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -104,25 +118,27 @@ CREATE TABLE IF NOT EXISTS dia_hora (
 CREATE TABLE IF NOT EXISTS horario(
 	PK_id 			BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	validado			TINYINT NOT NULL DEFAULT 0 COMMENT '0 = No, 1 = SI',
+	validado			TINYINT NOT NULL DEFAULT 0, -- '0 = No, 1 = SI',
+	estado			TINYINT NOT NULL DEFAULT 1, -- '0 = Inactivo, 1 = Activo,
 	
 	-- Foranea
 	FK_estudiante 	BIGINT NOT NULL,
-	FOREIGN KEY (FK_estudiante) REFERENCES estudiante(PK_id) ON UPDATE CASCADE,
+	FOREIGN KEY (FK_estudiante) REFERENCES estudiante(PK_id) ON UPDATE CASCADE ON DELETE CASCADE,
 	FK_ciclo 		INT NOT NULL,
-	FOREIGN KEY (FK_ciclo) REFERENCES ciclo(PK_id) ON UPDATE CASCADE
+	FOREIGN KEY (FK_ciclo) REFERENCES ciclo(PK_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
 
 CREATE TABLE IF NOT EXISTS horario_dia_hora(
-	PK_id 		BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	PK_id 	BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	estado	TINYINT NOT NULL DEFAULT 1, -- '0 = Inactivo, 1 = Activo,
 
 	-- Foreaneas
 	FK_dia_hora INT NOT NULL,
-	FOREIGN KEY (FK_dia_hora) REFERENCES dia_hora(PK_id) ON UPDATE CASCADE,
+	FOREIGN KEY (FK_dia_hora) REFERENCES dia_hora(PK_id) ON UPDATE CASCADE ON DELETE CASCADE,
 	FK_horario BIGINT NOT NULL,
-	FOREIGN KEY (FK_horario) REFERENCES horario(PK_id) ON UPDATE CASCADE
+	FOREIGN KEY (FK_horario) REFERENCES horario(PK_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -132,12 +148,13 @@ CREATE TABLE IF NOT EXISTS horario_materia(
 	PK_id				BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	aprobado 		TINYINT NOT NULL DEFAULT 0 COMMENT '0 = NO, 1 = SI',
 	fecha_registro TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	estado			TINYINT NOT NULL DEFAULT 1, -- '0 = Inactivo, 1 = Activo,
 	
 	-- Foranea	
 	FK_horario BIGINT NOT NULL,
-	FOREIGN KEY (FK_horario) REFERENCES horario(PK_id) ON UPDATE CASCADE,
+	FOREIGN KEY (FK_horario) REFERENCES horario(PK_id) ON UPDATE CASCADE ON DELETE CASCADE,
 	FK_materia BIGINT NOT NULL,
-	FOREIGN KEY (FK_materia) REFERENCES materia(PK_id) ON UPDATE CASCADE
+	FOREIGN KEY (FK_materia) REFERENCES materia(PK_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -155,11 +172,11 @@ CREATE TABLE IF NOT EXISTS asesoria(
 	
 	-- Foranea	
 	FK_alumno 	BIGINT NOT NULL, 
-	FOREIGN KEY (FK_alumno) REFERENCES estudiante(PK_id) ON UPDATE CASCADE,
+	FOREIGN KEY (FK_alumno) REFERENCES estudiante(PK_id) ON UPDATE CASCADE ON DELETE CASCADE,
 	FK_asesor 	BIGINT NOT NULL, 
-	FOREIGN KEY (FK_asesor) REFERENCES estudiante(PK_id) ON UPDATE CASCADE,
+	FOREIGN KEY (FK_asesor) REFERENCES estudiante(PK_id) ON UPDATE CASCADE ON DELETE CASCADE,
 	FK_materia 	BIGINT NOT NULL,
-	FOREIGN KEY (FK_materia) REFERENCES horario_materia(PK_id) ON UPDATE CASCADE
+	FOREIGN KEY (FK_materia) REFERENCES horario_materia(PK_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -178,5 +195,5 @@ CREATE TABLE IF NOT EXISTS estado_asesoria(
 	
 	-- Foraneo
 	FK_asesoria BIGINT NOT NULL,
-	FOREIGN KEY (FK_asesoria) REFERENCES asesoria(PK_id) ON UPDATE CASCADE
+	FOREIGN KEY (FK_asesoria) REFERENCES asesoria(PK_id) ON UPDATE CASCADE ON DELETE CASCADE
 );

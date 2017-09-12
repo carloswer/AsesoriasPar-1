@@ -2,6 +2,7 @@
 
 
 use Modelo\Persistencia\Horarios;
+use Negocio\Objetos\Horario;
 
 class ControlHorarios{
 
@@ -13,92 +14,165 @@ class ControlHorarios{
         $this->conMaterias = new ControlMaterias();
     }
 
-
-    //------------------ CALENDARIO
-    
-//    public function obtenerDiasHoras(){
-//        $result = $this->perHorarios->getDiasHoras();
-//        return $result;
-//    }
-
-//    public function obtenerDias(){
-//        $result = $this->perHorarios->getDias();
-//        return $result;
-//    }
-
-    public function obtenerDiasHoras_PorHora(){
-        $result = $this->perHorarios->getDiasHoras_PorHoras();
-        return $result;
-    }
-
-
-    public function obtenerCicloActual(){
-        $result = $this->perHorarios->getCicloActual();
+    public function getDays(){
+        $result = $this->perHorarios->getDays();
         if( !is_array($result) )
             return $result;
         else{
-            $ciclo = [
-                "id"    => $result[0]['id'],
-                'inicio'=> $result[0]['inicio'],
-                'fin'   => $result[0]['fin']
-            ];
-            return $ciclo;
+            $days = array();
+            foreach( $result as $day ){
+                $days[] = $day['dia'];
+            }
         }
     }
 
-    //------------------ HORARIO DEL ESTUDIANTE
 
-
-    public function obtenerIdHorario_Estudiante_CicloActual($idEstudiante, $idCiclo){
-        $result = $this->perHorarios->getHorarioId_CicloActual($idEstudiante, $idCiclo);
+    public function getHours_OrderByHour(){
+        $result = $this->perHorarios->getHoursAndDays_OrderByHours();
         if( !is_array($result) )
             return $result;
+        else{
+            $hourAndDays = array();
+            foreach( $result as $hd )
+                $hourAndDays[] = $this->makeArray_HoursAndDays($hd);
+            return $hourAndDays;
+        }
+    }
+
+
+    public function getCurrentCycle(){
+        $result = $this->perHorarios->getCurrentCycle();
+        if( !is_array($result) )
+            return $result;
+        else{
+            //Si array esta vacio
+            if( count($result) == 0 )
+                return null;
+            //Si tiene datos
+            else {
+                $ciclo = [
+                    "id" => $result[0]['id'],
+                    'start' => $result[0]['inicio'],
+                    'end' => $result[0]['fin']
+                ];
+                return $ciclo;
+            }
+        }
+    }
+
+
+
+    //------------------------
+    //  HORARIO DEL ESTUDIANTE
+    //------------------------
+
+
+    /**
+     * Obtiene los datos completos del horario de un estudiante
+     * @param int $id
+     * @return array|bool|Horario|null|string
+     */
+    public function getFullCurrentSchedule_ByStudentId(int $id ){
+        $result = $this->getCurrentSchedule_ByStudentId( $id );
+        if( !is_array($result) )
+            return $result;
+        else{
+            $subject = $this->getScheduleSubject_ByScheduleId( $result['id'] );
+            $hoursAndDays = $this->getScheduleHours_ByScheduleId( $result['id'] );
+            $schedule = new Horario($result['id'], $hoursAndDays, $subject, $result['status']);
+            return $schedule;
+        }
+    }
+
+    /**
+     * Obtenemos Horario de estudiante en ciclo actual
+     * @param int $id
+     * @return array|bool|null|string
+     */
+    public function getCurrentSchedule_ByStudentId(int $id){
+        $cycle = $this->getCurrentCycle();
+
+        //Si no es el resultado esperado
+        if( !is_array($cycle) )
+            return $cycle;
+        else{
+            $result = $this->perHorarios->getScheduleId_ByStudentId( $id, $cycle['id'] );
+            if( !is_array($result) )
+                return $result;
+            else {
+                return $this->makeArray_Schedule( $result[0] );
+            }
+        }
+    }
+
+    /**
+     * Obtenemos Materias de horario especifico
+     * @param int $scheduleid
+     * @return array|bool|string
+     */
+    public function getScheduleSubject_ByScheduleId(int $scheduleid ){
+        return $this->conMaterias->getSubjects_ByScheduleId( $scheduleid['id'] );
+    }
+
+    /**
+     * Obtenemos Horas de un horario especifico
+     * @param int $scheduleid
+     * @return array|bool|string
+     */
+    public function getScheduleHours_ByScheduleId(int $scheduleid ){
+        $result = $this->perHorarios->getScheduleHours_ByScheduleId( $scheduleid['id'] );
+        if( !is_array($result) )
+            return $result;
+        else{
+            $arrayHoras = array();
+            foreach( $result as $hd ){
+                $arrayHoras[] = $this->makeArray_HoursAndDays( $hd );
+            }
+            return $arrayHoras;
+        }
+    }
+
+    /**
+     * Comprueba que un horario exista mediante su ID
+     * @param int $scheduleId id del horario a verificar
+     * @return bool|string
+     * Regresa FALSE cuando no existe
+     * TRUE cuando existe
+     * regresa la cadena 'error' cuando Ocurrio un error
+     */
+    public function isScheduleExist( int $scheduleId ){
+        $result = $this->getCurrentSchedule_ByStudentId( $scheduleId );
+        //Error
+        if( $result == false ){
+            return 'error';
+        }
+        //No existe
+        else if( $result != null )
+            return true;
+        //Existe
         else
-            return $result[0]['id'];
+            return false;
     }
 
-    //TODO: deben juntarse las horas y las materias
-    public function obtenerHorario_Estudiante($idEstudiante, $idCiclo){
-        $result = $this->perHorarios->getHorario_Estudiante($idEstudiante, $idCiclo);
-        if( !is_array($result) )
-            return $result;
+
+
+    //------------------------ REGISTRO DE HORARIO
+
+    public function insertStudentSchedule( $idStudent, $hours, $subjects ){
+        $cycleRes = $this->getCurrentCycle();
+        if( is_array($cycleRes) )
+            return $cycleRes;
         else{
-               $horario = array();
-               foreach( $result as $dh ){
-                   $dia_hora = [
-                       'id'  => $dh['id'],
-                       'dia'  => $dh['dia'],
-                       'hora' => $dh['hora']
-                   ];
-                   $horario[] = $dia_hora;
-               }
-               return $horario;
+            $this->perHorarios->initTransaction();
+
+            //Iniciamos transaccion
+            Horarios::initTransaction();
+
+            //---------HORARIO
+            $result = $this->perHorarios->insertStudentSchedule( $idStudent, $hours, $subjects );
+
+            //---------HORARIO
         }
-    }
-
-    public function obtenerMaterias_Horario( $IdHorario ){
-        return $result = $this->conMaterias->obtenerMaterias_Horario( $IdHorario );
-    }
-
-
-
-    public function registrarHorario($idEstudiante, $idCiclo){
-        return $this->perHorarios->insertHorario($idEstudiante, $idCiclo);
-    }
-
-    public function registrarHorario_DiasHoras($idHorario, $hora){
-        return $this->perHorarios->insertHorario_DiasHoras($idHorario, $hora);
-    }
-
-
-
-    public function obtenerMaterias_Carrera( $carrera ){
-        return $this->conMaterias->obtenerMaterias_Carrera( $carrera['nombre'] );
-    }
-
-
-    public function registrarHorario_Materias($idHorario, $idMateria){
-        return $this->perHorarios->insertHorario_Materias($idHorario, $idMateria);
     }
 
 
@@ -107,32 +181,30 @@ class ControlHorarios{
     // FUNCIONES ADICIONALES
     //------------------------------
 
-    /**
-     * Método que verifica si la hora del día son parte del horario del asesor
-     */
-    public function isHoraHorario( $hora, $horario ){
-        foreach ($horario as $h) {
-            if( $h['id'] == $hora['id'] )
-                return true;
-        }
-        return false;
+    private function makeArray_Schedule($s){
+        $hoursAndDays = [
+            'id'            => $s['id'],
+            'date'          => $s['fecha'],
+            'validation'    => $s['validado'],
+            'status'        => $s['estudiante']
+        ];
+        return $hoursAndDays;
     }
 
-    public function getDiaHoraID( $horario, $dia, $hora ){
-        foreach ($horario as $h) {
-            if( ($h['hora'] == $hora['id']) && ($h['dia'] == $dia['id']) )
-                return $h['id'];
-        }
+
+
+    private function makeArray_HoursAndDays($hd){
+        $hoursAndDays = [
+            'id'  => $hd['id'],
+            'day'  => $hd['dia'],
+            'hour' => $hd['hora']
+        ];
+        return $hoursAndDays;
     }
 
-    public function separarDias($arrayDiasHoras ){
-        $arrayDias = array();
-        //Separando dias de resultado
-        foreach($arrayDiasHoras as $dias ){
-            if( !in_array($dias['dia'], $arrayDias) )
-                $arrayDias[] = $dias['dia'];
-        }
-        return $arrayDias;
-    }
+
+
+
+
 
 }

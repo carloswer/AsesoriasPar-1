@@ -12,35 +12,50 @@ class ControlEstudiantes{
         $this->perEstudiantes = new Estudiantes();
     }
 
-
-    public function obtenerEstudiante_UsuarioId( $id ){
-        $result = $this->perEstudiantes->getEstudiante_UsuarioId( $id );
-        if( !is_array($result) )
-            return $result;
+    public function getStudent_ById( $id ){
+        $result = $this->perEstudiantes->getStudent_ById( $id );
+        if( $result == false )
+            return 'error';
+        else if( $result == null )
+            return null;
         else{
             // Crea objeto
-            return $this->crearObjeto( $result[0] );
+            return $this->makeArray_Estudiante( $result[0] );
         }
     }
 
-    private function crearObjeto($est){
+
+    public function getStuden_ByUserId( $id ){
+        $result = $this->perEstudiantes->getStudent_ByUserId( $id );
+        if( $result == false )
+            return 'error';
+        else if( $result == null )
+            return null;
+        else{
+            // Crea objeto
+            return $this->makeArray_Estudiante( $result[0] );
+        }
+    }
+
+    private function makeArray_Estudiante($s){
         // Crea objeto
         $estudiante = new Estudiante();
         // Asigna datos
-        $estudiante->setIdUsuario( $est['usuario_id'] );
-        $estudiante->setIdEstudiante( $est['id'] );
-        $estudiante->setIdItson( $est['id_itson'] );
-        $estudiante->setNombre( $est['nombre'] );
-        $estudiante->setApellido( $est['apellido'] );
-        $estudiante->setTelefono( $est['telefono'] );
-        $estudiante->setFacebook( $est['facebook'] );
-        $estudiante->setAvatar( $est['avatar'] );
-        $estudiante->setCarrera( $est['carrera'] );
+        $estudiante->setIdUser( $s['usuario_id'] );
+        $estudiante->setIdStudent( $s['id'] );
+        $estudiante->setIdItson( $s['id_itson'] );
+        $estudiante->setFirstName( $s['nombre'] );
+        $estudiante->setLastname( $s['apellido'] );
+        $estudiante->setPhone( $s['telefono'] );
+        $estudiante->setFacebook( $s['facebook'] );
+        $estudiante->setAvatar( $s['avatar'] );
+        $estudiante->setCareer( $s['carrera'] );
         $carrera = [
-            'id' => $est['carrera_id'],
-            'nombre' => $est['carrera_nombre']
+            'id' => $s['carrera_id'],
+            'name' => $s['carrera_nombre'],
+            'short_name' => $s['carrera_nombre']
         ];
-        $estudiante->setCarrera( $carrera );
+        $estudiante->setCareer( $carrera );
         //Se regresa
         return $estudiante;
     }

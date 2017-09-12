@@ -1,112 +1,91 @@
 <?php namespace Negocio\Objetos;
 
     class Horario{
-        public $asesor;
-        public $listDias;
-//        new hora_dia( new Dia(), "08:00" )
-        public $listaMaterias;
-        public $aprobado;
-        public $requiereValidar;
+        
+        private $idSchedule;
+        private $hoursAndDays;
+        private $subjects;
+        private $scheduleStatus;
 
         /**
          * Horario constructor.
-         * @param $asesor
-         * @param $listDiasDisponibles
-         * @param $listaMaterias
-         * @param $aprobado
-         * @param $requiereValidar
+         * @param $idSchedule
+         * @param $daysAndHours
+         * @param $subjects
+         * @param $scheduleStatus
+         * @param $requireValidate
          */
-        public function __construct($asesor, Array $listDiasDisponibles, Array $listaMaterias, $aprobado, $requiereValidar)
-        {
-            $this->asesor = $asesor;
-            $this->listDias = $listDiasDisponibles;
-            $this->listaMaterias = $listaMaterias;
-            $this->aprobado = $aprobado;
-            $this->requiereValidar = $requiereValidar;
+        public function __construct($idSchedule, $daysAndHours, $subjects, $scheduleStatus){
+            $this->idSchedule = $idSchedule;
+            $this->hoursAndDays = $daysAndHours;
+            $this->subjects = $subjects;
+            $this->scheduleStatus = $scheduleStatus;
         }
 
         /**
          * @return mixed
          */
-        public function getAsesor()
+        public function getIdSchedule()
         {
-            return $this->asesor;
+            return $this->idSchedule;
         }
 
         /**
-         * @param mixed $usuario
+         * @param mixed $idSchedule
          */
-        public function setUsuario($asesor)
+        public function setIdSchedule($idSchedule)
         {
-            $this->asesor = $asesor;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getListDias()
-        {
-            return $this->listDias;
-        }
-
-        /**
-         * @param mixed $listDias
-         */
-        public function setListDias($listDias)
-        {
-            $this->listDias = $listDias;
+            $this->idSchedule = $idSchedule;
         }
 
         /**
          * @return mixed
          */
-        public function getListaMaterias()
+        public function getHoursAndDays()
         {
-            return $this->listaMaterias;
+            return $this->hoursAndDays;
         }
 
         /**
-         * @param mixed $listaMaterias
+         * @param mixed $hoursAndDays
          */
-        public function setListaMaterias($listaMaterias)
+        public function setHoursAndDays($hoursAndDays)
         {
-            $this->listaMaterias = $listaMaterias;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getAprobado()
-        {
-            return $this->aprobado;
-        }
-
-        /**
-         * @param mixed $aprobado
-         */
-        public function setAprobado($aprobado)
-        {
-            $this->aprobado = $aprobado;
+            $this->hoursAndDays = $hoursAndDays;
         }
 
         /**
          * @return mixed
          */
-        public function getRequiereValidar()
+        public function getSubjects()
         {
-            return $this->requiereValidar;
+            return $this->subjects;
         }
 
         /**
-         * @param mixed $requiereValidar
+         * @param mixed $subjects
          */
-        public function setRequiereValidar($requiereValidar)
+        public function setSubjects($subjects)
         {
-            $this->requiereValidar = $requiereValidar;
+            $this->subjects = $subjects;
         }
 
-        function toString(){
-            return $this->asesor.", ".$this->listDias.", ".$this->listaMaterias.", ".$this->aprobado.", ".$this->requiereValidar;
+        /**
+         * @return mixed
+         */
+        public function getScheduleStatus()
+        {
+            return $this->scheduleStatus;
         }
+
+        /**
+         * @param mixed $scheduleStatus
+         */
+        public function setScheduleStatus($scheduleStatus)
+        {
+            $this->scheduleStatus = $scheduleStatus;
+        }
+
+
 
     }
