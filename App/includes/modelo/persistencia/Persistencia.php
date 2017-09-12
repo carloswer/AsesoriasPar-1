@@ -60,8 +60,10 @@
             $response = null;
 
             //------------------------- ERRROR
+            //TODO: agregar menasje de error
             if( $result === false )
                 $response = false;
+
             //------------------------- TRUE
             //ejecucion correcta (INSERT, UPDATE o DELETE)
             else if( $result === true )
@@ -77,7 +79,7 @@
                     $datos[] = $dato;
                 }
                 //--------------- NULL (ARRAY VACIO)
-                if( count($result) == 0 )
+                if( empty($datos) )
                     $response = null;
                 else {
                     //Si hay datos, regresa el array

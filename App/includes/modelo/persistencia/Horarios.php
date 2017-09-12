@@ -43,15 +43,15 @@
         // HORARIO DE ASESOR
         //------------
 
-        public function getScheduleId_ByStudentId(int $idEstudiante, int $idCiclo){
+        public function getScheduleId_ByStudentId($idStudent, $idCycle){
             $query = "SELECT 
-                        PK_id as 'id'
+                        PK_id as 'id',
                         fecha_registro as 'fecha',
                         validado as 'validado',
                         estado as 'estado'
                       FROM horario h
-                      WHERE h.FK_ciclo = ".$idCiclo." AND h.FK_estudiante = ".$idEstudiante."
-                      ORDER BY PK_id DESC LIMIT 1";
+                      WHERE h.FK_ciclo = ".$idCycle." AND h.FK_estudiante = ".$idStudent."
+                      ORDER BY h.PK_id DESC LIMIT 1";
             //Obteniendo resultados
             return $this->executeQuery($query);
         }
@@ -69,38 +69,39 @@
             return $this->executeQuery($query);
         }
 
-        public function insertStudentSchedule($idStudent, $hours, $subjects){
-            $cycleResult = $this->getCurrentCycle();
-            if( is_array($cycleResult) )
-                return $cycleResult;
-            else{
 
-            }
+        public function insertSchedule($idStudent, $idCycle ){
+            $query = "INSERT INTO horario(FK_estudiante, FK_ciclo)
+                      VALUES (".$idStudent.", ".$idCycle.")";
+            //Obteniendo resultados
+            return $this->executeQuery($query);
         }
 
+        public function insertScheduleHours($idSchedule, $hours){
+            foreach( $hours as $hour ){
+                $query = "INSERT INTO horario_dia_hora(FK_horario, FK_dia_hora) VALUES
+                      (".$idSchedule.", ".$hour.")";
+                $result = $this->executeQuery($query);
+                //Si ocurrio un error, Pelos!
+                if( !$result )
+                    return false;
+            }
+            //Si salio bien
+            return true;
+        }
 
-//        //TODO: utilizar una transaccion
-//        public function insertHorario( $idEstudiante, $idCiclo ){
-//            $query = "INSERT INTO horario(FK_estudiante, FK_ciclo)
-//                      VALUES (".$idEstudiante.", ".$idCiclo.")";
-//            //Obteniendo resultados
-//            return $this->executeQuery($query);
-//        }
-//
-//        //TODO: utilizar una transaccion
-//        public function insertHorario_DiasHoras($IdHorario, $IdHora){
-//            $query = "INSERT INTO horario_dia_hora(FK_horario, FK_dia_hora) VALUES
-//                      (".$IdHorario.", ".$IdHora.")";
-//            return $this->executeQuery($query);
-//        }
-//
-//        //TODO: utilizar una transaccion
-//        //TODO: mover a materias
-//        public function insertHorario_Materias($idHorario, $idMateria){
-//            $query = "INSERT INTO horario_materia(FK_horario, FK_materia) VALUES
-//                      (".$idHorario.", ".$idMateria.");";
-//            return $this->executeQuery($query);
-//        }
+        public function insertScheduleSubjects( $idSchedule ,$subjects){
+            foreach( $subjects as $sub ){
+                $query = "INSERT INTO horario_materia(FK_horario, FK_materia) VALUES
+                        (".$idSchedule.", ".$sub.");";
+                $result = $this->executeQuery($query);
+                //Si ocurrio un error, Pelos!
+                if( !$result )
+                    return false;
+            }
+            //Si salio bien
+            return true;
+        }
 
 
 

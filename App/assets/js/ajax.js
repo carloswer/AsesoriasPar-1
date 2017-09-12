@@ -81,18 +81,18 @@ function ajaxRegisterSchedule(student, schedule, subjects){
         };
 
     //Transforma a String
-    var stringJSON = JSON.stringify( JSONschedule );
+    var scheduleJSON = JSON.stringify( JSONschedule );
+    console.log( scheduleJSON );
+
 
     $.ajax({
         url: 'ajax/registrar.php',
         type: 'post',
         //Tipo de dato que regresa
         dataType: 'json',
-        data: {json_schedule: stringJSON},
+        data: {json_schedule: scheduleJSON},
         cache:false,
         beforeSend: function(){
-            //     overlay.children('.texto').html("Registrando horario");
-            //     overlay.css('display', 'block');
             $('#horario__registro-status').html("Cargando...");
         }
     })
@@ -102,15 +102,12 @@ function ajaxRegisterSchedule(student, schedule, subjects){
 
 
             if( response.result === true ){
-                $('#horario__registro-status').html("Registrado con éxito");
-                //Redirecciona después de registrar (un segundo de espera)
-                setTimeout(function(){ location.href = "index.php"; }, 1000);
-            }
-            else if( response.result === "null" ){
                 $('#horario__registro-status').html(response.message);
+                //Redirecciona después de registrar (un segundo de espera)
+                // setTimeout(function(){ location.href = "index.php"; }, 1000);
             }
-            else if( response.result === false ){
-                $('#horario__registro-status').html(response.result);
+            else if( response.result === 'null' ){
+                $('#horario__registro-status').html(response.message);
             }
             else if( response.result === 'error' ){
                 $('#horario__registro-status').html(response.result);
@@ -124,6 +121,7 @@ function ajaxRegisterSchedule(student, schedule, subjects){
     .fail(function(){
         //TODO: crear un alert especial (tipo twitter)
         alert("ocurrio un error en la conexion");
+        $('#horario__registro-status').html("Error");
     })
     .always( function(response) {
         console.log(  response );

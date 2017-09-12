@@ -97,8 +97,9 @@ class ControlHorarios{
             return $cycle;
         else{
             $result = $this->perHorarios->getScheduleId_ByStudentId( $id, $cycle['id'] );
-            if( !is_array($result) )
+            if( !is_array($result) ) {
                 return $result;
+            }
             else {
                 return $this->makeArray_Schedule( $result[0] );
             }
@@ -110,8 +111,8 @@ class ControlHorarios{
      * @param int $scheduleid
      * @return array|bool|string
      */
-    public function getScheduleSubject_ByScheduleId(int $scheduleid ){
-        return $this->conMaterias->getSubjects_ByScheduleId( $scheduleid['id'] );
+    public function getScheduleSubject_ByScheduleId( $scheduleid ){
+        return $this->conMaterias->getSubjects_ByScheduleId( $scheduleid );
     }
 
     /**
@@ -160,18 +161,62 @@ class ControlHorarios{
 
     public function insertStudentSchedule( $idStudent, $hours, $subjects ){
         $cycleRes = $this->getCurrentCycle();
-        if( is_array($cycleRes) )
+        if( !is_array($cycleRes) )
             return $cycleRes;
         else{
-            $this->perHorarios->initTransaction();
+//            $this->perHorarios->initTransaction();
 
             //Iniciamos transaccion
             Horarios::initTransaction();
 
             //---------HORARIO
-            $result = $this->perHorarios->insertStudentSchedule( $idStudent, $hours, $subjects );
+            $result = $this->perHorarios->insertSchedule( $idStudent, $cycleRes['id'] );
+            if( !$result ) {
+                Horarios::rollbackTransaction();
+                return $response = [
+                    'result' => 'error',
+                    'message' => "Ocurrio un error al registrar horario"
+                ];
 
-            //---------HORARIO
+            }
+
+
+            $result = $this->getCurrentSchedule_ByStudentId($idStudent);
+            if( !is_array($result) ){
+                Horarios::rollbackTransaction();
+                return $response = [
+                    'result' => 'error',
+                    'message' => "No se pudo obtener Horario registrado"
+                ];
+            }
+
+            $idSchedule = $result['id'];
+            //---------HORAS
+            $result = $this->perHorarios->insertScheduleHours( $idSchedule, $hours );
+            if( !$result ) {
+                Horarios::rollbackTransaction();
+                return $response = [
+                    'result' => 'error',
+                    'message' => "No se pudo registrar horas"
+                ];
+            }
+
+            //---------MATERIAS
+            $result = $this->perHorarios->insertScheduleSubjects( $idSchedule, $subjects );
+            if( !$result ) {
+                Horarios::rollbackTransaction();
+                return $response = [
+                    'result' => 'error',
+                    'message' => "No se pudo regitrar materias"
+                ];
+            }
+
+            //Si sale bien
+            Horarios::commitTransaction();
+            return $response = [
+                'result' => true,
+                'message' => "Horario registrado con exito"
+            ];
         }
     }
 
@@ -186,7 +231,7 @@ class ControlHorarios{
             'id'            => $s['id'],
             'date'          => $s['fecha'],
             'validation'    => $s['validado'],
-            'status'        => $s['estudiante']
+            'status'        => $s['estado']
         ];
         return $hoursAndDays;
     }
