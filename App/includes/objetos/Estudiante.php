@@ -1,9 +1,17 @@
 <?php namespace Objetos;
 
+    use Modelo\Persistencia\Usuarios;
+
     class Estudiante {
 
-        private $idUser;
-        // ----
+        /**
+         * @var Usuario
+         */
+        private $user;
+        /**
+         * @var Carrera|int
+         */
+        private $career;
         private $idStudent;
         private $idItson;
         private $firstName;
@@ -11,29 +19,41 @@
         private $phone;
         private $facebook;
         private $avatar;
-        private $career;
+
 
 
         public function __construct(){}
-        
+
         /**
-         * @return mixed
+         * @return Usuario
          */
-        public function getIdUser()
+        public function getUser(): Usuario
         {
-            return $this->idUser;
+            return $this->user;
         }
 
         /**
-         * @param mixed $idUser
-         *
-         * @return self
+         * @param Usuario $user
          */
-        public function setIdUser($idUser)
+        public function setUser(Usuario $user)
         {
-            $this->idUser = $idUser;
+            $this->user = $user;
+        }
 
-            return $this;
+        /**
+         * @return Carrera
+         */
+        public function getCareer(): Carrera
+        {
+            return $this->career;
+        }
+
+        /**
+         * @param Carrera $career
+         */
+        public function setCareer(Carrera $career)
+        {
+            $this->career = $career;
         }
 
         /**
@@ -46,14 +66,10 @@
 
         /**
          * @param mixed $idStudent
-         *
-         * @return self
          */
         public function setIdStudent($idStudent)
         {
             $this->idStudent = $idStudent;
-
-            return $this;
         }
 
         /**
@@ -66,14 +82,10 @@
 
         /**
          * @param mixed $idItson
-         *
-         * @return self
          */
         public function setIdItson($idItson)
         {
             $this->idItson = $idItson;
-
-            return $this;
         }
 
         /**
@@ -86,14 +98,10 @@
 
         /**
          * @param mixed $firstName
-         *
-         * @return self
          */
         public function setFirstName($firstName)
         {
             $this->firstName = $firstName;
-
-            return $this;
         }
 
         /**
@@ -106,14 +114,10 @@
 
         /**
          * @param mixed $lastname
-         *
-         * @return self
          */
         public function setLastname($lastname)
         {
             $this->lastname = $lastname;
-
-            return $this;
         }
 
         /**
@@ -126,14 +130,10 @@
 
         /**
          * @param mixed $phone
-         *
-         * @return self
          */
         public function setPhone($phone)
         {
             $this->phone = $phone;
-
-            return $this;
         }
 
         /**
@@ -146,14 +146,10 @@
 
         /**
          * @param mixed $facebook
-         *
-         * @return self
          */
         public function setFacebook($facebook)
         {
             $this->facebook = $facebook;
-
-            return $this;
         }
 
         /**
@@ -166,35 +162,13 @@
 
         /**
          * @param mixed $avatar
-         *
-         * @return self
          */
         public function setAvatar($avatar)
         {
             $this->avatar = $avatar;
-
-            return $this;
         }
 
-        /**
-         * @return mixed
-         */
-        public function getCareer()
-        {
-            return $this->career;
-        }
 
-        /**
-         * @param mixed $career
-         *
-         * @return self
-         */
-        public function setCareer($career)
-        {
-            $this->career = $career;
-
-            return $this;
-        }
 
 
     }

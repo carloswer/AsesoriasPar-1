@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca259af9-7426-4341-81c9-4bae2b3e9eba" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/assets/js/ajax.js" afterPath="$PROJECT_DIR$/App/assets/js/ajax.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/estudiante/horario/ajax/registrar.php" afterPath="$PROJECT_DIR$/App/estudiante/horario/ajax/registrar.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/estudiante/horario/index.php" afterPath="$PROJECT_DIR$/App/estudiante/horario/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/includes/control/ControlHorarios.php" afterPath="$PROJECT_DIR$/App/includes/control/ControlHorarios.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/includes/modelo/persistencia/Horarios.php" afterPath="$PROJECT_DIR$/App/includes/modelo/persistencia/Horarios.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/includes/control/ControlCarreras.php" afterPath="$PROJECT_DIR$/App/includes/control/ControlCarreras.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/includes/control/ControlEstudiantes.php" afterPath="$PROJECT_DIR$/App/includes/control/ControlEstudiantes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/includes/control/ControlUsuarios.php" afterPath="$PROJECT_DIR$/App/includes/control/ControlUsuarios.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/includes/modelo/database/MySQLConexion.php" afterPath="$PROJECT_DIR$/App/includes/modelo/database/MySQLConexion.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/includes/modelo/persistencia/Estudiantes.php" afterPath="$PROJECT_DIR$/App/includes/modelo/persistencia/Estudiantes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/includes/modelo/persistencia/Persistencia.php" afterPath="$PROJECT_DIR$/App/includes/modelo/persistencia/Persistencia.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Database/Tables.sql" afterPath="$PROJECT_DIR$/Database/Tables.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/includes/modelo/persistencia/Usuarios.php" afterPath="$PROJECT_DIR$/App/includes/modelo/persistencia/Usuarios.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/includes/objetos/Carrera.php" afterPath="$PROJECT_DIR$/App/includes/objetos/Carrera.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/includes/objetos/Estudiante.php" afterPath="$PROJECT_DIR$/App/includes/objetos/Estudiante.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,121 +38,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/App/estudiante/horario/index.php">
+      <file leaf-file-name="ControlUsuarios.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/App/includes/control/ControlUsuarios.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="64" column="46" lean-forward="true" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
+            <state relative-caret-position="100">
+              <caret line="62" column="34" lean-forward="true" selection-start-line="62" selection-start-column="34" selection-end-line="62" selection-end-column="34" />
               <folding>
-                <element signature="e#82#103#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="estilos.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/App/assets/stylesheet/estilos.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="86" column="1" lean-forward="true" selection-start-line="86" selection-start-column="1" selection-end-line="86" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="eventos.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/App/assets/js/eventos.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="112" column="27" lean-forward="false" selection-start-line="112" selection-start-column="27" selection-end-line="112" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ajax.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/App/assets/js/ajax.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="106" column="80" lean-forward="true" selection-start-line="106" selection-start-column="80" selection-end-line="106" selection-end-column="80" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Funciones.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/App/includes/control/Funciones.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="87" column="0" lean-forward="true" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="crear_horario.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/App/estudiante/horario/crear_horario.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="64" column="20" lean-forward="false" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="42" />
-              <folding>
-                <element signature="e#83#105#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="registrar.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/App/estudiante/horario/ajax/registrar.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="40" column="20" lean-forward="true" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
-              <folding>
-                <element signature="e#52#80#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ControlHorarios.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/App/includes/control/ControlHorarios.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="114" column="72" lean-forward="true" selection-start-line="114" selection-start-column="72" selection-end-line="114" selection-end-column="72" />
-              <folding>
-                <element signature="e#27#60#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Horarios.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/App/includes/modelo/persistencia/Horarios.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
-              <caret line="109" column="2" lean-forward="true" selection-start-line="109" selection-start-column="2" selection-end-line="109" selection-end-column="2" />
-              <folding>
-                <marker date="1505257595072" expanded="true" signature="260:293" ph="SELECT DISTI... dia_hora" />
-                <marker date="1505257595072" expanded="true" signature="469:696" ph="SELECT PK_id... dia_hora" />
-                <marker date="1505257595072" expanded="true" signature="860:1109" ph="SELECT PK_id... ciclo" />
-                <marker date="1505257595072" expanded="true" signature="1379:1501" ph="SELECT PK_id... horario" />
-                <marker date="1505257595072" expanded="true" signature="1379:1747" ph="SELECT PK_id... horario" />
-                <marker date="1505257595072" expanded="true" signature="1940:2325" ph="SELECT dh.PK... horario_dia_hora" />
-                <marker date="1505257595072" expanded="true" signature="2509:2613" ph="INSERT INTO horario... " />
-                <marker date="1505257595072" expanded="true" signature="2843:2954" ph="INSERT INTO horario_dia_hora... " />
-                <marker date="1505257595072" expanded="true" signature="3342:3452" ph="INSERT INTO horario_materia... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Persistencia.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/App/includes/modelo/persistencia/Persistencia.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="82" column="37" lean-forward="false" selection-start-line="82" selection-start-column="37" selection-end-line="82" selection-end-column="37" />
-              <folding>
-                <element signature="e#43#77#0#PHP" expanded="true" />
+                <element signature="e#26#59#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -165,9 +61,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ORDERY BY</find>
-      <find>sepa</find>
-      <find>var</find>
       <find>['dia']</find>
       <find>data-hora</find>
       <find>sched</find>
@@ -195,6 +88,9 @@
       <find>newCon</find>
       <find>init</find>
       <find>btn-re</find>
+      <find>public</find>
+      <find>protected static function</find>
+      <find>getEr</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;</replace>
@@ -202,7 +98,6 @@
       <replace>ejecutarQuery</replace>
       <replace>define</replace>
       <replace>.horario-contenedor</replace>
-      <replace>protected</replace>
       <replace>private</replace>
       <replace>['day']</replace>
       <replace>data-hour</replace>
@@ -213,6 +108,8 @@
       <replace>$con</replace>
       <replace>::$con</replace>
       <replace>::$transactionON</replace>
+      <replace>protected</replace>
+      <replace>public static function</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -221,8 +118,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../practicas/php/fechas con carbon/prueba.php" />
-        <option value="$PROJECT_DIR$/../prueba-cron/Conexion.php" />
         <option value="$PROJECT_DIR$/../prueba-cron/index.php" />
         <option value="$PROJECT_DIR$/404.php" />
         <option value="$PROJECT_DIR$/App/.htaccess" />
@@ -244,34 +139,36 @@
         <option value="$PROJECT_DIR$/App/peticion.php" />
         <option value="$PROJECT_DIR$/App/logout.php" />
         <option value="$PROJECT_DIR$/App/includes/objetos/Usuario.php" />
-        <option value="$PROJECT_DIR$/App/includes/objetos/Estudiante.php" />
         <option value="$PROJECT_DIR$/App/estudiante/sesiones.php" />
         <option value="$PROJECT_DIR$/App/estudiante/acceso.php" />
         <option value="$PROJECT_DIR$/App/includes/objetos/Horario.php" />
-        <option value="$PROJECT_DIR$/App/includes/modelo/persistencia/Usuarios.php" />
         <option value="$PROJECT_DIR$/App/estudiante/sesion.php" />
         <option value="$PROJECT_DIR$/App/includes/control/Sesiones.php" />
-        <option value="$PROJECT_DIR$/App/includes/modelo/persistencia/Estudiantes.php" />
         <option value="$PROJECT_DIR$/App/includes/modelo/persistencia/Materias.php" />
         <option value="$PROJECT_DIR$/App/includes/control/ControlMaterias.php" />
         <option value="$PROJECT_DIR$/App/includes/objetos/Materia.php" />
-        <option value="$PROJECT_DIR$/App/includes/control/ControlEstudiantes.php" />
-        <option value="$PROJECT_DIR$/App/includes/objetos/Carrera.php" />
-        <option value="$PROJECT_DIR$/App/includes/control/ControlCarreras.php" />
         <option value="$PROJECT_DIR$/App/includes/template/estudiante-menu.php" />
         <option value="$PROJECT_DIR$/App/login.php" />
         <option value="$PROJECT_DIR$/App/assets/js/eventos.js" />
         <option value="$PROJECT_DIR$/App/ajax/auth.php" />
-        <option value="$PROJECT_DIR$/App/includes/control/ControlUsuarios.php" />
         <option value="$PROJECT_DIR$/App/includes/control/Funciones.php" />
         <option value="$PROJECT_DIR$/App/assets/stylesheet/estilos.css" />
         <option value="$PROJECT_DIR$/App/estudiante/horario/crear_horario.php" />
         <option value="$PROJECT_DIR$/App/assets/js/ajax.js" />
-        <option value="$PROJECT_DIR$/App/estudiante/horario/ajax/registrar.php" />
         <option value="$PROJECT_DIR$/App/includes/modelo/persistencia/Horarios.php" />
-        <option value="$PROJECT_DIR$/App/includes/modelo/persistencia/Persistencia.php" />
         <option value="$PROJECT_DIR$/App/includes/control/ControlHorarios.php" />
         <option value="$PROJECT_DIR$/App/estudiante/horario/index.php" />
+        <option value="$PROJECT_DIR$/App/includes/modelo/database/MySQLConexion.php" />
+        <option value="$PROJECT_DIR$/App/includes/modelo/persistencia/Persistencia.php" />
+        <option value="$PROJECT_DIR$/App/includes/modelo/persistencia/Usuarios.php" />
+        <option value="$PROJECT_DIR$/App/includes/modelo/persistencia/Carreras.php" />
+        <option value="$PROJECT_DIR$/App/includes/modelo/persistencia/Estudiantes.php" />
+        <option value="$PROJECT_DIR$/App/includes/control/ControlEstudiantes.php" />
+        <option value="$PROJECT_DIR$/App/includes/objetos/Carrera.php" />
+        <option value="$PROJECT_DIR$/App/includes/control/ControlCarreras.php" />
+        <option value="$PROJECT_DIR$/App/estudiante/horario/ajax/registrar.php" />
+        <option value="$PROJECT_DIR$/App/includes/objetos/Estudiante.php" />
+        <option value="$PROJECT_DIR$/App/includes/control/ControlUsuarios.php" />
       </list>
     </option>
   </component>
@@ -443,6 +340,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -459,33 +357,6 @@
               <item name="AsesoriasPar" type="b2602c69:ProjectViewProjectNode" />
               <item name="AsesoriasPar" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="App" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="AsesoriasPar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AsesoriasPar" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="App" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="estudiante" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="AsesoriasPar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AsesoriasPar" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="App" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="estudiante" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="horario" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="AsesoriasPar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AsesoriasPar" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="App" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="estudiante" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="horario" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="ajax" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="AsesoriasPar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AsesoriasPar" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="App" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="includes" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -495,27 +366,11 @@
               <item name="includes" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="control" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
-            <path>
-              <item name="AsesoriasPar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AsesoriasPar" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="App" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="includes" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="modelo" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="AsesoriasPar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AsesoriasPar" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="App" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="includes" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="modelo" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="persistencia" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -715,12 +570,14 @@
       <workItem from="1505058491706" duration="24382000" />
       <workItem from="1505166848738" duration="9375000" />
       <workItem from="1505195156589" duration="13804000" />
-      <workItem from="1505247521956" duration="11348000" />
+      <workItem from="1505247521956" duration="13752000" />
+      <workItem from="1505364263015" duration="591000" />
+      <workItem from="1505419626019" duration="11066000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="411226000" />
+    <option name="totallyTimeSpent" value="425287000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -733,10 +590,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29502195" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24670571" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917318" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32761312" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -751,7 +608,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="149" y="75" width="1182" height="554" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -768,13 +624,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../practicas/php/fechas con carbon/prueba.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../prueba-cron/Conexion.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -843,7 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
           <caret line="64" column="57" lean-forward="false" selection-start-line="64" selection-start-column="57" selection-end-line="64" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -865,7 +713,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
           <caret line="2" column="30448" lean-forward="false" selection-start-line="2" selection-start-column="30448" selection-end-line="2" selection-end-column="30448" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -902,7 +749,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="5" column="30" lean-forward="false" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -910,14 +756,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/includes/modelo/database/MySQLConexion.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="62" column="32" lean-forward="false" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -937,46 +775,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/includes/objetos/Estudiante.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="23" lean-forward="false" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/App/includes/objetos/Horario.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
           <caret line="17" column="91" lean-forward="false" selection-start-line="17" selection-start-column="91" selection-end-line="17" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/includes/modelo/persistencia/Usuarios.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="52" column="16" lean-forward="false" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
-          <folding>
-            <marker date="1505180066125" expanded="true" signature="625:755" ph="SELECT u.PK_... usuario" />
-            <marker date="1505180066125" expanded="true" signature="625:766" ph="SELECT u.PK_... usuario" />
-            <marker date="1505180066125" expanded="true" signature="815:1013" ph="/** * Método... " />
-            <marker date="1505180066125" expanded="true" signature="1136:1329" ph="SELECT u.PK_... usuario" />
-            <marker date="1505180066125" expanded="true" signature="1564:1723" ph="SELECT u.PK_... usuario" />
-            <marker date="1505180066125" expanded="true" signature="1564:1724" ph="SELECT u.PK_... usuario" />
-            <marker date="1505180066125" expanded="true" signature="1564:1774" ph="SELECT u.PK_... usuario" />
-            <marker date="1505180066125" expanded="true" signature="1960:2050" ph="INSERT INTO usuario... " />
-            <marker date="1505180066125" expanded="true" signature="1960:2075" ph="INSERT INTO usuario... " />
-            <marker date="1505180066125" expanded="true" signature="1960:2097" ph="INSERT INTO usuario... " />
-            <marker date="1505180066125" expanded="true" signature="1960:2119" ph="INSERT INTO usuario... " />
-            <marker date="1505180066125" expanded="true" signature="1960:2120" ph="INSERT INTO usuario... " />
-            <marker date="1505180066125" expanded="true" signature="1960:2122" ph="INSERT INTO usuario... " />
-            <marker date="1505180066125" expanded="true" signature="2275:2336" ph="SELECT PK_id... usuario" />
-            <marker date="1505180066125" expanded="true" signature="2532:2634" ph="INSERT INTO estudiante... " />
-            <marker date="1505180066125" expanded="true" signature="2532:2664" ph="INSERT INTO estudiante... " />
-            <marker date="1505180066125" expanded="true" signature="2532:2687" ph="INSERT INTO estudiante... " />
-            <marker date="1505180066125" expanded="true" signature="2532:2761" ph="INSERT INTO estudiante... " />
-            <marker date="1505180066125" expanded="true" signature="2532:2822" ph="INSERT INTO estudiante... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -992,19 +794,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="353">
           <caret line="27" column="67" lean-forward="false" selection-start-line="27" selection-start-column="67" selection-end-line="27" selection-end-column="67" />
-          <folding>
-            <element signature="e#30#50#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/includes/modelo/persistencia/Estudiantes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-          <folding>
-            <marker date="1505231013489" expanded="true" signature="1143:1350" ph="SELECT e.PK_... estudiante" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1027,31 +816,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/includes/objetos/Carrera.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/includes/control/ControlCarreras.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="7" lean-forward="true" selection-start-line="13" selection-start-column="6" selection-end-line="16" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/includes/control/ControlEstudiantes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="40" column="22" lean-forward="true" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
-          <folding>
-            <element signature="e#26#62#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/App/includes/objetos/Materia.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -1063,7 +827,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="143" column="34" lean-forward="false" selection-start-line="143" selection-start-column="34" selection-end-line="143" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1078,7 +841,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
           <caret line="33" column="28" lean-forward="false" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1086,15 +848,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="533">
           <caret line="92" column="4" lean-forward="true" selection-start-line="92" selection-start-column="4" selection-end-line="92" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/includes/control/ControlUsuarios.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1102,32 +855,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
           <caret line="112" column="27" lean-forward="false" selection-start-line="112" selection-start-column="27" selection-end-line="112" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/includes/modelo/persistencia/Persistencia.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="82" column="37" lean-forward="false" selection-start-line="82" selection-start-column="37" selection-end-line="82" selection-end-column="37" />
-          <folding>
-            <element signature="e#43#77#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/App/assets/stylesheet/estilos.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="86" column="1" lean-forward="true" selection-start-line="86" selection-start-column="1" selection-end-line="86" selection-end-column="1" />
+        <state relative-caret-position="1720">
+          <caret line="86" column="1" lean-forward="false" selection-start-line="86" selection-start-column="1" selection-end-line="86" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/App/includes/modelo/persistencia/Horarios.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="109" column="2" lean-forward="true" selection-start-line="109" selection-start-column="2" selection-end-line="109" selection-end-column="2" />
+        <state relative-caret-position="2180">
+          <caret line="109" column="2" lean-forward="false" selection-start-line="109" selection-start-column="2" selection-end-line="109" selection-end-column="2" />
           <folding>
             <marker date="1505257595072" expanded="true" signature="260:293" ph="SELECT DISTI... dia_hora" />
             <marker date="1505257595072" expanded="true" signature="469:696" ph="SELECT PK_id... dia_hora" />
@@ -1144,56 +886,155 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/App/includes/control/ControlHorarios.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="114" column="72" lean-forward="true" selection-start-line="114" selection-start-column="72" selection-end-line="114" selection-end-column="72" />
+        <state relative-caret-position="2260">
+          <caret line="114" column="72" lean-forward="false" selection-start-line="114" selection-start-column="72" selection-end-line="114" selection-end-column="72" />
           <folding>
-            <element signature="e#27#60#0#PHP" expanded="true" />
+            <element signature="e#27#60#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/assets/js/ajax.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="106" column="80" lean-forward="true" selection-start-line="106" selection-start-column="80" selection-end-line="106" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/estudiante/horario/ajax/registrar.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="40" column="20" lean-forward="true" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
-          <folding>
-            <element signature="e#52#80#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/includes/control/Funciones.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="87" column="0" lean-forward="true" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/App/estudiante/horario/crear_horario.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
+        <state relative-caret-position="1200">
           <caret line="64" column="20" lean-forward="false" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="42" />
           <folding>
-            <element signature="e#83#105#0#PHP" expanded="true" />
+            <element signature="e#83#105#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/App/estudiante/horario/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="64" column="46" lean-forward="true" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
+        <state relative-caret-position="1240">
+          <caret line="64" column="46" lean-forward="false" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
           <folding>
-            <element signature="e#82#103#0#PHP" expanded="true" />
+            <element signature="e#82#103#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/assets/js/ajax.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1680">
+          <caret line="84" column="32" lean-forward="false" selection-start-line="84" selection-start-column="32" selection-end-line="84" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/includes/control/Funciones.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1740">
+          <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/includes/modelo/database/MySQLConexion.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="8" column="14" lean-forward="true" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/includes/modelo/persistencia/Usuarios.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <marker date="1505426817491" expanded="true" signature="2124:2203" ph="INSERT INTO usuario... " />
+            <marker date="1505426817491" expanded="true" signature="2124:2204" ph="INSERT INTO usuario... " />
+            <marker date="1505426817491" expanded="true" signature="2124:2228" ph="INSERT INTO usuario... " />
+            <marker date="1505426817491" expanded="true" signature="2124:2241" ph="INSERT INTO usuario... " />
+            <marker date="1505426817491" expanded="true" signature="2124:2261" ph="INSERT INTO usuario... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/includes/control/ControlEstudiantes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="83" column="24" lean-forward="true" selection-start-line="83" selection-start-column="24" selection-end-line="83" selection-end-column="24" />
+          <folding>
+            <element signature="e#26#59#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/estudiante/horario/ajax/registrar.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/includes/modelo/persistencia/Persistencia.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="53">
+          <caret line="35" column="38" lean-forward="true" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
+          <folding>
+            <element signature="e#43#77#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/includes/modelo/persistencia/Estudiantes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding>
+            <marker date="1505428503282" expanded="true" signature="1290:1497" ph="SELECT e.PK_... estudiante" />
+            <marker date="1505428503282" expanded="true" signature="1809:1995" ph="INSERT INTO estudiante... " />
+            <marker date="1505428503282" expanded="true" signature="1809:2079" ph="INSERT INTO estudiante... " />
+            <marker date="1505428503282" expanded="true" signature="1809:2203" ph="INSERT INTO estudiante... " />
+            <marker date="1505428503282" expanded="true" signature="1809:2238" ph="INSERT INTO usuario... " />
+            <marker date="1505428503282" expanded="true" signature="1809:2287" ph="INSERT INTO estudiante... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/includes/modelo/persistencia/Carreras.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="18" lean-forward="true" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/includes/objetos/Carrera.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/includes/objetos/Estudiante.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/includes/control/ControlCarreras.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="36" column="20" lean-forward="true" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+          <folding>
+            <element signature="e#26#59#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/includes/control/ControlUsuarios.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="62" column="34" lean-forward="true" selection-start-line="62" selection-start-column="34" selection-end-line="62" selection-end-column="34" />
+          <folding>
+            <element signature="e#26#59#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

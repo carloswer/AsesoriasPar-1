@@ -5,6 +5,7 @@
         private $id;
         private $name;
         private $shortName;
+        private $date;
 
         /**
          * Carrera constructor.
@@ -57,6 +58,22 @@
         public function setShortName($shortName)
         {
             $this->shortName = $shortName;
+        }
+
+        /**
+         * @return mixed
+         */
+        public function getDate()
+        {
+            return $this->date;
+        }
+
+        /**
+         * @param mixed $date
+         */
+        public function setDate($date)
+        {
+            $this->date = $date;
         }
 
 

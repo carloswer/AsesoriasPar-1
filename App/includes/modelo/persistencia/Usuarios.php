@@ -10,7 +10,6 @@ class Usuarios extends Persistencia{
 
     public function __construct(){}
 
-
     private $campos = "u.PK_id as 'id_usuario',
                         u.nombre_usuario as 'nombre_usuario',
                         u.correo as 'correo',
@@ -25,7 +24,7 @@ class Usuarios extends Persistencia{
         $query = "SELECT ".$this->campos."                    
                 FROM usuario u
                 INNER JOIN rol r ON r.PK_id = u.FK_rol";
-        return  $this->executeQuery($query);
+        return  self::executeQuery($query);
     }
 
 
@@ -35,53 +34,44 @@ class Usuarios extends Persistencia{
      * @param String $user Nombre de usuario
      * @param String $pass Contraseña
      */
-    public function getUser_ByAuth(String $user, String $pass){
-        $ePass = $this->encript($pass);
+    public function getUser_ByAuth($user, $pass){
+        $ePass = $this->encrypt($pass);
         $query = "SELECT ".$this->campos."
                 FROM usuario u
                 INNER JOIN rol r ON r.PK_id = u.FK_rol
                 WHERE u.nombre_usuario = '".$user."' AND u.password = '".$ePass."' ";
-        return $this->executeQuery($query);
+        return  self::executeQuery($query);
     }
 
     /**
      * Método que regresa un usuario en la coincidencia con el ID
      * @param int $id ID del usuario
      */
-    public function getUser_ById(int $id){
+    public function getUser_ById($id){
         $query = "SELECT 
                 ".$this->campos."
                 FROM usuario u
                 INNER JOIN rol r ON r.PK_id = u.FK_rol
                 WHERE u.PK_id = ".$id;
-        return  $this->executeQuery($query);
+        return  self::executeQuery($query);
     }
 
-
     /**
-     * @param array $datos
-     * @return array|bool
+     * @return array|bool|null
      */
-//    public function insertUserAndStudent(array $datos){
-//        //Registra usuario
-//        $query = "INSERT INTO usuario(nombre_usuario, password, correo, FK_rol)
-//                  VALUES('".$datos['usuario']."', '".$datos['pass']."', '".$datos['correo']."', 2)";
-//        $value = $this->executeQuery($query, Persistencia::$TRANSACTION_INIT);
-//
-//        //Obtiene ultimo usuario registrado
-//        $query = "SELECT PK_id as 'id' FROM usuario ORDER BY PK_id DESC LIMIT 1";
-//        $value = $this->executeQuery($query, Persistencia::$TRANSACTION_PROGRESS);
-//        $usuarioID = $value[0]['id'];
-//
-//        //Registra estudiante con usuaario
-//        $query = "INSERT INTO estudiante(id_itson, nombre, apellido, telefono, avatar, facebook, FK_usuario, FK_carrera)
-//                  VALUES ('".$datos['itson']."', '".$datos['nombre']."', '".$datos['apellido']."', '".$datos['telefono']."',
-//                  ".$usuarioID.", '".$datos['carrera']."')";
-//        $value = $this->executeQuery($query, Persistencia::$TRANSACTION_COMMIT);
-//
-//        return $value;
-//    }
+    public function getUser_Last(){
+        $query = "SELECT ".$this->campos." FROM usuario ORDER BY PK_id DESC LIMIT 1";
+        return  self::executeQuery($query);
+    }
 
+    //------------------ INSERTS
+
+    public function insertUser( $user ){
+        $passC = self::encrypt( $user['pass'] );
+        $query = "INSERT INTO usuario(nombre_usuario, password, correo)
+                  VALUES('".$user['username']."','".$passC."','".$user['email']."')";
+        return  self::executeQuery($query);
+    }
 
 
 }

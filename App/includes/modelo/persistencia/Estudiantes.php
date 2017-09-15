@@ -1,5 +1,7 @@
 <?php namespace Modelo\Persistencia;
 
+    use Objetos\Estudiante;
+
     class Estudiantes extends Persistencia{
 
         public function __construct(){}
@@ -13,8 +15,10 @@
                         e.facebook as 'facebook', 
                         e.avatar as 'avatar', 
                         e.requiere_validar as 'requiere_validar', 
-                        c.PK_id as 'carrera_id', 
-                        c.nombre as 'carrera_nombre',
+                        c.PK_id as 'career_id', 
+                        c.nombre as 'career_name',
+                        c.abreviacion as 'career_short_name', 
+                        c.fecha_registro as 'career_date',
                         e.FK_usuario as 'usuario_id'";
 
 
@@ -39,6 +43,24 @@
         }
 
 
+        //------------------REGISTROS
+
+
+        /**
+         * @param $student Estudiante
+         * @return array|bool|null
+         */
+        public function insertStuden( $student ){
+            $query = "INSERT INTO estudiante(id_itson, nombre, apellido, telefono, FK_usuario, FK_carrera)
+                  VALUES(
+                      '".$student->getIdItson()."',
+                      '".$student->getFirstName()."', 
+                      '".$student->getLastname()."', 
+                      '".$student->getPhone()."',  
+                      ".$student->getUser().", 
+                      ".$student->getCareer()->getId().")";
+            return  self::executeQuery($query);
+        }
 
 
     }

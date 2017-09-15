@@ -5,10 +5,13 @@ use mysqli;
 
     class MySQLConexion {
 
-        private $host  = "localhost";
-        private $user  = "asesoriaspar_itson";
-        private $pass  = "asesorias_pass";
-        private $db    = "asesoriaspar";
+
+        private $datos = [
+            'host' => "localhost",
+            'user' => 'asesoriaspar_itson',
+            'pass' => 'asesorias_pass',
+            'db'   => 'asesoriaspar'
+        ];
         private $_connection;
 
         /**
@@ -18,10 +21,10 @@ use mysqli;
 
             //Datos de conexion
             $this->_connection = new mysqli(
-                $this->host,
-                $this->user,
-                $this->pass,
-                $this->db
+                $this->datos['host'],
+                $this->datos['user'],
+                $this->datos['pass'],
+                $this->datos['db']
             );
 
              //Manejo de error
@@ -43,54 +46,51 @@ use mysqli;
          * de un SELECT, TRUE cuando es diferente de un SELECT exitoso y FALSE al ocurrir un error.
          */
         public function doQuery($query){
-            $result = $this->_connection->query($query);
-            return $result;
+            return $this->_connection->query($query);
         }
 
+        /**
+         * Regresa el ultimo error ocurrido
+         * @return string Mensaje del error
+         */
         public function getError(){
             return $this->_connection->error;
         }
 
+        /**
+         * Cierra la conexión
+         * @return bool FALSE en caso de error o fallo, TRUE exitoso
+         */
         public function closeConnection(){
+            return $this->_connection->close();
         }
 
 
         //----------TRANSACCIONES
+        /**
+         * Inicio de transaccion (evita el registro automatico de datos)
+         * @return bool FALSE en caso de error o fallo, TRUE exitoso
+         */
         public function iniTransaction(){
-            $this->_connection->autocommit( false );
+            return $this->_connection->autocommit( false );
         }
 
+        /**
+         * Commit de transaccion (Registro de datos)
+         * @return bool FALSE en caso de error o fallo, TRUE exitoso
+         */
         public function doCommit(){
-            try{
-                $this->_connection->commit();
-            }catch(Exception $ex){
-                //TODO: retornar valor para control
-                $this->doRollback();
-                echo 'algo fallo: ',  $ex->getMessage(), "\n";
-            }
+            return $this->_connection->commit();
         }
 
+        /**
+         * Retroceso en registro de datos (no registra)
+         * @return bool FALSE en caso de error o fallo, TRUE exitoso
+         */
         public function doRollback(){
-            $this->_connection->rollback();
+           return $this->_connection->rollback();
         }
 
-
-//        public function ejecutarTransaccion(array $queries){
-//            //para que el registro sea manual
-//            $this->_connection->autocommit( false );
-//            try{
-//                //Registros uno a uno
-//                foreach( $queries as $query ){
-//                    $this->_connection->query($query);
-//                }
-//                //Para registrar cambios
-//                $this->_connection->commit();
-//            }catch( Exception $ex ){
-//                $this->_connection->rollback();
-//                echo 'algo fallo: ',  $ex->getMessage(), "\n";
-//            }
-//           $this->_connection->query($query);
-//        }
 
 
 

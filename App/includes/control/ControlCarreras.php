@@ -1,19 +1,59 @@
 <?php namespace Control;
 
+use Modelo\Persistencia\Carreras;
 use Objetos\Carrera;
 
 class ControlCarreras{
 
-    private $perCarreras;
+    private $perCareers;
 
     public function __construct(){
-        $this->perCarreras = new Carreras();
+        $this->perCareers = new Carreras();
     }
 
 
-//    public function makeObject_career( $c ){
-//        $career = new Carrera();
-//        $career->setId( $c['_'] );
-//    }
+    /**
+     * @param $id
+     * @return null|string
+     */
+    public function getCareer_ById( $id ){
+        $result = $this->perCareers->getCareer_ById($id);
+        if( $result == false ){
+            return 'error';
+        }
+        else if( $result == null )
+            return null;
+        else
+            return self::makeObject_career($result[0]);
+    }
+
+    /**
+     * @param $id
+     * @return null|string
+     */
+    public function checkCareer_ById( $id ){
+        $result = $this->perCareers->getCareer_ById( $id );
+        if( $result == false ){
+            return 'error';
+        }
+        else if( $result == null )
+            return false;
+        else
+            return true;
+    }
+
+
+    /**
+     * @param $c array
+     * return Carrera
+     */
+    public static function makeObject_career( $c ){
+        $career = new Carrera();
+        $career->setId( $c['id'] );
+        $career->setName( $c['name'] );
+        $career->setShortName( $c['short_name'] );
+        $career->setDate( $c['date'] );
+        return $career;
+    }
 
 }
