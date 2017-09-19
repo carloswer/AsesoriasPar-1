@@ -14,7 +14,7 @@ class ControlCarreras{
 
     /**
      * @param $id
-     * @return null|string
+     * @return null|Carrera|string
      */
     public function getCareer_ById( $id ){
         $result = $this->perCareers->getCareer_ById($id);
@@ -29,9 +29,9 @@ class ControlCarreras{
 
     /**
      * @param $id
-     * @return null|string
+     * @return bool|string
      */
-    public function checkCareer_ById( $id ){
+    public function isCareerExist_ById($id ){
         $result = $this->perCareers->getCareer_ById( $id );
         if( $result == false ){
             return 'error';
@@ -40,6 +40,26 @@ class ControlCarreras{
             return false;
         else
             return true;
+    }
+
+    /**
+     * @return array|null|string
+     */
+    public function getCareers(){
+        $result = $this->perCareers->getCareers();
+        if( $result == false ){
+            return 'error';
+        }
+        else if( $result == null )
+            return null;
+        else{
+            $array = array();
+            foreach( $result as $career ){
+                $array[] = self::makeObject_career($career);
+            }
+            return $array;
+        }
+
     }
 
 
@@ -55,5 +75,6 @@ class ControlCarreras{
         $career->setDate( $c['date'] );
         return $career;
     }
+
 
 }

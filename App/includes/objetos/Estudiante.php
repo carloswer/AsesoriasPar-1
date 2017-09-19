@@ -4,13 +4,8 @@
 
     class Estudiante {
 
-        /**
-         * @var Usuario
-         */
+
         private $user;
-        /**
-         * @var Carrera|int
-         */
         private $career;
         private $idStudent;
         private $idItson;
@@ -25,25 +20,25 @@
         public function __construct(){}
 
         /**
-         * @return Usuario
+         * @return Usuario|int
          */
-        public function getUser(): Usuario
+        public function getUser()
         {
             return $this->user;
         }
 
         /**
-         * @param Usuario $user
+         * @param Usuario|int $user
          */
-        public function setUser(Usuario $user)
+        public function setUser($user)
         {
             $this->user = $user;
         }
 
         /**
-         * @return Carrera
+         * @return Carrera|int
          */
-        public function getCareer(): Carrera
+        public function getCareer()
         {
             return $this->career;
         }
@@ -51,7 +46,7 @@
         /**
          * @param Carrera $career
          */
-        public function setCareer(Carrera $career)
+        public function setCareer($career)
         {
             $this->career = $career;
         }

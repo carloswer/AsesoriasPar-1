@@ -160,17 +160,18 @@ class ControlHorarios{
     //------------------------ REGISTRO DE HORARIO
 
     public function insertStudentSchedule( $idStudent, $hours, $subjects ){
-        $cycleRes = $this->getCurrentCycle();
-        if( !is_array($cycleRes) )
-            return $cycleRes;
+        $result = $this->getCurrentCycle();
+        if( !is_array($result) )
+            return $result;
         else{
-//            $this->perHorarios->initTransaction();
-
             //Iniciamos transaccion
             Horarios::initTransaction();
 
+            //TODO: Verificar que no tenga un horario registrado (Por concurrencia, si se registra desde otro lado)
+
             //---------HORARIO
-            $result = $this->perHorarios->insertSchedule( $idStudent, $cycleRes['id'] );
+            $cycleid = $result['id'];
+            $result = $this->perHorarios->insertSchedule( $idStudent, $cycleid );
             if( !$result ) {
                 Horarios::rollbackTransaction();
                 return $response = [

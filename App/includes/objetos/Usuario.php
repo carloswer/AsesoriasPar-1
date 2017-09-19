@@ -24,14 +24,10 @@ class Usuario{
 
     /**
      * @param mixed $id
-     *
-     * @return self
      */
     public function setId($id)
     {
         $this->id = $id;
-
-        return $this;
     }
 
     /**
@@ -44,14 +40,10 @@ class Usuario{
 
     /**
      * @param mixed $username
-     *
-     * @return self
      */
     public function setUsername($username)
     {
         $this->username = $username;
-
-        return $this;
     }
 
     /**
@@ -64,14 +56,10 @@ class Usuario{
 
     /**
      * @param mixed $password
-     *
-     * @return self
      */
     public function setPassword($password)
     {
         $this->password = $password;
-
-        return $this;
     }
 
     /**
@@ -84,14 +72,10 @@ class Usuario{
 
     /**
      * @param mixed $email
-     *
-     * @return self
      */
     public function setEmail($email)
     {
         $this->email = $email;
-
-        return $this;
     }
 
     /**
@@ -104,14 +88,10 @@ class Usuario{
 
     /**
      * @param mixed $status
-     *
-     * @return self
      */
     public function setStatus($status)
     {
         $this->status = $status;
-
-        return $this;
     }
 
     /**
@@ -124,16 +104,11 @@ class Usuario{
 
     /**
      * @param mixed $RegisterDate
-     *
-     * @return self
      */
     public function setRegisterDate($RegisterDate)
     {
         $this->RegisterDate = $RegisterDate;
-
-        return $this;
     }
-    
 
     /**
      * @return mixed
@@ -145,13 +120,11 @@ class Usuario{
 
     /**
      * @param mixed $role
-     *
-     * @return self
      */
     public function setRole($role)
     {
         $this->role = $role;
-
-        return $this;
     }
+
+
 }

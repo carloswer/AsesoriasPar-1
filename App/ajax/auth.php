@@ -7,8 +7,15 @@
     use Control\Sesiones;
     use Control\Funciones;
 
-    if( !isset($_POST['user']) || !isset($_POST['pass']) )
-        exit();
+    //TODO: cambiar por JSON
+    if( !isset($_POST['user']) || !isset($_POST['pass']) ){
+        Funciones::makeJsonResponse(
+            "auth",
+            'error',
+            "No se envío la información esperada"
+        );
+        exit;
+    }
 
     //Se obtienen los datos de peticion
 	$username = $_POST['user'];

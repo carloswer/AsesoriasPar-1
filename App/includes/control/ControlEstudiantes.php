@@ -22,7 +22,7 @@ class ControlEstudiantes{
             return null;
         else{
             // Crea objeto
-            return self::makeArray_Estudiante( $result[0] );
+            return self::makeArray_Student( $result[0] );
         }
     }
 
@@ -35,9 +35,11 @@ class ControlEstudiantes{
             return null;
         else{
             // Crea objeto
-            return self::makeArray_Estudiante( $result[0] );
+            return self::makeArray_Student( $result[0] );
         }
     }
+
+
 
 
 
@@ -51,12 +53,8 @@ class ControlEstudiantes{
         $result = $this->perStudents->insertStuden( $student );
         if( $result == false )
             return 'error';
-        else if( $result == null )
-            return null;
-        else{
-            // Crea objeto
-            return self::makeArray_Estudiante( $result[0] );
-        }
+        else
+            return true;
     }
 
 
@@ -67,19 +65,19 @@ class ControlEstudiantes{
      * @param $s array
      * @return Estudiante
      */
-    public static function makeArray_Estudiante($s){
+    public static function makeArray_Student($s){
         // Crea objeto
         $student = new Estudiante();
         // Asigna datos
-        $student->setUser( $s['usuario_id'] );
-        $student->setIdStudent( $s['id'] );
+        //TODO: agregar usuario completo
+        $student->setUser( $s['user_id'] );
+        $student->setIdStudent( $s['id_student'] );
         $student->setIdItson( $s['id_itson'] );
-        $student->setFirstName( $s['nombre'] );
-        $student->setLastname( $s['apellido'] );
-        $student->setPhone( $s['telefono'] );
+        $student->setFirstName( $s['first_name'] );
+        $student->setLastname( $s['last_name'] );
+        $student->setPhone( $s['phone'] );
         $student->setFacebook( $s['facebook'] );
         $student->setAvatar( $s['avatar'] );
-        $student->setCareer( $s['carrera'] );
 
         $careerArray = [
             'id' => $s['career_id'],
@@ -88,7 +86,7 @@ class ControlEstudiantes{
             'date' => $s['career_date']
 
         ];
-        $student->setCareer( Carreras::makeObject_career($careerArray) );
+        $student->setCareer( ControlCarreras::makeObject_career($careerArray) );
         //Se regresa
         return $student;
     }

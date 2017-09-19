@@ -37,12 +37,18 @@
 
             //Ejecución del query
             $result = self::$mysql->doQuery($query);
+            $response = null;
+
 
             // FALSE en caso de fallo,
+            if( $result === false )
+                $response = false;
             // TRUE en caso de exito (INSERT, UPDATE o DELETE)
+            else if( $result === true )
+                $response = true;
             // Array en caso de resultados obtenidos (SELECT) (No FALSE ni TRUE)
             // Null en caso de no haber resultados
-            if( $result != true && $result !=  true ){
+            else{
                 $datos = array();
                 //Obtiene cada uno de los datos y los almacena en array
                 while( $dato = mysqli_fetch_assoc( $result ) ){
@@ -50,10 +56,10 @@
                 }
                 //Array vacio
                 if( empty($datos) )
-                    $result = null;
+                    $response = null;
                 //Si hay datos, regresa el array
                 else {
-                    $result = $datos;
+                    $response = $datos;
                 }
             }
 
@@ -65,7 +71,7 @@
             }
 
             //Regresa resultado
-            return $result;
+            return $response;
 
         }
 
@@ -98,34 +104,59 @@
         //  TRANSACCIONES
         //----------------
 
-        public static function initTransaction(){
-            if( !self::isConnectionON() )
-                self::newConnection();
 
-            self::$transactionON = self::$TRANSACTION_INIT;
+        /**
+         * @return bool
+         */
+        public static function initTransaction(){
+            //Si conexion no esta activa
+            if( !self::isConnectionON() ) {
+                //Inicia nueva conexion
+                self::newConnection();
+            }
+
+            //Inicia transaccion (correcto)
+            if( self::$mysql->iniTransaction() ){
+                self::$transactionON = self::$TRANSACTION_INIT;
+                return true;
+            }
+            else
+                return false;
+
         }
 
 
         public static function commitTransaction(){
-
             if( self::isTransactionON() ){
                 //Se realiza el commit
-                self::$mysql->doCommit();
-                //Se cambian los estados
-                self::$transactionON = self::$TRANSACTION_NONE;
-                self::closeConnection();
+                if( self::$mysql->doCommit() ){
+                    //Se cambian los estados
+                    self::$transactionON = self::$TRANSACTION_NONE;
+                    self::closeConnection();
+                    return true;
+                }
+                else
+                    return false;
             }
+            return false;
         }
 
         public static function rollbackTransaction(){
 
             if( self::$transactionON ){
                 //Se realiza el rollback
-                self::$mysql->doRollback();
-                //Se cambian los estados
-                self::$transactionON = self::$TRANSACTION_NONE;
-                self::closeConnection();
+                if( self::$mysql->doRollback() ){
+                    //Se cambian los estados
+                    self::$transactionON = self::$TRANSACTION_NONE;
+                    self::closeConnection();
+                    return true;
+                }
+                else
+                    return false;
             }
+            else
+                return false;
+
         }
 
         public static function isTransactionON(){

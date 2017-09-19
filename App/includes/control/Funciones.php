@@ -9,15 +9,15 @@ class Funciones
      * @param String $type Valor que identifica al objeto JSON
      * @param $result
      * @param String $message descripcion del mensaje
-     * @param $value null Valor Omitido por defecto, se le puede asignar cualquier valor
+     * @param $extra null Valor Omitido por defecto, se le puede asignar cualquier valor
      * @return string regresa un JSON como String
      */
-    public static function makeJsonResponse(String $type, $result, String $message, $value = null ){
+    public static function makeJsonResponse(String $type, $result, String $message, $extra = null ){
         $json = [
             'type'      => $type,
             'result'    =>  $result,
             'message'   => $message,
-            'value'     => $value
+            'extra'     => $extra
         ];
         return json_encode($json);
     }

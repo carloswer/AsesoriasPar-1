@@ -67,6 +67,61 @@ function ajaxAuth(data){
 
 
 // ---------------
+// REGISTRO
+// ----------------
+
+
+function signupAjax( dataJSON ){
+    var dataJSONString = JSON.stringify( dataJSON );
+
+    $.ajax({
+        url: 'ajax/register.php',
+        type: 'post',
+        //Tipo de dato que regresa
+        dataType: 'json',
+        data: {user_register: dataJSONString},
+        cache:false,
+        beforeSend: function(){
+            //$('#signup-spin').show();
+            $('#singup-result').html( "cargando..." );
+        }
+    })
+    .done(function(response){
+
+        //Si es del tipo
+        if( response.type === "signup" ){
+
+            //Si no se registro por algo
+            if( response.result === false ){
+                //TODO: poner mensaje amarilllo
+                $('#singup-result').html( response.message );
+            }
+            //Si ocurre un error
+            else if( response.result === 'error' ){
+                //TODO: poner mensaje rojo
+                $('#singup-result').html( response.message );
+            }
+            else{
+                //TODO: poner mensaje verde
+                $('#singup-result').html( "Se registro con éxito" );
+            }
+
+        }
+
+    })
+    .fail(function(){
+        $('#singup-result').html( "Ocurrio un error" );
+    })
+    .always( function(response) {
+        // $('#signup-spin').hide();
+        console.log(  response );
+    });
+}
+
+
+
+
+// ---------------
 // Horario
 // ----------------
 
@@ -86,7 +141,7 @@ function ajaxRegisterSchedule(student, schedule, subjects){
 
 
     $.ajax({
-        url: 'ajax/registrar.php',
+        url: 'ajax/register.php',
         type: 'post',
         //Tipo de dato que regresa
         dataType: 'json',

@@ -20,6 +20,60 @@ $(document).ready(function(){
     });
 
 
+    $('#singup-form').submit(function(e){
+        //Evitar el submit normal (que se recargue)
+        e.preventDefault();
+
+        //Para continuar
+        var go = true;
+
+        //Datos personales
+        var first_name = $('#first_name').val();
+        var last_name = $('#last_name').val();
+        var phone = $('#phone').val();
+        //Datos de usuario
+        var username = $('#username').val();
+        var email = $('#email').val();
+        var pass1 = $('#pass').val();
+        var pass2 = $('#pass2').val();
+        //Datos escolares
+        var id_itson = $('#id_itson').val();
+        var career = $('#career').val();
+
+        if( pass1 !== pass2 )
+            go = false;
+
+        //Si datos correctos
+        if( go ){
+            var userJSON =
+                {
+                    "username": username,
+                    "email": email,
+                    "password": pass1
+                };
+
+            var studentJSON =
+                {
+                    "first_name": first_name,
+                    "last_name": last_name,
+                    "id_itson": id_itson,
+                    "career": career
+                };
+
+            var JSONData =
+                {
+                    "user": userJSON,
+                    "student": studentJSON
+                };
+
+            signupAjax( JSONData );
+        }
+        else{
+            alert("Las contraseñas no coinciden");
+        }
+
+
+    });
 
 
 

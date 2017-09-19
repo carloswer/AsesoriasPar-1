@@ -1,8 +1,9 @@
 <?php namespace Modelo\Persistencia;
 
-// use Modelo\Database\Conexion;
+ use Control\Funciones;
+ use Objetos\Usuario;
 
-/**
+ /**
  * Class Usuarios
  * @package Modelo\Persistencia
  */
@@ -10,20 +11,20 @@ class Usuarios extends Persistencia{
 
     public function __construct(){}
 
-    private $campos = "u.PK_id as 'id_usuario',
-                        u.nombre_usuario as 'nombre_usuario',
-                        u.correo as 'correo',
-                        u.fecha_registro as 'fecha',
-                        u.fecha_registro as 'estado',
-                        r.nombre as 'rol'";
+    private $SELECT = "SELECT u.PK_id as 'user_id',
+                        u.nombre_usuario as 'username',
+                        u.correo as 'email',
+                        u.fecha_registro as 'date',
+                        u.fecha_registro as 'status',
+                        r.nombre as 'role'
+                    FROM usuario u
+                    INNER JOIN rol r ON r.PK_id = u.FK_rol";
 
     /**
      * Método que regresa todos los usuarios
      */
     public function getUsers(){
-        $query = "SELECT ".$this->campos."                    
-                FROM usuario u
-                INNER JOIN rol r ON r.PK_id = u.FK_rol";
+        $query = $this->SELECT;
         return  self::executeQuery($query);
     }
 
@@ -36,10 +37,9 @@ class Usuarios extends Persistencia{
      */
     public function getUser_ByAuth($user, $pass){
         $ePass = $this->encrypt($pass);
-        $query = "SELECT ".$this->campos."
-                FROM usuario u
-                INNER JOIN rol r ON r.PK_id = u.FK_rol
-                WHERE u.nombre_usuario = '".$user."' AND u.password = '".$ePass."' ";
+        $query = $this->SELECT."
+                WHERE (u.nombre_usuario = '".$user."' OR u.correo = '".$user."') 
+                AND u.password = '".$ePass."' ";
         return  self::executeQuery($query);
     }
 
@@ -48,10 +48,7 @@ class Usuarios extends Persistencia{
      * @param int $id ID del usuario
      */
     public function getUser_ById($id){
-        $query = "SELECT 
-                ".$this->campos."
-                FROM usuario u
-                INNER JOIN rol r ON r.PK_id = u.FK_rol
+        $query = $this->SELECT."
                 WHERE u.PK_id = ".$id;
         return  self::executeQuery($query);
     }
@@ -60,18 +57,44 @@ class Usuarios extends Persistencia{
      * @return array|bool|null
      */
     public function getUser_Last(){
-        $query = "SELECT ".$this->campos." FROM usuario ORDER BY PK_id DESC LIMIT 1";
+        $query = $this->SELECT." 
+                  ORDER BY PK_id DESC LIMIT 1";
+        return  self::executeQuery($query);
+    }
+
+    /**
+     * @param $username String
+     */
+    public function getUser_ByUsername($username){
+        $query = $this->SELECT." 
+                 WHERE u.nombre_usuario = '".$username."'";
+        return self::executeQuery($query);
+    }
+
+    /**
+     * @param $email String
+     * @return array|bool|null
+     */
+    public function getUser_ByEmail($email){
+        $query = $this->SELECT." 
+                 WHERE u.correo = '".$email."'";
         return  self::executeQuery($query);
     }
 
     //------------------ INSERTS
 
+    /**
+     * @param $user Usuario
+     * @return array|bool|null
+     */
     public function insertUser( $user ){
-        $passC = self::encrypt( $user['pass'] );
-        $query = "INSERT INTO usuario(nombre_usuario, password, correo)
-                  VALUES('".$user['username']."','".$passC."','".$user['email']."')";
+        $passC = self::encrypt( $user->getPassword() );
+        $query = "INSERT INTO usuario(nombre_usuario, password, correo, FK_rol)
+                  VALUES('".$user->getUsername()."','".$passC."','".$user->getEmail()."', 2)";
         return  self::executeQuery($query);
     }
+
+
 
 
 }

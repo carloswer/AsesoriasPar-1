@@ -6,10 +6,12 @@
         public function __construct(){}
 
 
-        private $campos = "PK_id as 'id',
+        private $campos = "SELECT
+                            PK_id as 'id',
                             nombre as 'name',
                             abreviacion as 'short_name',
-                            fecha_registro as 'date'";
+                            fecha_registro as 'date'
+                            FROM carrera";
 
 
         /**
@@ -17,14 +19,17 @@
          * @return mixed
          */
         public function getCareer_ById( $id ){
-            $query = "SELECT 
-                        ".$this->campos."
-                        FROM carrera
+            $query = $this->campos."
                         WHERE PK_id =".$id;
             //Obteniendo resultados
             return self::executeQuery($query);
         }
 
+        public function getCareers(){
+            $query = $this->campos;
+            //Obteniendo resultados
+            return self::executeQuery($query);
+        }
 
 
     }
