@@ -1,4 +1,4 @@
-<?php namespace Negocio\Objetos;
+<?php namespace Objetos;
 
     class Horario{
         
@@ -9,18 +9,9 @@
 
         /**
          * Horario constructor.
-         * @param $idSchedule
-         * @param $daysAndHours
-         * @param $subjects
-         * @param $scheduleStatus
-         * @param $requireValidate
          */
-        public function __construct($idSchedule, $daysAndHours, $subjects, $scheduleStatus){
-            $this->idSchedule = $idSchedule;
-            $this->hoursAndDays = $daysAndHours;
-            $this->subjects = $subjects;
-            $this->scheduleStatus = $scheduleStatus;
-        }
+        public function __construct(){}
+
 
         /**
          * @return mixed
@@ -39,7 +30,7 @@
         }
 
         /**
-         * @return mixed
+         * @return array
          */
         public function getHoursAndDays()
         {
@@ -47,7 +38,7 @@
         }
 
         /**
-         * @param mixed $hoursAndDays
+         * @param array $hoursAndDays
          */
         public function setHoursAndDays($hoursAndDays)
         {
@@ -63,7 +54,7 @@
         }
 
         /**
-         * @param mixed $subjects
+         * @param array $subjects
          */
         public function setSubjects($subjects)
         {
@@ -71,7 +62,7 @@
         }
 
         /**
-         * @return mixed
+         * @return array
          */
         public function getScheduleStatus()
         {

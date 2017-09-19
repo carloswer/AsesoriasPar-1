@@ -29,7 +29,7 @@
          * @param $id
          * @return array|bool|null
          */
-        public function getSubjects_ByScheduleId( $id ) {
+        public function getScheduleSubjects_ByScheduleId($id ) {
             $result = $this->perMaterias->getSubjects_ByScheduleId( $id );
             if( !is_array($result) )
                 return $result;

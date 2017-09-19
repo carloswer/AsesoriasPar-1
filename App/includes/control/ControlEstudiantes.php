@@ -26,6 +26,16 @@ class ControlEstudiantes{
         }
     }
 
+    public function isStudentExist_ById($id){
+        $result = $this->perStudents->getStudent_ById( $id );
+        if( $result === false )
+            return 'error';
+        else if( $result === null )
+            return false;
+        else
+            return true;
+    }
+
 
     public function getStuden_ByUserId( $id ){
         $result = $this->perStudents->getStudent_ByUserId( $id );

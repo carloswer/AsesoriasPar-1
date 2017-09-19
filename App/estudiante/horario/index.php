@@ -31,11 +31,8 @@
 
         //Obtener horario del estudiante
         //TODO: debe saber si el horario ya esta validado antes de mostrarlo
-        $schedule = $conSchedule->getCurrentSchedule_ByStudentId( Sesiones::getStudentId() );
-        //Verifica que estudiante tenga horario{
-        if( is_array($schedule) ) {
-            $subjects = $conSchedule->getScheduleSubject_ByScheduleId( $schedule['id'] );
-        }
+        //TODO: valir error
+        $schedule = $conSchedule->getFullCurrentSchedule_ByStudentId( Sesiones::getStudentId() );
     }
 
 
@@ -62,16 +59,16 @@
             </h4>
         <?php else: ?>
             <h4>Ya tiene un horario creado <a href="#">Modificar horario</a></h4>
-            <div class="horario multi-select">
+            <div class="horario">
                 <div class="horas">
-                    <?= Funciones::makeScheduleTable( $hoursArray, $schedule );  ?>
+                    <?= Funciones::makeScheduleTable( $hoursArray, $schedule->getHoursAndDays() );  ?>
                 </div>
             </div>
 
 
             <div class="materias">
-                <h3>Materias: <?= count($subjects); ?></h3>
-                <?php foreach( $subjects as $sub ): ?>
+                <h3>Materias: <?= count($schedule->getSubjects()); ?></h3>
+                <?php foreach( $schedule->getSubjects() as $sub ): ?>
                     <span href="javascript:void(0)" class="materia-item" data-id="<?= $sub->getId(); ?>"><?php echo $sub->getName(); ?></span>
                 <?php endforeach; ?>
             </div>

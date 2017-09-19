@@ -27,15 +27,18 @@
         header("Location: index.php");
 
 
-    //Si ya tiene horario
-    $schedule = $conHorarios->getCurrentSchedule_ByStudentId( Sesiones::getStudentId() );
-    if( is_array($schedule) )
+    //Se verifica si ya tiene horario
+    $schedule = $conHorarios->haveStudentCurrentSchedule_ByStudentId( Sesiones::getStudentId() );
+    //Si ya tiene, se redirecciona
+    if( $schedule === true )
         header("Location: index.php");
 
+    //----Si no tiene horario
     //Obtiene dias y horas
     $hoursArray = $conHorarios->getHours_OrderByHour();
     //----Obtiene materias
-    $subjectsArray = $conMaterias->getSubject_ByCarrerId( Sesiones::getStudentCarrer()['id'] );
+    $subjectsArray = $conMaterias->getSubject_ByCarrerId( Sesiones::getStudentCarrer()->getId() );
+
 
 ?>
 
@@ -64,21 +67,29 @@
                     <!-- Seccion de materias -->
                     <div class="materias">
                         <h4>Seleccione materias</h4>
-                        <div class="controles" style="margin-bottom: 20px;">
-                            <label for="buscar-materia">Buscar:</label>
-                            <input type="text" id="buscar-materia" class="" placeholder="buscar">
+                        <div class="controles form-inline" style="margin-bottom: 20px;">
 
-                            <label for="">Carrera:</label>
-                            <select name="" id="" class="">
-                                <option value="1">ISW</option>
-                                <option value="2">IMT</option>
-                            </select>
+                            <div class="form-group">
+                                <label for="buscar-materia">Buscar:</label>
+                                <input type="text" id="buscar-materia" class="form-control" placeholder="buscar">
+                            </div>
 
-                            <label for="">Plan:</label>
-                            <select name="" id="" class="">
-                                <option value="2009">2009</option>
-                                <option value="2016">2016</option>
-                            </select>
+                            <div class="form-group">
+                                <label for="">Carrera:</label>
+                                <select name="" id="" class="form-control">
+                                    <option value="1">ISW</option>
+                                    <option value="2">IMT</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Plan:</label>
+                                <select name="" id="" class="form-control">
+                                    <option value="2009">2009</option>
+                                    <option value="2016">2016</option>
+                                </select>
+                            </div>
+
                         </div>
 
 

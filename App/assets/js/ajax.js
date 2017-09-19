@@ -104,6 +104,7 @@ function signupAjax( dataJSON ){
             else{
                 //TODO: poner mensaje verde
                 $('#singup-result').html( "Se registro con éxito" );
+                window.location = "login.php";
             }
 
         }
@@ -137,7 +138,7 @@ function ajaxRegisterSchedule(student, schedule, subjects){
 
     //Transforma a String
     var scheduleJSON = JSON.stringify( JSONschedule );
-    console.log( scheduleJSON );
+    //console.log( scheduleJSON );
 
 
     $.ajax({
@@ -153,20 +154,10 @@ function ajaxRegisterSchedule(student, schedule, subjects){
     })
     .done(function(response){
 
-        if( response.type === "schedule-register" ){
-
-
-            if( response.result === true ){
-                $('#horario__registro-status').html(response.message);
-                //Redirecciona después de registrar (un segundo de espera)
-                // setTimeout(function(){ location.href = "index.php"; }, 1000);
-            }
-            else if( response.result === 'null' ){
-                $('#horario__registro-status').html(response.message);
-            }
-            else if( response.result === 'error' ){
-                $('#horario__registro-status').html(response.result);
-            }
+        if( response.type === "schedule_register" ){
+            $('#horario__registro-status').html(response.message);
+            if( response.result === true )
+                window.location = "index.php";
         }
         else
             alert("respuesta desconocida");
@@ -176,7 +167,7 @@ function ajaxRegisterSchedule(student, schedule, subjects){
     .fail(function(){
         //TODO: crear un alert especial (tipo twitter)
         alert("ocurrio un error en la conexion");
-        $('#horario__registro-status').html("Error");
+        $('#horario__registro-status').html("Error de conexion, intente de nuevo");
     })
     .always( function(response) {
         console.log(  response );

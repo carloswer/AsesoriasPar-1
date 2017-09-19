@@ -43,7 +43,7 @@
         // HORARIO DE ASESOR
         //------------
 
-        public function getScheduleId_ByStudentId($idStudent, $idCycle){
+        public function getScheduleMain_ByStudentId($idStudent, $idCycle){
             $query = "SELECT 
                         PK_id as 'id',
                         fecha_registro as 'fecha',

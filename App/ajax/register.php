@@ -85,6 +85,8 @@
     }
     //--------OK
     else{
+        //TODO: enviar correo a admin
+        //TODO: enviar correo de verificacion al usuario para que pueda inciiar sesion
         echo Funciones::makeJsonResponse(
             "signup",
             true,

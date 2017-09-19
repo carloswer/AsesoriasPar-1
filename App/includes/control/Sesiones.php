@@ -1,5 +1,6 @@
 <?php namespace Control;
 
+    use Objetos\Carrera;
     use Objetos\Usuario;
     use Objetos\Estudiante;
     use Control\ControlEstudiantes;
@@ -134,6 +135,9 @@
             return $_SESSION['student']['name'];
         }
 
+        /**
+         * @return Carrera|int
+         */
         public static function getStudentCarrer(){
             return $_SESSION['student']['career'];
         }

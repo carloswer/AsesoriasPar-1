@@ -117,10 +117,13 @@ class ControlUsuarios{
      */
     public function insertUserAndStudent($user, $student){
 
+
         $trans = Usuarios::initTransaction();
+        //TODO: cambiar los "response" por el metodo @see Funciones::makeArrayResponse
         if( !$trans ){
             $response = [
                 "result" => 'error',
+                "type" => "username",
                 "message" => "No se pudo iniciar transaccion"
             ];
             return $response;

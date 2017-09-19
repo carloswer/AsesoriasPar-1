@@ -34,40 +34,28 @@
     $conHorarios = new ControlHorarios();
     $result = $conHorarios->insertStudentSchedule( $idStudent, $hours, $subjects );
 
-    //------------------------------Para ciclo escolar
-    if( $result == 'error' ){
+    //Si ocurre algun error en el registro
+    if( $result['result'] === 'error' ){
         echo Funciones::makeJsonResponse(
-            "schedule-register",
-            "error",
-            "No hay un ciclo actual disponible"
+            "schedule_register",
+            'error',
+            $result['message']
         );
     }
-    else if( $result == null ){
+    else if( $result['result'] === false ){
         echo Funciones::makeJsonResponse(
-        "schedule-register",
-        "error",
-        "No se encontro ningun ciclo actual"
-        );
-    }
-    //------------------------------Para registro de horario
-    else if( $result['result'] === 'error' ){
-        echo Funciones::makeJsonResponse(
-            "schedule-register",
-            "error",
+            "schedule_register",
+            false,
             $result['message']
         );
     }
     else{
         echo Funciones::makeJsonResponse(
-            "schedule-register",
+            "schedule_register",
             true,
             $result['message']
         );
     }
-
-
-
-
 
 
  ?>

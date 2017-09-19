@@ -15,13 +15,34 @@ class Funciones
     public static function makeJsonResponse(String $type, $result, String $message, $extra = null ){
         $json = [
             'type'      => $type,
-            'result'    =>  $result,
+            'result'    => $result,
             'message'   => $message,
             'extra'     => $extra
         ];
         return json_encode($json);
     }
 
+    /**
+     * @param $result mixed mensaje que identifica el resultado de la peticion
+     * @param String $type tipo de respuesta resultante
+     * @param String $message mensaje de retorno del resultado
+     * @param null $extra valor adicional que se desee agregar
+     * @return array
+     */
+    public static function makeArrayResponse($result, String $type, String $message, $extra = null){
+        $response = [
+            "result" => $result,
+            "type" => $type,
+            "message" => $message,
+            "extra" => $extra
+        ];
+        return $response;
+    }
+
+    /**
+     * @param $json
+     * @return bool
+     */
     public static function isJSONResponse($json){
         if( json_decode($json) == null )
             return false;
@@ -55,7 +76,7 @@ class Funciones
     /**
      * Método que ordena las horas de cada dia por separado y los concatena para
      * @param $hoursArray
-     * @param null $sheduleArray
+     * @param null|array $sheduleArray
      * @return string
      */
     public static function makeScheduleTable($hoursArray, $sheduleArray = null ){
