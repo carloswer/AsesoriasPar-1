@@ -38,6 +38,9 @@
     				Iniciar
     			</button>
     		</form>
+            <span class="text-center">
+                <a href="registro.php">Registrarse</a>
+            </span>
 
     	</div>
     </div>

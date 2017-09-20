@@ -5,12 +5,12 @@
         private $id;
         private $alumno;
         private $asesor;
-        private $materia;
-        private $fecha_asesoria;
-        private $fecha_solicitud;
-        private $hora;
-        private $descripcion;
-        private $estado;
+        private $subject;
+        private $date;
+        private $register_date;
+        private $hour;
+        private $description;
+        private $status;
 
 
         public function __construct(){}
@@ -32,7 +32,7 @@
         }
 
         /**
-         * @return mixed
+         * @return Estudiante
          */
         public function getAlumno()
         {
@@ -40,7 +40,7 @@
         }
 
         /**
-         * @param mixed $alumno
+         * @param Estudiante $alumno
          */
         public function setAlumno($alumno)
         {
@@ -48,7 +48,7 @@
         }
 
         /**
-         * @return mixed
+         * @return Estudiante
          */
         public function getAsesor()
         {
@@ -56,7 +56,7 @@
         }
 
         /**
-         * @param mixed $asesor
+         * @param Estudiante $asesor
          */
         public function setAsesor($asesor)
         {
@@ -64,99 +64,99 @@
         }
 
         /**
-         * @return mixed
+         * @return Materia
          */
-        public function getMateria()
+        public function getSubject()
         {
-            return $this->materia;
+            return $this->subject;
         }
 
         /**
-         * @param mixed $materia
+         * @param Materia $subject
          */
-        public function setMateria($materia)
+        public function setSubject($subject)
         {
-            $this->materia = $materia;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getFechaAsesoria()
-        {
-            return $this->fecha_asesoria;
-        }
-
-        /**
-         * @param mixed $fecha_asesoria
-         */
-        public function setFechaAsesoria($fecha_asesoria)
-        {
-            $this->fecha_asesoria = $fecha_asesoria;
+            $this->subject = $subject;
         }
 
         /**
          * @return mixed
          */
-        public function getFechaSolicitud()
+        public function getDate()
         {
-            return $this->fecha_solicitud;
+            return $this->date;
         }
 
         /**
-         * @param mixed $fecha_solicitud
+         * @param mixed $date
          */
-        public function setFechaSolicitud($fecha_solicitud)
+        public function setDate($date)
         {
-            $this->fecha_solicitud = $fecha_solicitud;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getHora()
-        {
-            return $this->hora;
-        }
-
-        /**
-         * @param mixed $hora
-         */
-        public function setHora($hora)
-        {
-            $this->hora = $hora;
+            $this->date = $date;
         }
 
         /**
          * @return mixed
          */
-        public function getDescripcion()
+        public function getRegisterDate()
         {
-            return $this->descripcion;
+            return $this->register_date;
         }
 
         /**
-         * @param mixed $descripcion
+         * @param mixed $register_date
          */
-        public function setDescripcion($descripcion)
+        public function setRegisterDate($register_date)
         {
-            $this->descripcion = $descripcion;
+            $this->register_date = $register_date;
         }
 
         /**
          * @return mixed
          */
-        public function getEstado()
+        public function getHour()
         {
-            return $this->estado;
+            return $this->hour;
         }
 
         /**
-         * @param mixed $estado
+         * @param mixed $hour
          */
-        public function setEstado($estado)
+        public function setHour($hour)
         {
-            $this->estado = $estado;
+            $this->hour = $hour;
+        }
+
+        /**
+         * @return mixed
+         */
+        public function getDescription()
+        {
+            return $this->description;
+        }
+
+        /**
+         * @param mixed $description
+         */
+        public function setDescription($description)
+        {
+            $this->description = $description;
+        }
+
+        /**
+         * @return array
+         */
+        public function getStatus()
+        {
+            return $this->status;
+        }
+
+        /**
+         * @param array $status
+         */
+        public function setStatus($status)
+        {
+            $this->status = $status;
         }
 
 

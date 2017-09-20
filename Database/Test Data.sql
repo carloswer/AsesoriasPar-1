@@ -1,4 +1,17 @@
 -- ----------------------------
+-- CICLO ESCOLAR
+-- ----------------------------
+
+
+-- TODO: no crear periodos empalmados
+INSERT INTO ciclo(fecha_inicio, fecha_fin) VALUES
+('2016/01/10', '2016/05/19'), -- Pasado
+('2017/01/10', '2017/05/19'), -- Pasado
+('2017/08/01', '2017/12/01');
+-- aaaa/mm/dd
+
+
+-- ----------------------------
 -- CARRERAS
 -- ----------------------------
 
@@ -131,10 +144,10 @@ INSERT INTO materia(nombre, abreviacion, semestre, plan, FK_carrera, descripcion
 COMMIT;
 
 
-
 -- ----------------------------
 -- ESTUDIANTE
 -- ----------------------------
+START TRANSACTION;
 INSERT INTO usuario(nombre_usuario, password, correo, FK_rol) VALUES
 ('charly',	md5('freedom'),	'carlosrozuma@gmail.com',		2),
 ('noriega',	md5('noriega'),	'cnoriegacazarez@gmail.com', 	2),
@@ -145,13 +158,9 @@ INSERT INTO estudiante(id_itson, nombre, apellido, telefono, facebook, avatar, F
 ('00000162156', 'Carlos','Zuñiga',	'644', 'fb', 'avatar', 2, 1),
 ('00000126079', 'Carlos','Noriega',	'644', 'fb', 'avatar', 3, 1),
 ('00000133494', 'Enrique','Garcia',	'644', 'fb', 'avaar',  4, 1);
+COMMIT;
 
--- TODO: no crear periodos empalmados
-INSERT INTO ciclo(fecha_inicio, fecha_fin) VALUES
-('2016/01/10', '2016/05/19'), -- Pasado
-('2017/01/10', '2017/05/19'), -- Pasado
-('2017/08/01', '2017/12/01');
--- aaaa/mm/dd
+
 
 
 -- ----------------------------

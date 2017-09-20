@@ -8,23 +8,19 @@
     use Control\Sesiones;
 
     $conAsesorias = new ControlAsesorias();
-    $conHorarios = new ControlHorarios();
+    $conSchedule = new ControlHorarios();
 
-    $cicloActual = $conHorarios->getCurrentCycle();
+    $cycle = $conSchedule->getCurrentCycle();
 
     $arrayAsesorias = null;
 
-    if( $cicloActual != null ){
+    if( $cycle != null ){
         //Si es alumno
         if( Sesiones::isAlumno() )
-            $arrayAsesorias = $conAsesorias->obtenerAsesorias_Alumno_CicloActual( $_SESSION['estudiante']['id'], $cicloActual['id'] );
-        //Si es asesor
+            $conAsesorias->getCurrentAsesoriasLikeAlumno_ByStudent( Sesiones::getStudentId() );
         else
-            $arrayAsesorias = $conAsesorias->obtenerAsesorias_Asesor_CicloActual( $_SESSION['estudiante']['id'], $cicloActual['id'] );
+            $conAsesorias->getCurrentAsesoriasLikeAsesor_ByStudent( Sesiones::getStudentId() );
     }
-
-//    var_dump( $arrayAsesorias );
-//    exit();
 
 
 ?>
@@ -36,7 +32,7 @@
     <?php include_once TEMP_PATH."/estudiante-menu.php"; ?>
     <h2>Asesorias</h2>
 
-    <?php if( $cicloActual == null ): ?>
+    <?php if( $cycle == null ): ?>
         <h3>No hay un ciclo actual disponible</h3>
 
     <?php else: ?>
@@ -54,31 +50,31 @@
             <?php if( Sesiones::isAlumno() ): ?>
                 <h3>No cuenta con asesorias registradas</h3
             <?php else: ?>
-                <h3>No cuenta con solicitudes</h3
+                <h3>No cuenta con solicitudes de asesorias</h3
             <?php endif; ?>
 
         <?php else: ?>
 
 
-                <div class="filtro-asesorias">
-                    <!-- Filtro -->
-                    <label for="filtro-asesorias">Filtrar por:</label>
-                    <select name="" id="filtro-asesorias">
-                        <option value="0">Todas</option>
-                        <option value="1">Proximas</option>
-                        <option value="2">Sin validar</option>
-                        <option value="3">Validadas</option>
-                    </select>
-
-                    <label for="">Buscar:</label>
-                    <input type="text" placeholder="nombre..">
-
-                    <label for="">Fecha desde:</label>
-                    <input type="date">
-
-                    <label for="">Hasa:</label>
-                    <input type="date">
-                </div>
+<!--                <div class="filtro-asesorias">-->
+<!--                    <!-- Filtro -->-->
+<!--                    <label for="filtro-asesorias">Filtrar por:</label>-->
+<!--                    <select name="" id="filtro-asesorias">-->
+<!--                        <option value="0">Todas</option>-->
+<!--                        <option value="1">Proximas</option>-->
+<!--                        <option value="2">Sin validar</option>-->
+<!--                        <option value="3">Validadas</option>-->
+<!--                    </select>-->
+<!---->
+<!--                    <label for="">Buscar:</label>-->
+<!--                    <input type="text" placeholder="nombre..">-->
+<!---->
+<!--                    <label for="">Fecha desde:</label>-->
+<!--                    <input type="date">-->
+<!---->
+<!--                    <label for="">Hasa:</label>-->
+<!--                    <input type="date">-->
+<!--                </div>-->
 
                 <div class="table-responsive">
                     <!-- Registros -->
@@ -97,7 +93,7 @@
                             </tr>
                         </thead>
                         <tbody id="tabla-asesorias">
-                            <?php foreach( $arrayAsesorias as $asesoria ): ?>
+                            <?php foreach($arrayAsesorias as $asesoria ): ?>
                                 <tr class="warning">
                                     <!--<td><?php //$asesoria->getId(); ?></td>-->
                                     <th><?= ( Sesiones::isAlumno() ) ? $asesoria->getAsesor()['nombre'] : $asesoria->getAlumno()['nombre'] ?></th>

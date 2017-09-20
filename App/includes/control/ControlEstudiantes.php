@@ -1,14 +1,11 @@
 <?php namespace Control;
 
-use Modelo\Persistencia\Carreras;
 use Modelo\Persistencia\Estudiantes;
-use Objetos\Carrera;
 use Objetos\Estudiante;
 
 class ControlEstudiantes{
 
     private $perStudents;
-
 
     public function __construct(){
         $this->perStudents = new Estudiantes();
@@ -22,7 +19,7 @@ class ControlEstudiantes{
             return null;
         else{
             // Crea objeto
-            return self::makeArray_Student( $result[0] );
+            return self::makeObject_Student( $result[0] );
         }
     }
 
@@ -45,7 +42,7 @@ class ControlEstudiantes{
             return null;
         else{
             // Crea objeto
-            return self::makeArray_Student( $result[0] );
+            return self::makeObject_Student( $result[0] );
         }
     }
 
@@ -75,12 +72,14 @@ class ControlEstudiantes{
      * @param $s array
      * @return Estudiante
      */
-    public static function makeArray_Student($s){
+    public static function makeObject_Student($s){
         // Crea objeto
         $student = new Estudiante();
         // Asigna datos
         //TODO: agregar usuario completo
-        $student->setUser( $s['user_id'] );
+        $conUsers = new ControlUsuarios();
+        $user = $conUsers->getUser_ById( $s['user_id'] );
+        $student->setUser( $user );
         $student->setIdStudent( $s['id_student'] );
         $student->setIdItson( $s['id_itson'] );
         $student->setFirstName( $s['first_name'] );
@@ -89,14 +88,10 @@ class ControlEstudiantes{
         $student->setFacebook( $s['facebook'] );
         $student->setAvatar( $s['avatar'] );
 
-        $careerArray = [
-            'id' => $s['career_id'],
-            'name' => $s['career_name'],
-            'short_name' => $s['career_short_name'],
-            'date' => $s['career_date']
+        $conCareers = new ControlCarreras();
+        $career = $conCareers->getCareer_ById( $s['career_id'] );
+        $student->setCareer( $career );
 
-        ];
-        $student->setCareer( ControlCarreras::makeObject_career($careerArray) );
         //Se regresa
         return $student;
     }

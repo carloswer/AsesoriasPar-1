@@ -7,13 +7,9 @@ use Objetos\Horario;
 class ControlHorarios{
 
     private $perHorarios;
-    private $conMaterias;
-    private $conStudents;
 
     public function __construct(){
         $this->perHorarios = new Horarios();
-        $this->conMaterias = new ControlMaterias();
-        $this->conStudents = new ControlEstudiantes();
     }
 
     public function getDays(){
@@ -42,11 +38,15 @@ class ControlHorarios{
         }
     }
 
-
+    /**
+     * @return array|null|string
+     */
     public function getCurrentCycle(){
         $result = $this->perHorarios->getCurrentCycle();
-        if( !is_array($result) )
-            return $result;
+        if( $result === false )
+            return 'error';
+        else if( $result == null )
+            return null;
         else{
             //Si array esta vacio
             if( count($result) == 0 )
@@ -130,7 +130,8 @@ class ControlHorarios{
      * @return array|bool|string
      */
     public function getScheduleSubject_ByScheduleId( $scheduleid ){
-        return $this->conMaterias->getScheduleSubjects_ByScheduleId( $scheduleid );
+        $conMaterias = new ControlMaterias();
+        return $conMaterias->getScheduleSubjects_ByScheduleId( $scheduleid );
     }
 
     /**
@@ -246,7 +247,8 @@ class ControlHorarios{
 
         //Verificamos que usuario exista
         //TODO: utilizar un método que regrese true/false
-        $result = $this->conStudents->isStudentExist_ById( $idStudent );
+        $conStudents = new ControlEstudiantes();
+        $result = $conStudents->isStudentExist_ById( $idStudent );
         if( $result === 'error' ){
             Horarios::rollbackTransaction();
             return Funciones::makeArrayResponse(

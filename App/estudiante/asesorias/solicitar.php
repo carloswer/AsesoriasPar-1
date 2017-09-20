@@ -5,6 +5,7 @@
 
     use Control\ControlAsesorias;
     use Control\ControlHorarios;
+    use Control\ControlMaterias;
     use Control\Sesiones;
 
     //Redireccion cuando es asesor (no debe soliciar en modo asesor)
@@ -12,27 +13,29 @@
         header("Location: ".EST_PATH."/asesorias");
 
     $conAsesorias = new ControlAsesorias();
-    $conHorario = new ControlHorarios();
+    $conSubjects = new ControlMaterias();
+    $conSchedule = new ControlHorarios();
 
-    //--------Obtencion de datos
-    //Ciclo actual
+    $arraySubjects = null;
+    $cycle = $conSchedule->getCurrentCycle();
 
-    $arrayMaterias = null;
-    $ciclo = $conHorario->getCurrentCycle();
-
-    if( $ciclo != null ){
+    if( $cycle === 'error' ){
+        //TODO: obtener correo de admin
+        echo "Ocurrio un error al obtener ciclo actual. Contacte a un administrador";
+        exit;
+    }
+    else if( $cycle != null ){
         //Obtine Materias
         //TODO: materias solo de la carrera
         //TODO: estudiante diferente de uno mismo
-        $arrayMaterias = $conAsesorias->obtenerMateriasConAsesores_SinEstudianteX( $ciclo['id'], Sesiones::getIDEstudiante() );
+        $arraySubjects = $conSubjects->getCurrAvailScheduleSubs_SkipSutdent( Sesiones::getStudentId() );
 
         //Horario (normales)
-        $arrayHoras = $conHorario->getHours_OrderByHour();
-        $arrayDias = $conHorario->separeDaysOfHours( $arrayHoras );
-
-        //Horario (de asesores)
-//        $horarioAsesores = $conHorario->obtenerHorarioPorMateria(  );
+        $arrayHoras = $conSchedule->getHours_OrderByHour();
+        $arrayDias = $conSchedule->getDays();
     }
+
+
 
 ?>
 
@@ -44,11 +47,11 @@
     <?php include_once TEMP_PATH."/estudiante-menu.php"; ?>
     <h2>Solicitar asesoria</h2>
 
-    <?php if( $ciclo == null ): ?>
+    <?php if( $cycle == null ): ?>
         <h3>No hay ciclo actual disponible</h3>
     <?php else: ?>
 
-        <?php if( $arrayMaterias == null ): ?>
+        <?php if( $arraySubjects == null ): ?>
             <h3>No hay materias con asesores disponibles</h3>
 
         <?php else: ?>
@@ -65,8 +68,8 @@
                     <div class="seccion single-select seccion-active" id="seccion__materias" data-seccion="materias">
                         <h3>Seleccione materias</h3>
                         <div id="materias-contenido" class="contenido materias">
-                            <?php foreach( $arrayMaterias as $materia ): ?>
-                                <span class="materia-item" data-id="<?= $materia->getId(); ?>"><?= $materia->getNombre(); ?></span>
+                            <?php foreach( $arraySubjects as $sub ): ?>
+                                <span class="materia-item" data-id="<?= $sub->getId(); ?>"><?= $sub->getName(); ?></span>
                             <?php endforeach; ?>
                         </div>
                     </div>

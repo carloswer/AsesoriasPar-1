@@ -7,14 +7,9 @@ use Objetos\Usuario;
 class ControlUsuarios{
 
     private $perUsers;
-    private $conStudents;
-    private $conCareer;
-
 
     public function __construct(){
         $this->perUsers = new Usuarios();
-        $this->conStudents = new ControlEstudiantes();
-        $this->conCareer = new ControlCarreras();
     }
 
 
@@ -30,6 +25,8 @@ class ControlUsuarios{
     }
 
     public function getUser_ById($id){
+        
+        
         $result = $this->perUsers->getUser_ById( $id );
         if( $result === false )
             return 'error';
@@ -58,6 +55,8 @@ class ControlUsuarios{
      * @return null|Usuario|string
      */
     public function getUser_ByUsername( $username ){
+        
+
         $result = $this->perUsers->getUser_ByUsername( $username );
         if( $result === false )
             return 'error';
@@ -83,6 +82,8 @@ class ControlUsuarios{
 
 
     public function getUser_ByEmail($email){
+        
+
         $result = $this->perUsers->getUser_ByEmail( $email );
         if( $result === false )
             return 'error';
@@ -116,8 +117,6 @@ class ControlUsuarios{
      * @return array
      */
     public function insertUserAndStudent($user, $student){
-
-
         $trans = Usuarios::initTransaction();
         //TODO: cambiar los "response" por el metodo @see Funciones::makeArrayResponse
         if( !$trans ){
@@ -174,7 +173,9 @@ class ControlUsuarios{
 
 
         //Se verifica carrera
-        $result = $this->conCareer->getCareer_ById( $student->getCareer() );
+        $conCareer = new ControlCarreras();
+
+        $result = $conCareer->getCareer_ById( $student->getCareer() );
         if( $result === 'error' ){
             Usuarios::rollbackTransaction();
             $response = [
@@ -198,6 +199,7 @@ class ControlUsuarios{
 
 
         //------------Iniciamos registro
+        
         //Registramos usuario
         $result = $this->perUsers->insertUser( $user );
         if( $result === false ){
@@ -231,12 +233,14 @@ class ControlUsuarios{
         }
 
         //Obtiene Id del usuario y se lo agrega al estudiante
-        $userObj = $this->makeObject_User( $result[0] );
+        $userObj = self::makeObject_User( $result[0] );
 
 
         //Registramos estudiante
         $student->setUser( $userObj );
-        $result = $this->conStudents->insertStudent( $student );
+        $conStudents = new ControlEstudiantes();
+
+        $result = $conStudents->insertStudent( $student );
         if( $result === false ){
             Usuarios::rollbackTransaction();
             $response = [
@@ -274,7 +278,7 @@ class ControlUsuarios{
      * @param $data array
      * @return Usuario
      */
-    public static function makeObject_User($data){
+    public static function makeObject_User( $data ){
         $user = new Usuario();
         //setting data
         $user->setId( $data['user_id'] );

@@ -7,7 +7,8 @@
         public function __construct(){}
 
 
-        private $campos = "e.PK_id as 'id_student', 
+        private $campos = "SELECT
+                        e.PK_id as 'id_student', 
                         e.id_itson as 'id_itson', 
                         e.nombre as 'first_name', 
                         e.apellido as 'last_name', 
@@ -15,18 +16,13 @@
                         e.facebook as 'facebook', 
                         e.avatar as 'avatar', 
                         e.requiere_validar as 'require_validate',
-                         
-                        c.PK_id as 'career_id', 
-                        c.nombre as 'career_name',
-                        c.abreviacion as 'career_short_name', 
-                        c.fecha_registro as 'career_date',
-                        e.FK_usuario as 'user_id'";
+                        e.FK_usuario as 'user_id', 
+                        c.PK_id as 'career_id'
+                        FROM estudiante e";
 
 
         public function getStudent_ById($id){
-            $query = "SELECT 
-                        ".$this->campos."
-                        FROM estudiante e
+            $query =    $this->campos."
                         INNER JOIN carrera c ON c.PK_id = e.FK_carrera
                         WHERE e.PK_id = ".$id;
             //Obteniendo resultados
@@ -34,9 +30,7 @@
         }
 
         public function getStudent_ByUserId( $id ){
-            $query = "SELECT 
-                        ".$this->campos."
-                        FROM estudiante e
+            $query = $this->campos."
                         INNER JOIN carrera c ON c.PK_id = e.FK_carrera
                         WHERE e.FK_usuario =".$id;
             //Obteniendo resultados

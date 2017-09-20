@@ -1,15 +1,13 @@
 <?php namespace Control;
 
 use Modelo\Persistencia\Asesorias;
-use Objetos\Asesoria;
-use Control\ControlMaterias;
 use Carbon\Carbon;
+use Objetos\Asesoria;
 
 class ControlAsesorias
 {
 
     private $perAsesorias;
-    private $conMaterias;
 
 
     //------Variables estaticas
@@ -22,88 +20,99 @@ class ControlAsesorias
     public static $REALIZADO = "Realizado";
     public static $NO_REALIZADO = "No realizado";
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->perAsesorias = new Asesorias();
-        $this->conMaterias = new ControlMaterias();
     }
 
-    public function obtenerAsesorias_Asesor_CicloActual( $idAsesor, $idCiclo  ){
-        $result = $this->perAsesorias->getAsesorias_Asesor_Ciclo( $idAsesor, $idCiclo );
-        if( !is_array($result) )
-            return $result;
-        else {
-            $arrayAsesorias = array();
-            foreach ($result as $as) {
-                $asesoria = $this->crearObjeto( $as );
-                $arrayAsesorias[] = $asesoria;
-            }
-            return $arrayAsesorias;
-        }
-    }
-
-    public function obtenerAsesorias_Alumno_CicloActual( $idAsesor, $idCiclo  ){
-        $result = $this->perAsesorias->getAsesorias_Alumno_Ciclo( $idAsesor, $idCiclo );
-        if( !is_array($result) )
-            return $result;
-        else {
-            $arrayAsesorias = array();
-            foreach ($result as $as) {
-                $asesoria = $this->crearObjeto( $as );
-                $arrayAsesorias[] = $asesoria;
-            }
-            return $arrayAsesorias;
-        }
-    }
-
-
-    public function obtenerMateriasConAsesores( $idCiclo ){
-        return $this->conMaterias->obtenerMateriasConAsesores( $idCiclo );
-    }
-
-    public function obtenerMateriasConAsesores_SinEstudianteX($idCiclo, $idEstudiante ){
-        return $this->conMaterias->obtenerMateriasConAsesores_SinEstudianteX( $idCiclo, $idEstudiante );
-    }
-
-
-    //-------------------------
-    //  Extras
-    //-------------------------
-
-    private function crearObjeto( $as ){
+    /**
+     * @param $as
+     */
+    private static function makeObject_Asesoria( $as ){
         $asesoria = new Asesoria();
-//        ASesoria
-        $asesoria->setId($as['id']);
-        $asesoria->setFechaAsesoria($as['fecha_asesoria']);
-        $asesoria->setFechaSolicitud( $as['fecha_solicitud'] );
-        $asesoria->setHora($as['hora']);
-        $asesoria->setDescripcion($as['descripcion']);
-//        Materia
-        $asesoria->setMateria(
-            $array = [
-                'id' => $as['materia_id'],
-                'nombre' => $as['materia_nombre'],
-                'materia_horario_id' => $as['materia_horario_id']
-            ]
-        );
-//        Estudiantes
-        $asesoria->setAlumno($array = ['id' => $as['alumno_id'], 'nombre' => $as['alumno_nombre']]);
-        $asesoria->setAsesor($array = ['id' => $as['asesor_id'], 'nombre' => $as['asesor_nombre']]);
-//        Estado (si hay registro)
-        if( $as['estado_id'] != null ) {
-            $asesoria->setEstado(
-                $array = [
-                    'id' => $as['estado_id'],
-                    'tipo' => $as['estado_tipo'],
-                    'comentario' => $as['estado_comentario'],
-                    'fecha' => $as['estado_fecha'],
-                    'calificacion' => $as['estado_califacion']
-                ]
-            );
-        }
+
+        $asesoria->setId( $as['id'] );
+        $asesoria->setDate( $as['date'] );
+        $asesoria->setRegisterDate( $as['registe_date'] );
+        $asesoria->setDescription( $as['description'] );
+        $asesoria->setHour( $as['hour'] );
+        $asesoria->setStatus( self::makeArray_StatusAsesoria( $as ) );
+
+        //Obteniendo y agregando alumno
+        $conEstudiantes = new ControlEstudiantes();
+        $alumno = $conEstudiantes->getStudent_ById( $as['alumno_id'] );
+        $asesoria->setAlumno( $alumno );
+        //Obteniendo y agregando Asesor
+        $asesor = $conEstudiantes->getStudent_ById( $as['asesor_id'] );
+        $asesoria->setAlumno( $asesor );
+
+        //Obteniendo y agregando materia
+        $conSubjects = new ControlMaterias();
+        $subject = $conSubjects->getSubject_ById( $as['subject_id'] );
+        $asesoria->setSubject( $subject );
 
         return $asesoria;
     }
+
+    /**
+     * @param $as array
+     */
+    public static function makeArray_StatusAsesoria( $as ){
+        $array = [
+            "id" => $as['status_id'],
+            "type" => $as['status_type'],
+            "comment" => $as['status_comment'],
+            "date" => $as['status_date'],
+            "calification" => $as['status_calification'],
+        ];
+        return $array;
+    }
+
+
+
+
+
+
+
+    /**
+     * @param $idStudent
+     * @return array|null|string
+     */
+    public function getCurrentAsesoriasLikeAsesor_ByStudent($idStudent ){
+        $conHorarios = new ControlHorarios();
+        $cycle = $conHorarios->getCurrentCycle();
+        if( !is_array($cycle) )
+            return $cycle;
+        else{
+            $result = $this->perAsesorias->getAsesoriasLikeAsesor_ByStudentIdAndSchedule( $idStudent, $cycle['id'] );
+            if( $result === false )
+                return 'error';
+            else if( $result === null )
+                return null;
+            else{
+                $array = array();
+                foreach( $result as $as ){
+                    $array[] = self::makeObject_Asesoria( $as );
+                }
+                return $array;
+            }
+        }
+
+    }
+
+    public function getCurrentAsesoriasLikeAlumno_ByStudent( $idAsesor ){
+
+    }
+
+
+    //-----------------
+    // Materias
+    //-----------------
+
+    public function getCurrentAvailableSubject( $idStudent ){
+        $conSubjects = new ControlMaterias();
+        return $conSubjects->getCurrAvailScheduleSubs_SkipSutdent( $idStudent );
+    }
+
 
 
     //------------------
@@ -134,14 +143,14 @@ class ControlAsesorias
         if( $this->diferenciaDias_Hoy( $fechaX ) > 0 )
             return true;
         else
-            false;
+            return false;
     }
 
     public function isHoy( $fechaX ){
         if( $this->diferenciaDias_Hoy( $fechaX ) == 0 )
             return true;
         else
-            false;
+            return false;
     }
 
 
@@ -150,7 +159,7 @@ class ControlAsesorias
         if( $this->diferenciaDias_Hoy( $fechaX ) < 0 )
             return true;
         else
-            false;
+            return false;
     }
 
     /**

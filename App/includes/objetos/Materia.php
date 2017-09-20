@@ -110,7 +110,7 @@
         }
 
         /**
-         * @return mixed
+         * @return Carrera
          */
         public function getCareer()
         {
@@ -118,7 +118,7 @@
         }
 
         /**
-         * @param mixed $career
+         * @param Carrera $career
          */
         public function setCareer($career)
         {

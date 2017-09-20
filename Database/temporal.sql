@@ -100,3 +100,10 @@ INNER JOIN horario h ON h.PK_id = hm.FK_horario
 -- Para mostrar siempre el estado aunque no tenga
 LEFT JOIN estado_asesoria ea ON ea.FK_asesoria = a.PK_id;
 WHERE a.FK_asesor = '' AND h.FK_ciclo = '';
+
+
+
+
+
+ALTER TABLE usuario AUTO_INCREMENT = 2;
+ALTER TABLE estudiante AUTO_INCREMENT = 1;

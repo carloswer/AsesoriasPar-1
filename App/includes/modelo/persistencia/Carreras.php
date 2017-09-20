@@ -6,6 +6,7 @@
         public function __construct(){}
 
 
+        //TODO: agregar estado
         private $campos = "SELECT
                             PK_id as 'id',
                             nombre as 'name',
