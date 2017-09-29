@@ -19,9 +19,9 @@ class ControlHorarios{
         else{
             $days = array();
             foreach( $result as $day ){
-                //TODO: Cambiar idioma aqui y en persistencia
-                $days[] = $day['dia'];
+                $days[] = $day['day'];
             }
+            return $days;
         }
     }
 
@@ -53,13 +53,12 @@ class ControlHorarios{
                 return null;
             //Si tiene datos
             else {
-                //TODO: Cambiar idioma aqui y en persistencia
-                $ciclo = [
+                $cycle = [
                     "id" => $result[0]['id'],
-                    'start' => $result[0]['inicio'],
-                    'end' => $result[0]['fin']
+                    'start' => $result[0]['start'],
+                    'end' => $result[0]['end']
                 ];
-                return $ciclo;
+                return $cycle;
             }
         }
     }
@@ -159,7 +158,7 @@ class ControlHorarios{
      * @param $idStudent String|int del estudiante
      * @return bool|string
      */
-    public function haveStudentCurrentSchedule_ByStudentId($idStudent){
+    public function haveStudentCurrSchedule($idStudent){
         $result = $this->getCurrentScheduleMain_ByStudentId($idStudent);
         if( $result === false )
             return 'error';
@@ -225,7 +224,7 @@ class ControlHorarios{
         //Se guarda id del ciclo actual
         $cycleid = $result['id'];
         //Verificamos que no tenga un horario
-        $result = $this->haveStudentCurrentSchedule_ByStudentId($idStudent);
+        $result = $this->haveStudentCurrSchedule($idStudent);
         if( $result === 'error' ){
             return Funciones::makeArrayResponse(
                 'error',
@@ -246,7 +245,6 @@ class ControlHorarios{
         //------------REGISTRO DE HORARIO
 
         //Verificamos que usuario exista
-        //TODO: utilizar un método que regrese true/false
         $conStudents = new ControlEstudiantes();
         $result = $conStudents->isStudentExist_ById( $idStudent );
         if( $result === 'error' ){
@@ -266,7 +264,7 @@ class ControlHorarios{
             );
         }
 
-        //TODO: Verificar que no tenga un horario registrado (Por concurrencia, si se registra desde otro lado)
+
         //---------HORARIO
         $result = $this->perHorarios->insertSchedule( $idStudent, $cycleid );
         if( !$result ) {
@@ -337,6 +335,27 @@ class ControlHorarios{
 
 
 
+    //----------------------
+    // ASESORIAS
+    //----------------------
+
+    public function getCurrAvailSchedules_SkipStudent($subjectId, $studentId){
+        $cycle = $this->getCurrentCycle();
+        if( !is_array($cycle) )
+            return $cycle;
+        else{
+            $result = $this->perHorarios->getAvailSchedules_SkipStudent_ByCycle( $subjectId, $studentId, $cycle['id'] );
+            if( $result == false )
+                return 'error';
+            else
+                return $result;
+        }
+
+    }
+
+
+
+
     //------------------------------
     // FUNCIONES ADICIONALES
     //------------------------------
@@ -344,9 +363,9 @@ class ControlHorarios{
     private static function makeArray_Schedule($s){
         $hoursAndDays = [
             'id'            => $s['id'],
-            'date'          => $s['fecha'],
-            'validation'    => $s['validado'],
-            'status'        => $s['estado']
+            'date'          => $s['register_date'],
+            'validation'    => $s['validated'],
+            'status'        => $s['status']
         ];
         return $hoursAndDays;
     }
@@ -356,8 +375,8 @@ class ControlHorarios{
     private static function makeArray_HoursAndDays($hd){
         $hoursAndDays = [
             'id'  => $hd['id'],
-            'day'  => $hd['dia'],
-            'hour' => $hd['hora']
+            'day'  => $hd['day'],
+            'hour' => $hd['hour']
         ];
         return $hoursAndDays;
     }

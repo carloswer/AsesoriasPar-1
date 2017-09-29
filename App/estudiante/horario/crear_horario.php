@@ -8,10 +8,10 @@
     use Control\ControlHorarios;
     use Control\ControlMaterias;
     use Control\ControlEstudiantes;
+use Objetos\Materia;
 
 
-
-    //Si se es alumno
+//Si se es alumno
     if( !Sesiones::isAsesor() )
         header("Location: ../index.php");
 
@@ -28,7 +28,7 @@
 
 
     //Se verifica si ya tiene horario
-    $schedule = $conHorarios->haveStudentCurrentSchedule_ByStudentId( Sesiones::getStudentId() );
+    $schedule = $conHorarios->haveStudentCurrSchedule( Sesiones::getStudentId() );
     //Si ya tiene, se redirecciona
     if( $schedule === true )
         header("Location: index.php");
@@ -93,7 +93,7 @@
                         </div>
 
 
-                        <?php foreach($subjectsArray as $sub ): ?>
+                        <?php foreach($subjectsArray as $sub ): /**@var $sub Materia*/?>
                             <span href="javascript:void(0)" class="materia-item" data-id="<?= $sub->getId(); ?>"><?php echo $sub->getName(); ?></span>
                         <?php endforeach; ?>
                     </div>
@@ -102,7 +102,7 @@
                     <div id="opciones">
                         <button id="btn-registrar-horario" class="btn btn-success">Registrar horario</button>
                         <button id="btn-reset-horario" class="btn btn-default">Reset</button>
-                        <a href="horario.php" class="btn btn-danger">Cancelar</a>
+                        <a href="index.php" class="btn btn-danger">Cancelar</a>
 
                         <span id="horario__registro-status"></span>
                     </div>

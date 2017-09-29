@@ -92,18 +92,37 @@ $(document).ready(function(){
 
     //======================================= SELECCION DE HORARIO
 
+    // $(".multi-select .hora-item").on( "click", function(event) {
+    //     var target = $( event.target );
+    //     //------Cambia el estilo del elemento
+    //     multiToggleButton(target, "hora-selected");
+    // });
+
+    //TODO: hacerlo funcional para horario en ajax
     $(".multi-select .hora-item").on( "click", function(event) {
         var target = $( event.target );
         //------Cambia el estilo del elemento
         multiToggleButton(target, "hora-selected");
     });
 
+    // $("#table-dates").on( "click", ".hora-item", function(event) {
+    //     var target = $( event.target );
+    //     //------Cambia el estilo del elemento
+    //     multiToggleButton(target, "hora-selected");
+    // });
 
-    $(".multi-select .materia-item").on( "click", function(event) {
-        var target = $( event.target );
-        //------Cambia el estilo del elemento
-        multiToggleButton(target, "materia-selected");
-    });
+    // $(".single-select .hora-item").on( "click", function(event) {
+    //     var target = $( event.target );
+    //     //------Cambia el estilo del elemento
+    //     singleToggleButton(target, "hora-selected");
+    // });
+    //
+    //
+    // $(".multi-select .materia-item").on( "click", function(event) {
+    //     var target = $( event.target );
+    //     //------Cambia el estilo del elemento
+    //     multiToggleButton(target, "materia-selected");
+    // });
 
 
     // Para que cargue elementos cargados con ajax es necesario especificar con "on" "click"
@@ -161,7 +180,7 @@ $(document).ready(function(){
         if( send ){
             // alert("persistencia completos");
             //Se obtiene ID de usuario
-            var studentId = $('#data-estudiante').data("id");
+            var studentId = $('#student-data').data("id");
 
             //Se envian persistencia capturados
             ajaxRegisterSchedule(studentId, hours, subjects);
@@ -190,10 +209,11 @@ $(document).ready(function(){
     });
 
 
-    $('.solicitar #btn-asesoria-anterior').click( function() {
+    $('#btn-asesoria-anterior').click( function() {
         var activo = $(".solicitar .seccion-active");
         var seccion = activo.data("seccion");
 
+        //TODO: mejorar seccion para guardar con sessionstorage
         if( seccion === "fechas" ){
             //Ocultando activo
             activo.slideToggle(function(){
@@ -226,35 +246,45 @@ $(document).ready(function(){
         var activo = $(".solicitar .seccion-active");
         var seccion = activo.data("seccion");
 
+        //----------------------SELECCION DE MATERIAS
+        //TODO: mejorar seccion para guardar con sessionstorage
         if( seccion === "materias" ){
 
-            var materia = $('.materia-selected');
-            if( materia.length === 0 )
+            //Se obtiene emateria seleccionada
+            var subject = $('.materia-selected');
+            //Valida seleccion
+            if( subject.length === 0 )
                 alert("sin materia seleccionada");
             else{
-                var respuesta = confirm("Seleccionó "+$(materia).html()+", Desea continuar?");
-                if( respuesta ){
-                    alert("WIIII");
+                //Solicita confirmar selccion
+                var response = confirm("Seleccionó "+$(subject).html()+", Desea continuar?");
+                //Si respondio "Aceptar
+                if( response ){
                     //[duration ] [, callback ]
+                    //Sube el elemento activo
                     activo.slideToggle(function(){
+                        //callback para que se ejecute después de subir elemento activo
                         var itemToShow = $("#seccion__fechas");
+                        //Cambiando elemento activo
                         addAndRemoveClass(itemToShow, activo, "seccion-active");
                         addAndRemoveClass($("#encabezado__fecha"), $("#encabezado__materia"), "active");
                         //Activando boton (propiedad)
                         $('.solicitar #btn-asesoria-anterior').prop("disabled", false);
-                        //Mostrando elemento
+
+                        //Mostrando elemento de fechas
                         itemToShow.slideToggle(function(){
                             //Evento AJAX
-                            obtenerFechasPorMateria(  materia.data("id") );
+                            updateAvailableDates(  subject.data("id"), $('#student-data').data("id") );
                         });
                     });
                 }
             }
-
         }
+        //----------------------SELECCION DE HORARIO
         else if( seccion === "fechas" ){
             alert("Esta en Fechas");
         }
+        //----------------------SELECCION DE ASESOR
         else if( seccion === "asesores" ){
             alert("Esta en Asesores");
         }

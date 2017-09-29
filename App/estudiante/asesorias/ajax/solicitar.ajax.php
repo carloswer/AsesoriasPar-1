@@ -1,47 +1,75 @@
 <?php
 
-    echo "SI LLEGO LA PETICION";
+    require_once "../../../config.php";
+    use Control\Sesiones;
+    use Control\Funciones;
+    use Control\ControlHorarios;
+    use Control\ControlEstudiantes;
 
-//    require_once '../../../config.php';
-//    use Control\ControlEstudiantes;
-//    use Control\ControlHorarios;
-//    $conEstudiantes = new ControlEstudiantes();
-//    $conHorarios = new ControlHorarios();
-//
-////  if( isset($_POST['tipo']) || isset($_POST['tipo']) ){
-////      echo "error";
-////  }
-//
-//    $json = $_POST['solicitar'];
-//    $JSONasesoria = json_decode($json);
-//    echo $JSONasesoria;
-//    exit();
-//
-//    //Lo que se solicita
-//    $tipo = $_POST['tipo'];
-//    //Id del alumno que solicita
-////    $alumno = $_POST['alumno'];
-//
-//
-//    //Si se solicitan las fechas
-//    if( $tipo === "getHorarios" ) {
-//        //id de Materia seleccionada
-////        $materia = $_POST['materia'];
-//        $array = $conHorarios->obtenerDiasHoras_PorHora();
-//        var_dump($array);
-////        echo "Desea obtener horrario";
-//    }
-//    //Si se solicitan los asesores
-//    else if( $tipo === "getAsesores" ){
-//        //id de asesor seleccionado
-////        $asesor = $_POST['asesor'];
-//        //Horario seleccionado (sin fecha)
-////        $horario = $_POST['horario'];
-////        echo "Desea obtener asesores";
-//    }
-//    else{
-//        echo "tipo desconocido";
-//    }
-//
+    if( !isset( $_POST['type'] ) || !isset($_POST['value']) || !isset($_POST['student']) ){
+        echo Funciones::makeJsonResponse(
+            "asosorias_dates",
+            false,
+            "No se enviaron los valores esperados"
+        );
+        exit;
+    }
+
+
+    $type = $_POST['type'];
+    $student = $_POST['student'];
+    $value = $_POST['value'];
+
+    //--------OBTENER HORARIOS DISPONIBLES
+    if( $type === 'schedule' ){
+
+        $conSchedule = new ControlHorarios();
+        $subjectId = $value;
+        $scheduleHoursResult = $conSchedule->getCurrAvailSchedules_SkipStudent( $subjectId, $student );
+
+        //Respuesta en caso de error
+        if( $scheduleHoursResult === 'error' ){
+            echo Funciones::makeJsonResponse(
+                "asesoria_schedule",
+                'error',
+                "No se pudieron obtener los horarios de los asesores"
+            );
+        }
+        //Respuesta en caso que no se encuentren fechas disponibles
+        else if( $scheduleHoursResult == null ){
+            echo Funciones::makeJsonResponse(
+                "asesoria_schedule",
+                false,
+                "No se encontrarón horarios disponibles para dicha materia"
+            );
+        }
+        //Respuesta en caso de se encuentren fechas disponibles
+        //Retorna el valor junto con el json
+        else{
+            //Se obtienen las horas existentes
+            $hoursArray = $conSchedule->getHours_OrderByHour();
+            //Se crear tabla y se regresa en String
+            $table = Funciones::makeScheduleTable($hoursArray, $scheduleHoursResult);
+
+            echo Funciones::makeJsonResponse(
+                "asesoria_schedule",
+                true,
+                "Horarios disponibles para solicitar",
+                $table
+            );
+        }
+    }
+    else{
+        echo Funciones::makeJsonResponse(
+            "asesoria_schedule",
+            false,
+            "No sé reconoce el tipo solicitado",
+            $scheduleHoursResult
+        );
+    }
+
+
+
+
 
 ?>

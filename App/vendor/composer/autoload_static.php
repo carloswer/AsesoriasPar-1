@@ -16,6 +16,10 @@ class ComposerStaticInit5edccadcadfe1c42d2902560a40958a0
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Translation\\' => 30,
         ),
+        'P' => 
+        array (
+            'PHPMailer\\PHPMailer\\' => 20,
+        ),
         'C' => 
         array (
             'Carbon\\' => 7,
@@ -30,6 +34,10 @@ class ComposerStaticInit5edccadcadfe1c42d2902560a40958a0
         'Symfony\\Component\\Translation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Carbon\\' => 
         array (

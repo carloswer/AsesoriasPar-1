@@ -180,8 +180,43 @@ function ajaxRegisterSchedule(student, schedule, subjects){
 // ASESORIAS
 // ----------------
 
-function obtenerFechasPorMateria( materia ){
-    $.post( "ajax/solicitar.ajax.php", function( response ) {
-        console.log( response );
+/**
+ * @param subjectId String|int
+ * @param studentId String|int
+ */
+function updateAvailableDates( subjectId, studentId ){
+    $.ajax({
+        url: "ajax/solicitar.ajax.php",
+        type: 'post',
+        //Tipo de dato que regresa
+        dataType: 'json',
+        data: {type: "schedule", value: subjectId, student: studentId},
+        cache:false,
+        beforeSend: function(){
+            $('#loader-fechas').show();
+        }
+    })
+    .done(function(response){
+
+        if( response.type === "asesoria_schedule" ){
+            // $('#loader-fechas').hide();
+            console.log( "ocultando");
+
+            if( response.result === true ){
+                //Se agrega tabla con datos
+                $('#table-dates').html( response.extra );
+            }
+
+        }
+
+    })
+    .fail(function(){
+        //TODO: crear un alert especial (tipo twitter)
+        $('#table-dates').html( "ocurrio un error en la conexion" );
+    })
+    .always( function(response) {
+        $('#loader-fechas').hide();
+        console.log(  response );
     });
+
 }

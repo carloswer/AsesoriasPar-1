@@ -70,7 +70,10 @@
          * @param $idStudent
          */
         public function getAvailScheduleSubs_SkipSutdent( $idStudent, $idCycle ){
-            $query = $this->campos."
+            //Para que no se repita
+            $select = str_replace("SELECT", "SELECT DISTINCT", $this->campos);
+
+            $query = $select."
                     INNER JOIN carrera c ON m.FK_carrera = c.PK_id 
                     INNER JOIN horario_materia hm ON hm.FK_materia = m.PK_id
                     INNER JOIN horario h ON h.PK_id = hm.FK_horario

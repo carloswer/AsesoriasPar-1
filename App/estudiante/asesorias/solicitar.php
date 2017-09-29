@@ -7,8 +7,9 @@
     use Control\ControlHorarios;
     use Control\ControlMaterias;
     use Control\Sesiones;
+    use Objetos\Materia;
 
-    //Redireccion cuando es asesor (no debe soliciar en modo asesor)
+//Redireccion cuando es asesor (no debe soliciar en modo asesor)
     if( Sesiones::isAsesor() )
         header("Location: ".EST_PATH."/asesorias");
 
@@ -27,7 +28,6 @@
     else if( $cycle != null ){
         //Obtine Materias
         //TODO: materias solo de la carrera
-        //TODO: estudiante diferente de uno mismo
         $arraySubjects = $conSubjects->getCurrAvailScheduleSubs_SkipSutdent( Sesiones::getStudentId() );
 
         //Horario (normales)
@@ -68,17 +68,24 @@
                     <div class="seccion single-select seccion-active" id="seccion__materias" data-seccion="materias">
                         <h3>Seleccione materias</h3>
                         <div id="materias-contenido" class="contenido materias">
-                            <?php foreach( $arraySubjects as $sub ): ?>
+
+                            <?php foreach( $arraySubjects as $sub ):  /**@var $sub Materia*/?>
                                 <span class="materia-item" data-id="<?= $sub->getId(); ?>"><?= $sub->getName(); ?></span>
                             <?php endforeach; ?>
                         </div>
                     </div>
 
 
-                    <div class="seccion seleccionar-single none" id="seccion__fechas" data-seccion="fechas">
+                    <div class="seccion single-select none" id="seccion__fechas" data-seccion="fechas">
                         <h3>Seleccione Fecha y Hora</h3>
                         <div id="fechas-contenido" class="contenido fechas">
-                            <div class="loader none">
+                            <!--TODO: cambiar diseño para facil uso-->
+                            <div class="horario single-select">
+                                <div class="horas" id="table-dates">
+
+                                </div>
+                            </div>
+                            <div class="loader none" id="loader-fechas">
                                 <i class="icon fa fa-circle-o-notch fa-3x fa-spin"></i>
                             </div>
                         </div>
@@ -86,10 +93,10 @@
 
 
 
-                    <div class="seccion seleccionar-single none" id="seccion__asesores" data-seccion="asesores">
+                    <div class="seccion single-select none" id="seccion__asesores" data-seccion="asesores">
                         <h3>Seleccione Asesor</h3>
                         <div id="asesores-contenido" class="contenido asesores">
-                            <div class="loader none">
+                            <div class="loader none" id="loader-asesores">
                                 <i class="icon fa fa-circle-o-notch fa-3x fa-spin"></i>
                             </div>
                         </div>

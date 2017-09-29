@@ -27,6 +27,7 @@ use mysqli;
                 $this->datos['db']
             );
 
+            //TODO: Modificar para poder regresar error y mostrar en vista
              //Manejo de error
             if( mysqli_connect_error() ) {
                 trigger_error("Error al tratar de conectar con MySQL: " . mysqli_connect_error(),

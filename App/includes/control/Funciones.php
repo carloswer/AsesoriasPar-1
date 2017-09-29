@@ -1,8 +1,7 @@
 <?php namespace Control;
+use Carbon\Carbon;
 
-
-class Funciones
-{
+class Funciones{
 
     /**
      * Método que crea un JSON String a partir de parametros
@@ -39,16 +38,6 @@ class Funciones
         return $response;
     }
 
-    /**
-     * @param $json
-     * @return bool
-     */
-    public static function isJSONResponse($json){
-        if( json_decode($json) == null )
-            return false;
-        else
-            return true;
-    }
 
     private static function separeDaysOfHours( $hoursAndDays ){
         $daysArray = array();
@@ -64,6 +53,9 @@ class Funciones
 
     /**
      * Método que verifica si la hora del día son parte del horario del asesor
+     * @param $horas array Horas array totales existentes
+     * @param $hora array hora a comparar
+     * @return bool TRUE si existe, FALSE si no existe
      */
     private static function isHourOfScheule($horas, $hora ){
         foreach($horas as $horaX ){
@@ -125,6 +117,10 @@ class Funciones
 
         $body .= "</table>\n";
         return $head.$body;
+    }
+
+    public static function getCurrentDay(){
+
     }
 
 

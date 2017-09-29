@@ -1,7 +1,5 @@
-<?php 
-
+<?php
     use Control\Sesiones;
-	session_start();
 ?>
 
 
@@ -9,7 +7,7 @@
 <h4>Has iniciado como: <?= Sesiones::getStudentType(); ?></h4>
 
 <!--Logout-->
-<a href="<?= ROOT_REF; ?>/logout.php">cerrar sesion</a>
+<a href="<?= ROOT_REF."/logout.php"; ?>">cerrar sesion</a>
 
 <!--MENU DEL USUARIO-->
 <ul>
@@ -25,4 +23,4 @@
 </ul>
 
 <!-- Elementos con datos para utilizar con AJAX -->
- <input type="hidden" id="data-estudiante" data-id="<?= Sesiones::getStudentId() ?>">
+ <input type="hidden" id="student-data" data-id="<?= Sesiones::getStudentId() ?>">
